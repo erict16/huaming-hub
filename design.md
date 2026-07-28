@@ -1,18 +1,20 @@
-# Design — 华明工作台 (huaming-hub)
+# Design — 华明 Hub (huaming-hub)
 
-Locked design system for this personal hub. Every page redesign reads this file before emitting code. Do not regenerate per page — extend when the system needs to grow.
+Locked design system. Every page redesign reads this file before emitting code.
+
+## Audience
+
+Public-facing **non-official reference hub** for engineers, buyers, and curious visitors — products, tech PDFs, OLTC selector, plus public quote & company news. Not a personal trading desk; not official PR.
 
 ## Genre
 
-modern-minimal · industrial data desk
-
-Personal B2B workbench (stock + announcements + OLTC docs). Not marketing landing, not PR site.
+modern-minimal · industrial public hub
 
 ## Macrostructure family
 
-- **Home (app desk):** Stat-Led — live price is the lead figure, paired with worded identity「华明装备 · 002270」. News uses Index-First density (list is the content).
+- **Home:** Welcome hero (who / what / CTAs) → entry cards → Stat-Led quote strip → Index-First company news.
 - **Content pages** (downloads / products / about): same shell, denser tables/lists; no hero enrichment.
-- **Previous fingerprint (do not reuse next run as primary):** Workbench
+- **Previous fingerprints:** Workbench · pure Stat-Led desk
 
 ## Theme · cobalt-industrial (light)
 

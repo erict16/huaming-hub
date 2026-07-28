@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { fetchNewsBundle, type NewsItem } from "@/lib/news";
 
 const tagLabel: Record<NewsItem["tag"], string> = {
-  risk: "风险",
-  bull: "动态",
+  risk: "提示",
+  bull: "进展",
   company: "公司",
-  flow: "资金",
-  other: "其它",
+  flow: "市场",
+  other: "资讯",
 };
 
 const tagClass: Record<NewsItem["tag"], string> = {
@@ -33,7 +33,8 @@ export function NewsFeed() {
         setItems(data.items);
         setBriefing(data.briefing);
       } catch {
-        if (alive) setBriefing(["拉新闻失败。可看上方行情，或点右侧外链。"]);
+        if (alive)
+          setBriefing(["暂时无法加载动态，可稍后重试或查看交易所公告。"]);
       } finally {
         if (alive) setLoading(false);
       }
@@ -48,19 +49,16 @@ export function NewsFeed() {
       {briefing.length > 0 && (
         <div className="hm-card hm-card-pad">
           <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
-            <h2 className="m-0 font-display text-sm font-semibold text-[var(--ink)]">
-              要点
-            </h2>
+            <h3 className="m-0 font-display text-sm font-semibold text-[var(--ink)]">
+              近期要点
+            </h3>
             <span className="text-[11px] text-[var(--ink-3)]">
-              {loading ? "加载中…" : `华明相关 · ${items.length} 条`}
+              {loading ? "加载中…" : `${items.length} 条 · 华明相关`}
             </span>
           </div>
           <ul className="mt-2 space-y-1 border-t border-[var(--rule)] pt-2">
             {briefing.map((line, i) => (
-              <li
-                key={i}
-                className="text-sm leading-snug text-[var(--ink-2)]"
-              >
+              <li key={i} className="text-sm leading-snug text-[var(--ink-2)]">
                 {line}
               </li>
             ))}
@@ -70,9 +68,9 @@ export function NewsFeed() {
 
       <div className="hm-card overflow-hidden">
         <div className="flex items-baseline justify-between gap-2 border-b border-[var(--rule)] px-4 py-2.5">
-          <h2 className="m-0 font-display text-sm font-semibold text-[var(--ink)]">
+          <h3 className="m-0 font-display text-sm font-semibold text-[var(--ink)]">
             公告与媒体
-          </h2>
+          </h3>
           <span className="text-[11px] text-[var(--ink-3)]">按日期</span>
         </div>
 
@@ -86,7 +84,7 @@ export function NewsFeed() {
 
         {!loading && items.length === 0 && (
           <p className="m-0 px-4 py-4 text-sm text-[var(--ink-3)]">
-            暂时没有条目。可直接去交易所公告。
+            暂时没有条目，可前往交易所公告页面查看。
           </p>
         )}
 
@@ -118,7 +116,7 @@ export function NewsFeed() {
       </div>
 
       <p className="m-0 text-[11px] leading-snug text-[var(--ink-3)]">
-        东方财富公开接口 · 仅华明/002270 · 已滤流程空壳 · 有延迟，重要事项看交易所原文
+        来源为东方财富等公开接口，仅收录华明/002270 相关内容；信息可能有延迟，重要事项请以交易所原文为准。
       </p>
     </section>
   );

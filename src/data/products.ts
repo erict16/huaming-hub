@@ -83,10 +83,10 @@ export const productSeries: ProductSeries[] = [
 ];
 
 export const companyFacts = [
-  { label: "Founded", value: "1989 / 1995*" },
-  { label: "Stock", value: "002270.SZ" },
-  { label: "HQ", value: "Shanghai, China" },
-  { label: "Intl HQ", value: "Singapore" },
-  { label: "Focus", value: "OLTC & DETC" },
-  { label: "Markets", value: "100+ countries" },
+  { label: "创立", value: "1989 / 1995*" },
+  { label: "证券代码", value: "002270.SZ" },
+  { label: "总部", value: "中国上海" },
+  { label: "国际业务", value: "新加坡" },
+  { label: "主业", value: "有载 / 无励磁分接开关" },
+  { label: "市场", value: "100+ 国家和地区" },
 ];

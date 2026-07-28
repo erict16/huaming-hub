@@ -363,14 +363,14 @@ export async function fetchNewsBundle(): Promise<{
 }
 
 function buildBriefing(items: NewsItem[]): string[] {
-  if (!items.length) return ["暂无条目，可看上方行情或交易所公告。"];
+  if (!items.length) return ["暂无动态，可查看交易所公告或稍后再试。"];
 
   const risk = items.filter(isRiskish).slice(0, 1);
   const rest = items.filter((i) => !risk.includes(i)).slice(0, 3 - risk.length);
 
   return [...risk, ...rest].map((i) => {
     if (i.tag === "risk" || (i.bearish && i.tag !== "bull")) {
-      return `风险 · ${i.title}`;
+      return `提示 · ${i.title}`;
     }
     return i.title;
   });

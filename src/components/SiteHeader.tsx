@@ -10,9 +10,9 @@ const nav: {
   label: string;
   external?: boolean;
 }[] = [
-  { href: "/", label: "行情" },
-  { href: "/downloads", label: "资料" },
+  { href: "/", label: "首页" },
   { href: "/products", label: "产品" },
+  { href: "/downloads", label: "资料" },
   {
     href: "https://erict16.github.io/oltc-selector/",
     label: "选型",
@@ -38,10 +38,10 @@ export function SiteHeader() {
           />
           <div className="leading-tight">
             <div className="font-display text-sm font-semibold tracking-tight text-[var(--ink)]">
-              华明工作台
+              华明 Hub
             </div>
             <div className="font-mono text-[10px] text-[var(--ink-3)]">
-              002270 · 个人用
+              002270 · 参考站
             </div>
           </div>
         </Link>

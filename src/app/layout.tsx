@@ -25,11 +25,11 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "华明工作台 · 002270",
-    template: "%s · 华明工作台",
+    default: "华明 Hub · 分接开关资料与产品参考",
+    template: "%s · 华明 Hub",
   },
   description:
-    "华明装备（002270）股价、重要公告与 OLTC 技术资料下载。个人站点，非官方。",
+    "华明装备（002270）有载分接开关产品系列、技术资料下载、选型工具，以及公开行情与公司动态。非官方参考站。",
   icons: {
     icon: asset("/brand/logo/hm-logo-01.png"),
   },

@@ -101,7 +101,7 @@ export function StockPanel() {
               : "—"}
           </div>
           <p className="mt-2 mb-0 text-[11px] leading-snug text-[var(--ink-3)]">
-            华明装备 · 有载分接开关（OLTC）
+            公开行情 · 约每分钟刷新
             {q.ok
               ? ` · ${new Date(q.updatedAt).toLocaleTimeString("zh-CN", { hour12: false })}`
               : q.error
@@ -114,7 +114,7 @@ export function StockPanel() {
               rel="noreferrer"
               className="text-[var(--accent)] hover:underline"
             >
-              完整行情
+              查看详情
             </a>
           </p>
         </div>

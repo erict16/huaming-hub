@@ -12,5 +12,13 @@
     "theme": "cobalt-industrial",
     "enrichment": "none",
     "brief": "News balance Huaming-only + Stat-Led home polish"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "Stat-Led-public-hub",
+    "theme": "cobalt-industrial",
+    "enrichment": "brand-photo-only",
+    "brief": "Pivot copy+IA to public-facing reference hub"
   }
 ]
+

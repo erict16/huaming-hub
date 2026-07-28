@@ -14,7 +14,8 @@ export default function DownloadsPage() {
         <div>
           <h1>技术资料</h1>
           <p className="sub">
-            {allDocuments.length} 份 · 按型号筛 · 表格
+            {allDocuments.length} 份规范书、Leaflet 与操作说明 · 可按型号筛选 ·
+            文件链至国际站
           </p>
         </div>
       </header>

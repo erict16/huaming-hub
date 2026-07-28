@@ -13,7 +13,9 @@ export default function ProductsPage() {
       <header className="hm-page-head">
         <div>
           <h1>产品系列</h1>
-          <p className="sub">参数表去资料页；这里只定位型号。</p>
+          <p className="sub">
+            华明有载 / 无励磁分接开关与机构一览。详细参数与 PDF 见技术资料。
+          </p>
         </div>
       </header>
 
