@@ -31,7 +31,31 @@ export const metadata: Metadata = {
   description:
     "Huaming on-load tap changer product series, technical PDF downloads and OLTC selector. Unofficial reference site for procurement and engineering.",
   icons: {
-    icon: asset("/brand/logo/hm-logo-01.png"),
+    // Square HM monogram — not the wide wordmark (illegible in tabs)
+    icon: [
+      {
+        url: asset("/brand/logo/favicon-32.png"),
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: asset("/brand/logo/favicon-16.png"),
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: asset("/favicon.ico"),
+        sizes: "48x48",
+        type: "image/x-icon",
+      },
+    ],
+    apple: [
+      {
+        url: asset("/brand/logo/apple-touch-icon.png"),
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
 };
 
