@@ -3,28 +3,17 @@
 import { useEffect, useMemo, useState } from "react";
 import type { DocumentItem } from "@/lib/documents";
 
-const kindColor: Record<string, string> = {
-  Leaflet: "bg-sky-500/15 text-sky-200",
-  "Technical Data": "bg-violet-500/15 text-violet-200",
-  "Operating Instruction": "bg-amber-500/15 text-amber-200",
-  "Controller Manual": "bg-emerald-500/15 text-emerald-200",
-  Document: "bg-slate-500/15 text-slate-200",
-};
-
 export function DownloadExplorer({
   documents,
   categories,
-  kinds,
 }: {
   documents: DocumentItem[];
   categories: string[];
-  kinds: string[];
+  kinds?: string[];
 }) {
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("all");
-  const [kind, setKind] = useState("all");
 
-  // Support /downloads/?q=CV2 on static GitHub Pages
   useEffect(() => {
     try {
       const params = new URLSearchParams(window.location.search);
@@ -39,7 +28,6 @@ export function DownloadExplorer({
     const query = q.trim().toLowerCase();
     return documents.filter((d) => {
       if (category !== "all" && d.category !== category) return false;
-      if (kind !== "all" && d.kind !== kind) return false;
       if (!query) return true;
       return (
         d.model.toLowerCase().includes(query) ||
@@ -48,121 +36,93 @@ export function DownloadExplorer({
         d.category.toLowerCase().includes(query)
       );
     });
-  }, [documents, q, category, kind]);
-
-  const grouped = useMemo(() => {
-    const map = new Map<string, DocumentItem[]>();
-    for (const d of filtered) {
-      const list = map.get(d.category) || [];
-      list.push(d);
-      map.set(d.category, list);
-    }
-    return Array.from(map.entries());
-  }, [filtered]);
+  }, [documents, q, category]);
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-        <div className="grid gap-3 md:grid-cols-[1.4fr_1fr_1fr]">
-          <label className="block">
-            <span className="mb-1.5 block text-[11px] uppercase tracking-wider text-slate-500">
-              Search model / filename
-            </span>
-            <input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="e.g. CV2, SHZV, Technical Data…"
-              className="w-full rounded-xl border border-white/10 bg-[#070f1c] px-3.5 py-2.5 text-sm text-white outline-none ring-cyan-400/0 transition placeholder:text-slate-600 focus:border-cyan-400/40 focus:ring-2 focus:ring-cyan-400/20"
-            />
-          </label>
-          <label className="block">
-            <span className="mb-1.5 block text-[11px] uppercase tracking-wider text-slate-500">
-              Category
-            </span>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-[#070f1c] px-3.5 py-2.5 text-sm text-white outline-none focus:border-cyan-400/40"
-            >
-              <option value="all">All categories</option>
-              {categories.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="block">
-            <span className="mb-1.5 block text-[11px] uppercase tracking-wider text-slate-500">
-              Document type
-            </span>
-            <select
-              value={kind}
-              onChange={(e) => setKind(e.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-[#070f1c] px-3.5 py-2.5 text-sm text-white outline-none focus:border-cyan-400/40"
-            >
-              <option value="all">All types</option>
-              {kinds.map((k) => (
-                <option key={k} value={k}>
-                  {k}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <div className="mt-3 text-xs text-slate-500">
-          显示 {filtered.length} / {documents.length} 份公开资料 · 点击直达华明国际站
-          PDF
-        </div>
+    <div className="space-y-4">
+      <div className="hm-card flex flex-col gap-3 p-3 sm:flex-row sm:items-center">
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="搜型号，如 CV2、SHZV、CMD…"
+          className="min-w-0 flex-1 rounded-md border border-[var(--rule)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)]"
+        />
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="rounded-md border border-[var(--rule)] bg-white px-3 py-2 text-sm outline-none focus:border-[var(--accent)]"
+        >
+          <option value="all">全部系列</option>
+          {categories.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
       </div>
 
-      {grouped.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-white/10 px-6 py-16 text-center text-slate-400">
-          没有匹配的资料，试试更短的型号关键字。
+      <div className="flex flex-wrap gap-1.5">
+        {["all", ...categories].map((c) => {
+          const label = c === "all" ? "全部" : c.replace(" OLTC", "").replace(" / OCTC", "");
+          const active = category === c;
+          return (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setCategory(c)}
+              className={`rounded-md border px-2.5 py-1 text-xs transition ${
+                active
+                  ? "border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]"
+                  : "border-[var(--rule)] bg-white text-[var(--ink-2)] hover:border-[var(--rule-2)]"
+              }`}
+            >
+              {label}
+            </button>
+          );
+        })}
+      </div>
+
+      <p className="text-xs text-[var(--ink-3)]">
+        {filtered.length} / {documents.length} · 点行打开官方 PDF
+      </p>
+
+      <div className="hm-card overflow-hidden">
+        <div className="hidden grid-cols-[88px_1fr_120px_56px] gap-2 border-b border-[var(--rule)] bg-[var(--paper)] px-3 py-2 text-[11px] font-medium text-[var(--ink-3)] sm:grid">
+          <span>型号</span>
+          <span>文件</span>
+          <span>类型</span>
+          <span />
         </div>
-      ) : (
-        grouped.map(([cat, docs]) => (
-          <section key={cat} className="space-y-3">
-            <div className="flex items-center gap-3">
-              <h3 className="text-lg font-semibold text-white">{cat}</h3>
-              <span className="rounded-full bg-white/5 px-2 py-0.5 text-xs text-slate-400 ring-1 ring-white/10">
-                {docs.length}
-              </span>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {docs.map((d) => (
+        {filtered.length === 0 ? (
+          <p className="px-3 py-10 text-center text-sm text-[var(--ink-3)]">
+            没有匹配，换个型号关键字。
+          </p>
+        ) : (
+          <ul className="divide-y divide-[var(--rule)]">
+            {filtered.map((d) => (
+              <li key={d.id + d.url}>
                 <a
-                  key={d.id + d.url}
                   href={d.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex flex-col rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-transparent p-4 transition hover:-translate-y-0.5 hover:border-cyan-400/35 hover:shadow-lg hover:shadow-cyan-950/30"
+                  className="grid grid-cols-1 gap-1 px-3 py-2.5 transition hover:bg-[var(--accent-soft)]/50 sm:grid-cols-[88px_1fr_120px_56px] sm:items-center sm:gap-2"
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="text-xs font-semibold uppercase tracking-wide text-cyan-300/90">
-                      {d.model}
-                    </div>
-                    <span
-                      className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] ${kindColor[d.kind] || kindColor.Document}`}
-                    >
-                      {d.kind}
-                    </span>
-                  </div>
-                  <div className="mt-2 line-clamp-2 text-sm font-medium leading-snug text-slate-100 group-hover:text-white">
+                  <span className="font-mono text-xs font-semibold text-[var(--accent)]">
+                    {d.model}
+                  </span>
+                  <span className="line-clamp-2 text-sm text-[var(--ink)] sm:line-clamp-1">
                     {d.name}
-                  </div>
-                  <div className="mt-auto flex items-center justify-between pt-4 text-[11px] text-slate-500">
-                    <span>PDF · {d.source}</span>
-                    <span className="text-cyan-400 group-hover:translate-x-0.5 transition">
-                      Download →
-                    </span>
-                  </div>
+                  </span>
+                  <span className="text-xs text-[var(--ink-3)]">{d.kind}</span>
+                  <span className="text-right text-xs font-medium text-[var(--accent)]">
+                    下载
+                  </span>
                 </a>
-              ))}
-            </div>
-          </section>
-        ))
-      )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

@@ -3,28 +3,17 @@
 import { useEffect, useState } from "react";
 import { fetchNewsBundle, type NewsItem } from "@/lib/news";
 
-const tagStyle: Record<NewsItem["tag"], string> = {
-  company: "bg-cyan-500/15 text-cyan-200 ring-cyan-400/20",
-  market: "bg-amber-500/15 text-amber-200 ring-amber-400/20",
-  industry: "bg-violet-500/15 text-violet-200 ring-violet-400/20",
-  intl: "bg-sky-500/15 text-sky-200 ring-sky-400/20",
-  rumor: "bg-rose-500/15 text-rose-200 ring-rose-400/20",
-};
-
 const tagLabel: Record<NewsItem["tag"], string> = {
   company: "公司",
-  market: "资金",
+  market: "市场",
   industry: "行业",
   intl: "海外",
-  rumor: "风声",
+  rumor: "杂讯",
 };
 
 export function NewsFeed() {
   const [items, setItems] = useState<NewsItem[]>([]);
-  const [briefing, setBriefing] = useState<string[]>([
-    "正在拉取华明相关公告与市场消息…",
-  ]);
-  const [updatedAt, setUpdatedAt] = useState<string>("");
+  const [briefing, setBriefing] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,12 +24,9 @@ export function NewsFeed() {
         if (!alive) return;
         setItems(data.items);
         setBriefing(data.briefing);
-        setUpdatedAt(data.updatedAt);
       } catch {
-        if (!alive) return;
-        setBriefing([
-          "新闻源暂时不可用，请稍后刷新。仍可使用下方资料下载与产品页。",
-        ]);
+        if (alive)
+          setBriefing(["新闻源暂时拉不到。用左侧行情，或去资料页。"]);
       } finally {
         if (alive) setLoading(false);
       }
@@ -51,53 +37,41 @@ export function NewsFeed() {
   }, []);
 
   return (
-    <section className="space-y-6">
-      <div className="rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 via-[#0b162b] to-[#0a1324] p-6 shadow-xl shadow-cyan-950/20">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
-              Daily briefing
-            </div>
-            <h2 className="mt-1 text-2xl font-semibold text-white">
-              华明相关动态速览
-            </h2>
-          </div>
-          <div className="text-xs text-slate-500">
-            {loading
-              ? "加载中…"
-              : updatedAt
-                ? `刷新于 ${new Date(updatedAt).toLocaleString("zh-CN", { hour12: false })}`
-                : ""}
-          </div>
+    <section className="space-y-4">
+      <div className="hm-card p-4">
+        <div className="flex items-baseline justify-between gap-2">
+          <h2 className="font-display text-base font-semibold text-[var(--ink)]">
+            值得看的
+          </h2>
+          <span className="text-xs text-[var(--ink-3)]">
+            {loading ? "加载中" : `${items.length} 条`}
+          </span>
         </div>
-        <ul className="mt-5 space-y-3">
-          {briefing.map((line, i) => (
-            <li
-              key={i}
-              className="flex gap-3 text-sm leading-relaxed text-slate-200"
-            >
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400" />
-              <span>{line}</span>
-            </li>
-          ))}
-        </ul>
+        {briefing.length > 0 && (
+          <ul className="mt-3 space-y-1.5 border-t border-[var(--rule)] pt-3">
+            {briefing.map((line, i) => (
+              <li
+                key={i}
+                className="flex gap-2 text-sm text-[var(--ink-2)]"
+              >
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--accent)]" />
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
-      <div className="flex items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold text-white">消息与市场风声</h3>
-        <span className="text-xs text-slate-500">
-          {loading ? "…" : `${items.length} 条聚合`}
-        </span>
-      </div>
-
-      <div className="grid gap-3">
+      <div className="hm-card divide-y divide-[var(--rule)] overflow-hidden">
         {loading &&
-          Array.from({ length: 4 }).map((_, i) => (
-            <div
-              key={i}
-              className="h-24 animate-pulse rounded-2xl border border-white/5 bg-white/[0.03]"
-            />
+          Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="h-16 animate-pulse bg-[var(--paper)]" />
           ))}
+        {!loading && items.length === 0 && (
+          <p className="p-4 text-sm text-[var(--ink-3)]">
+            没有筛到像样的标题。交易所官样文件已过滤。
+          </p>
+        )}
         {!loading &&
           items.map((item) => (
             <a
@@ -105,26 +79,23 @@ export function NewsFeed() {
               href={item.url}
               target="_blank"
               rel="noreferrer"
-              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-400/30 hover:bg-white/[0.05]"
+              className="block px-4 py-3 transition hover:bg-[var(--accent-soft)]/40"
             >
-              <div className="flex flex-wrap items-center gap-2">
-                <span
-                  className={`rounded-full px-2 py-0.5 text-[10px] font-medium ring-1 ${tagStyle[item.tag]}`}
-                >
+              <div className="flex flex-wrap items-center gap-2 text-[11px] text-[var(--ink-3)]">
+                <span className="rounded border border-[var(--rule)] px-1.5 py-0.5 text-[var(--ink-2)]">
                   {tagLabel[item.tag]}
                 </span>
-                <span className="text-[11px] text-slate-500">{item.source}</span>
-                <span className="text-[11px] text-slate-600">·</span>
-                <span className="font-mono text-[11px] text-slate-500">
-                  {item.date || "—"}
-                </span>
+                <span>{item.source}</span>
+                <span className="font-mono">{item.date || ""}</span>
               </div>
-              <h4 className="mt-2 text-[15px] font-medium leading-snug text-slate-100 group-hover:text-cyan-100">
+              <div className="mt-1 text-[15px] font-medium leading-snug text-[var(--ink)]">
                 {item.title}
-              </h4>
-              <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-slate-400">
-                {item.summary}
-              </p>
+              </div>
+              {item.summary && (
+                <p className="mt-0.5 line-clamp-1 text-xs text-[var(--ink-3)]">
+                  {item.summary}
+                </p>
+              )}
             </a>
           ))}
       </div>
