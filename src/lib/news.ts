@@ -7,8 +7,8 @@ export type NewsItem = {
   source: string;
   date: string;
   url: string;
-  /** 简短标签：涨跌/风险/公司/行业/资金 */
-  tag: "risk" | "bull" | "company" | "industry" | "flow" | "other";
+  /** 简短标签：涨跌/风险/公司/资金 */
+  tag: "risk" | "bull" | "company" | "flow" | "other";
   /** 是否偏负面/风险（仅作标记，不隐藏） */
   bearish: boolean;
   score: number;
@@ -50,8 +50,23 @@ function isProcessJunk(title: string): boolean {
   ].some((re) => re.test(title));
 }
 
+/**
+ * 硬相关：公告 API 已锁 002270；媒体必须点名华明/002270。
+ * 用 raw 文本判断，避免 cleanTitle 剥前缀后误杀。
+ */
+function isHuamingRelevant(
+  rawTitle: string,
+  summary: string,
+  source: string,
+): boolean {
+  if (source === "公告") return true;
+  const t = `${rawTitle} ${summary}`;
+  return /华明装备|华明\s*股份|华明\s*集团|华明|\b002270\b/.test(t);
+}
+
+/** 收紧：避免单字「跌/下降」把中性稿打成偏空墙 */
 function isBearish(t: string): boolean {
-  return /跌|下滑|下降|减持|净流出|预亏|亏损|不及预期|处罚|立案|诉讼|违规|风险提示|质押|冻结|问询|关注函|警示|违约|推迟|终止|不及|承压|走弱|大跌|跌停|减仓/.test(
+  return /减持|净流出|预亏|亏损|不及预期|处罚|立案|诉讼|违规|风险提示|质押|冻结|问询|关注函|警示|违约|终止合作|跌停|大跌|减仓|承压严重/.test(
     t,
   );
 }
@@ -63,33 +78,25 @@ function isBullish(t: string): boolean {
 }
 
 /**
- * 打分只看「值不值得点」，不看利好利空。
- * 利空可以更高：减持、处罚、业绩变脸往往比公关稿更有用。
+ * 打分只看「值不值得点」，利好利空同权。
  */
 function scoreItem(title: string, summary: string, source: string): number {
   const t = `${title} ${summary}`;
   let s = 0;
 
-  // 公司实质
-  if (/华明|002270/.test(t)) s += 4;
+  if (/华明|002270/.test(t)) s += 6;
   if (/业绩|营收|净利|预告|快报|年报|半年报|季报/.test(t)) s += 10;
-  if (/减持|增持|回购|质押|解禁|定增|配股|股权激励/.test(t)) s += 11;
-  if (/中标|订单|重大合同|框架协议/.test(t)) s += 9;
-  if (/处罚|立案|诉讼|问询函|关注函|违规|风险提示/.test(t)) s += 12;
-  if (/预亏|亏损|下滑|不及预期|下调/.test(t)) s += 11;
-  if (/跌停|涨停|异动|主力|北向|资金/.test(t)) s += 7;
-  if (/分接|OLTC|变压器|特高压|输变电|电力设备/.test(t)) s += 5;
+  if (/中标|订单|重大合同|框架协议/.test(t)) s += 10;
+  if (/减持|增持|回购|质押|解禁|定增|配股|股权激励/.test(t)) s += 9;
+  if (/处罚|立案|诉讼|问询函|关注函|违规|风险提示/.test(t)) s += 9;
+  if (/预亏|亏损|不及预期|下调评级/.test(t)) s += 8;
+  if (/跌停|涨停|异动|主力|北向|资金/.test(t)) s += 5;
+  if (/分接|OLTC|有载调压|变压器/.test(t)) s += 3;
 
-  // 行业面（竞品/招标/板块）
-  if (/电力设备|电网设备|输变电|特高压/.test(t) && !/华明|002270/.test(t))
-    s += 4;
-
-  // 公关/软文降权
   if (/成功|卓越|引领|赋能|再获|喜获|荣获|圆满/.test(t)) s -= 6;
   if (/华明国际站|intl-huaming/i.test(source)) s -= 15;
   if (isProcessJunk(title)) s -= 30;
 
-  // 纯「关于…的公告」且没有实质词
   if (
     /^关于/.test(title) &&
     !/业绩|合同|中标|减持|增持|回购|处罚|预告|担保|投资|收购/.test(title)
@@ -110,7 +117,6 @@ function cleanTitle(raw: string): string | null {
 
   if (isProcessJunk(t)) return null;
 
-  // 只剥「关于…的公告」外壳
   const m = t.match(/^关于(.+?)的公告$/);
   if (m) t = m[1].trim();
 
@@ -121,12 +127,9 @@ function cleanTitle(raw: string): string | null {
 
 function tagOf(title: string, summary: string): NewsItem["tag"] {
   const t = `${title} ${summary}`;
-  if (isBearish(t) && /处罚|立案|诉讼|问询|风险|预亏|亏损|违规/.test(t))
-    return "risk";
+  if (/处罚|立案|诉讼|问询|风险提示|预亏|违规/.test(t)) return "risk";
   if (/资金|净流入|净流出|主力|北向|换手/.test(t)) return "flow";
-  if (isBullish(t) && /涨停|大涨|中标|预增/.test(t)) return "bull";
-  if (/电力设备|特高压|电网|输变电|板块/.test(t) && !/华明|002270/.test(t))
-    return "industry";
+  if (isBullish(t) && /涨停|大涨|中标|预增|增持|回购/.test(t)) return "bull";
   if (/华明|002270|业绩|减持|增持|回购|合同|中标|担保/.test(t))
     return "company";
   return "other";
@@ -196,11 +199,13 @@ function makeItem(
   url: string,
   id: string,
 ): NewsItem | null {
+  if (!isHuamingRelevant(rawTitle, summary, source)) return null;
+
   const title = cleanTitle(rawTitle);
   if (!title) return null;
   const sum = stripHtml(summary).slice(0, 100);
   const score = scoreItem(title, sum, source);
-  if (score < 3) return null;
+  if (score < 4) return null;
   const bearish = isBearish(`${title} ${sum}`);
   return {
     id,
@@ -216,9 +221,55 @@ function makeItem(
 }
 
 function dateKey(d: string): string {
-  // sort key YYYY-MM-DD
   const m = d.match(/(\d{4}-\d{2}-\d{2})/);
   return m ? m[1] : "0000-00-00";
+}
+
+function isRiskish(n: NewsItem): boolean {
+  return n.bearish || n.tag === "risk";
+}
+
+/** 日期优先；遍历时跳过超额偏空，硬顶约 1/3 */
+function balanceFeed(items: NewsItem[], limit = 18): NewsItem[] {
+  const sorted = [...items].sort((a, b) => {
+    const dd = dateKey(b.date).localeCompare(dateKey(a.date));
+    if (dd !== 0) return dd;
+    return b.score - a.score;
+  });
+
+  const maxRisk = Math.max(1, Math.floor(limit / 3));
+  const chosen: NewsItem[] = [];
+  let riskCount = 0;
+
+  for (const n of sorted) {
+    if (chosen.length >= limit) break;
+    if (isRiskish(n)) {
+      if (riskCount >= maxRisk) continue;
+      riskCount += 1;
+    }
+    chosen.push(n);
+  }
+
+  // 若中性稿太少导致条数不足，放宽到最多一半风险
+  if (chosen.length < Math.min(limit, sorted.length)) {
+    const hardCap = Math.ceil(limit / 2);
+    for (const n of sorted) {
+      if (chosen.length >= limit) break;
+      if (chosen.includes(n)) continue;
+      if (isRiskish(n)) {
+        if (riskCount >= hardCap) continue;
+        riskCount += 1;
+      }
+      chosen.push(n);
+    }
+    chosen.sort((a, b) => {
+      const dd = dateKey(b.date).localeCompare(dateKey(a.date));
+      if (dd !== 0) return dd;
+      return b.score - a.score;
+    });
+  }
+
+  return chosen.slice(0, limit);
 }
 
 export async function fetchNewsBundle(): Promise<{
@@ -228,7 +279,7 @@ export async function fetchNewsBundle(): Promise<{
 }> {
   const buckets: NewsItem[] = [];
 
-  // 1) 交易所公告（含利空：减持/处罚/业绩）
+  // 1) 交易所公告（标的已锁 002270）
   try {
     const list = await fetchAnnouncements();
     for (const r of list) {
@@ -268,40 +319,19 @@ export async function fetchNewsBundle(): Promise<{
     /* ignore */
   }
 
-  // 3) 盘面/资金向（容易混到利空）
+  // 3) 代码检索（中性，不诱导跌/减持）
   try {
-    const rows = await searchEastmoney("002270 华明装备 减持 跌 资金", 15);
+    const rows = await searchEastmoney("002270 华明装备", 20);
     for (const r of rows) {
       const item = makeItem(
         r.title || "",
         r.content || "",
-        r.mediaName || "盘面",
+        r.mediaName || "媒体",
         r.date || "",
         r.url || "https://so.eastmoney.com/",
-        `f-${r.code || r.url || r.title}`,
+        `c-${r.code || r.url || r.title}`,
       );
       if (item) buckets.push(item);
-    }
-  } catch {
-    /* ignore */
-  }
-
-  // 4) 行业：竞品/招标/板块，不挑好听
-  try {
-    const rows = await searchEastmoney(
-      "电力设备 特高压 变压器 招标 下滑",
-      12,
-    );
-    for (const r of rows) {
-      const item = makeItem(
-        r.title || "",
-        r.content || "",
-        r.mediaName || "行业",
-        r.date || "",
-        r.url || "https://so.eastmoney.com/",
-        `i-${r.code || r.title}`,
-      );
-      if (item) buckets.push({ ...item, tag: item.tag === "other" ? "industry" : item.tag });
     }
   } catch {
     /* ignore */
@@ -310,10 +340,8 @@ export async function fetchNewsBundle(): Promise<{
   // 去重：同 id 留分高的
   const map = new Map<string, NewsItem>();
   for (const n of buckets) {
-    // 二次去重：标题近似
-    const key = n.id;
-    const prev = map.get(key);
-    if (!prev || n.score > prev.score) map.set(key, n);
+    const prev = map.get(n.id);
+    if (!prev || n.score > prev.score) map.set(n.id, n);
   }
 
   // 再按标题去重
@@ -324,15 +352,7 @@ export async function fetchNewsBundle(): Promise<{
     if (!prev || n.score > prev.score) byTitle.set(k, n);
   }
 
-  // 时间优先，其次分数 —— 不把利好顶到最前
-  const items = Array.from(byTitle.values())
-    .sort((a, b) => {
-      const dd = dateKey(b.date).localeCompare(dateKey(a.date));
-      if (dd !== 0) return dd;
-      return b.score - a.score;
-    })
-    .slice(0, 24);
-
+  const items = balanceFeed(Array.from(byTitle.values()), 18);
   const briefing = buildBriefing(items);
 
   return {
@@ -343,21 +363,15 @@ export async function fetchNewsBundle(): Promise<{
 }
 
 function buildBriefing(items: NewsItem[]): string[] {
-  if (!items.length) return ["源站没吐出东西，自己看左侧行情或东方财富。"];
+  if (!items.length) return ["暂无条目，可看上方行情或交易所公告。"];
 
-  const risk = items.filter((i) => i.bearish || i.tag === "risk").slice(0, 2);
-  const rest = items
-    .filter((i) => !risk.includes(i))
-    .slice(0, 3 - Math.min(2, risk.length));
+  const risk = items.filter(isRiskish).slice(0, 1);
+  const rest = items.filter((i) => !risk.includes(i)).slice(0, 3 - risk.length);
 
-  const lines = [...risk, ...rest].map((i) => {
-    const mark = i.bearish || i.tag === "risk" ? "↓ " : "";
-    return `${mark}${i.title}`;
+  return [...risk, ...rest].map((i) => {
+    if (i.tag === "risk" || (i.bearish && i.tag !== "bull")) {
+      return `风险 · ${i.title}`;
+    }
+    return i.title;
   });
-
-  if (!lines.some((l) => l.startsWith("↓"))) {
-    lines.push("本批未见明显风险标题（不代表没风险）。");
-  }
-
-  return lines.slice(0, 4);
 }

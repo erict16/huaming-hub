@@ -1,1 +1,16 @@
-[{"date":"2026-07-29","macrostructure":"Workbench","theme":"cobalt-industrial","enrichment":"none","brief":"Huaming hub light redesign + news filter"}]
+[
+  {
+    "date": "2026-07-29",
+    "macrostructure": "Workbench",
+    "theme": "cobalt-industrial",
+    "enrichment": "none",
+    "brief": "Huaming hub light redesign + news filter"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "Stat-Led",
+    "theme": "cobalt-industrial",
+    "enrichment": "none",
+    "brief": "News balance Huaming-only + Stat-Led home polish"
+  }
+]

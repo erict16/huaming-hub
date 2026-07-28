@@ -9,15 +9,6 @@ import {
   type StockQuote,
 } from "@/lib/stock";
 
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-baseline justify-between gap-2 border-b border-[var(--rule)] py-1 text-sm last:border-0">
-      <span className="text-[var(--ink-3)]">{label}</span>
-      <span className="font-mono tabular-nums text-[var(--ink)]">{value}</span>
-    </div>
-  );
-}
-
 const empty: StockQuote = {
   code: "002270",
   name: "华明装备",
@@ -39,6 +30,12 @@ const empty: StockQuote = {
   source: "—",
   ok: false,
 };
+
+function formatAmount(amount: number): string {
+  if (!amount) return "—";
+  if (amount >= 1e8) return `${(amount / 1e8).toFixed(2)} 亿`;
+  return `${(amount / 1e4).toFixed(0)} 万`;
+}
 
 export function StockPanel() {
   const [q, setQ] = useState<StockQuote>(empty);
@@ -69,72 +66,71 @@ export function StockPanel() {
       ? "text-[var(--up)]"
       : "text-[var(--down)]";
 
+  const cells: { label: string; value: string }[] = [
+    { label: "今开", value: formatCNY(q.open) },
+    { label: "昨收", value: formatCNY(q.prevClose) },
+    { label: "最高", value: formatCNY(q.high) },
+    { label: "最低", value: formatCNY(q.low) },
+    { label: "成交量", value: formatVolume(q.volume) },
+    { label: "成交额", value: formatAmount(q.amount) },
+    {
+      label: "换手",
+      value: q.turnoverRate ? `${formatCNY(q.turnoverRate)}%` : "—",
+    },
+    { label: "总市值", value: formatYi(q.marketCap) },
+  ];
+
   return (
-    <aside className="hm-card hm-card-pad">
-      <div className="flex items-start justify-between gap-2">
-        <div>
+    <section className="hm-stat-hero" aria-label="实时行情">
+      <div className="hm-stat-hero-top">
+        <div className="min-w-0">
           <div className="font-mono text-[10px] uppercase tracking-wider text-[var(--ink-3)]">
             SZSE · {q.code}
+            <span className="mx-1.5 text-[var(--rule-2)]">·</span>
+            <span className="normal-case tracking-normal">{q.name}</span>
           </div>
-          <h2 className="font-display mt-1 text-base font-semibold leading-tight text-[var(--ink)]">
-            {q.name}
-          </h2>
+          <div className={`hm-stat-price mt-2 ${tone}`}>
+            {q.ok ? formatCNY(q.price) : loading ? "…" : "—"}
+            <span className="ml-1.5 align-baseline text-sm font-normal text-[var(--ink-3)]">
+              元
+            </span>
+          </div>
+          <div className={`hm-stat-change ${tone}`}>
+            {q.ok
+              ? `${up ? "+" : ""}${formatCNY(q.change)}　${up ? "+" : ""}${formatCNY(q.changePercent)}%`
+              : "—"}
+          </div>
+          <p className="mt-2 mb-0 text-[11px] leading-snug text-[var(--ink-3)]">
+            华明装备 · 有载分接开关（OLTC）
+            {q.ok
+              ? ` · ${new Date(q.updatedAt).toLocaleTimeString("zh-CN", { hour12: false })}`
+              : q.error
+                ? ` · ${q.error}`
+                : ""}
+            {" · "}
+            <a
+              href="https://quote.eastmoney.com/sz002270.html"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[var(--accent)] hover:underline"
+            >
+              完整行情
+            </a>
+          </p>
         </div>
-        <span className="rounded border border-[var(--rule)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--ink-3)]">
-          {loading ? "…" : "实时"}
+        <span className="shrink-0 rounded border border-[var(--rule)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--ink-3)]">
+          {loading ? "…" : q.ok ? "实时" : "离线"}
         </span>
       </div>
 
-      <div className={`mt-3 font-display text-[1.75rem] font-semibold leading-none tabular-nums ${tone}`}>
-        {q.ok ? formatCNY(q.price) : loading ? "…" : "—"}
-        <span className="ml-1 text-sm font-normal text-[var(--ink-3)]">元</span>
+      <div className="hm-stat-grid">
+        {cells.map((c) => (
+          <div key={c.label} className="hm-stat-cell">
+            <span className="label">{c.label}</span>
+            <span className="value">{c.value}</span>
+          </div>
+        ))}
       </div>
-      <div className={`mt-1.5 font-mono text-sm tabular-nums ${tone}`}>
-        {q.ok
-          ? `${up ? "+" : ""}${formatCNY(q.change)}  ${up ? "+" : ""}${formatCNY(q.changePercent)}%`
-          : "—"}
-      </div>
-
-      <div className="mt-3">
-        <Row label="今开" value={formatCNY(q.open)} />
-        <Row label="昨收" value={formatCNY(q.prevClose)} />
-        <Row label="最高" value={formatCNY(q.high)} />
-        <Row label="最低" value={formatCNY(q.low)} />
-        <Row label="成交量" value={formatVolume(q.volume)} />
-        <Row
-          label="成交额"
-          value={
-            q.amount
-              ? q.amount >= 1e8
-                ? `${(q.amount / 1e8).toFixed(2)} 亿`
-                : `${(q.amount / 1e4).toFixed(0)} 万`
-              : "—"
-          }
-        />
-        <Row
-          label="换手"
-          value={q.turnoverRate ? `${formatCNY(q.turnoverRate)}%` : "—"}
-        />
-        <Row label="总市值" value={formatYi(q.marketCap)} />
-      </div>
-
-      <p className="mt-2.5 mb-0 text-[11px] leading-snug text-[var(--ink-3)]">
-        {q.source}
-        {q.ok
-          ? ` · ${new Date(q.updatedAt).toLocaleTimeString("zh-CN", { hour12: false })}`
-          : q.error
-            ? ` · ${q.error}`
-            : ""}
-        {" · "}
-        <a
-          href="https://quote.eastmoney.com/sz002270.html"
-          target="_blank"
-          rel="noreferrer"
-          className="text-[var(--accent)] hover:underline"
-        >
-          完整行情
-        </a>
-      </p>
-    </aside>
+    </section>
   );
 }

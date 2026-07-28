@@ -26,9 +26,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--rule)] bg-[var(--paper-2)]">
+    <header className="sticky top-0 z-50 border-b border-[var(--rule)] bg-[var(--paper-2)]/95 backdrop-blur-sm">
       <div className="hm-shell flex h-12 items-center justify-between gap-3">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2.5">
           <img
             src={asset("/brand/logo/hm-logo-01.png")}
             alt=""
@@ -37,7 +37,7 @@ export function SiteHeader() {
             className="h-7 w-7 rounded border border-[var(--rule)] bg-white object-contain p-0.5"
           />
           <div className="leading-tight">
-            <div className="font-display text-sm font-semibold tracking-tight text-[var(--accent)]">
+            <div className="font-display text-sm font-semibold tracking-tight text-[var(--ink)]">
               华明工作台
             </div>
             <div className="font-mono text-[10px] text-[var(--ink-3)]">
