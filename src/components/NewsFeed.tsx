@@ -4,11 +4,21 @@ import { useEffect, useState } from "react";
 import { fetchNewsBundle, type NewsItem } from "@/lib/news";
 
 const tagLabel: Record<NewsItem["tag"], string> = {
+  risk: "风险",
+  bull: "利好",
   company: "公司",
-  market: "市场",
   industry: "行业",
-  intl: "海外",
-  rumor: "杂讯",
+  flow: "资金",
+  other: "其它",
+};
+
+const tagClass: Record<NewsItem["tag"], string> = {
+  risk: "border-red-200 bg-red-50 text-red-800",
+  bull: "border-emerald-200 bg-emerald-50 text-emerald-800",
+  company: "border-[var(--rule)] bg-white text-[var(--ink-2)]",
+  industry: "border-[var(--rule)] bg-white text-[var(--ink-2)]",
+  flow: "border-amber-200 bg-amber-50 text-amber-900",
+  other: "border-[var(--rule)] bg-white text-[var(--ink-3)]",
 };
 
 export function NewsFeed() {
@@ -25,8 +35,7 @@ export function NewsFeed() {
         setItems(data.items);
         setBriefing(data.briefing);
       } catch {
-        if (alive)
-          setBriefing(["新闻源暂时拉不到。用左侧行情，或去资料页。"]);
+        if (alive) setBriefing(["拉新闻失败。看左侧盘，或点下面外链。"]);
       } finally {
         if (alive) setLoading(false);
       }
@@ -37,25 +46,28 @@ export function NewsFeed() {
   }, []);
 
   return (
-    <section className="space-y-4">
-      <div className="hm-card p-4">
-        <div className="flex items-baseline justify-between gap-2">
-          <h2 className="font-display text-base font-semibold text-[var(--ink)]">
-            值得看的
+    <section className="space-y-3">
+      <div className="hm-card p-3">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="font-display text-sm font-semibold text-[var(--ink)]">
+            盘面与公告
           </h2>
-          <span className="text-xs text-[var(--ink-3)]">
-            {loading ? "加载中" : `${items.length} 条`}
+          <span className="text-[11px] text-[var(--ink-3)]">
+            {loading ? "…" : `${items.length} 条 · 利好利空都收 · 无公关稿`}
           </span>
         </div>
         {briefing.length > 0 && (
-          <ul className="mt-3 space-y-1.5 border-t border-[var(--rule)] pt-3">
+          <ul className="mt-2 space-y-1 border-t border-[var(--rule)] pt-2">
             {briefing.map((line, i) => (
               <li
                 key={i}
-                className="flex gap-2 text-sm text-[var(--ink-2)]"
+                className={`text-sm ${
+                  line.startsWith("↓")
+                    ? "text-[var(--up)]"
+                    : "text-[var(--ink-2)]"
+                }`}
               >
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--accent)]" />
-                <span>{line}</span>
+                {line}
               </li>
             ))}
           </ul>
@@ -64,12 +76,12 @@ export function NewsFeed() {
 
       <div className="hm-card divide-y divide-[var(--rule)] overflow-hidden">
         {loading &&
-          Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-16 animate-pulse bg-[var(--paper)]" />
+          Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-14 animate-pulse bg-[var(--paper)]" />
           ))}
         {!loading && items.length === 0 && (
-          <p className="p-4 text-sm text-[var(--ink-3)]">
-            没有筛到像样的标题。交易所官样文件已过滤。
+          <p className="p-3 text-sm text-[var(--ink-3)]">
+            暂时没有可展示条目。直接去东方财富看原文。
           </p>
         )}
         {!loading &&
@@ -79,26 +91,37 @@ export function NewsFeed() {
               href={item.url}
               target="_blank"
               rel="noreferrer"
-              className="block px-4 py-3 transition hover:bg-[var(--accent-soft)]/40"
+              className="block px-3 py-2.5 hover:bg-[var(--accent-soft)]/50"
             >
-              <div className="flex flex-wrap items-center gap-2 text-[11px] text-[var(--ink-3)]">
-                <span className="rounded border border-[var(--rule)] px-1.5 py-0.5 text-[var(--ink-2)]">
+              <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-[var(--ink-3)]">
+                <span
+                  className={`rounded border px-1.5 py-0.5 ${tagClass[item.tag]}`}
+                >
                   {tagLabel[item.tag]}
                 </span>
+                {item.bearish && (
+                  <span className="rounded border border-red-200 px-1.5 py-0.5 text-red-700">
+                    偏空
+                  </span>
+                )}
                 <span>{item.source}</span>
-                <span className="font-mono">{item.date || ""}</span>
+                <span className="font-mono">{item.date}</span>
               </div>
-              <div className="mt-1 text-[15px] font-medium leading-snug text-[var(--ink)]">
+              <div
+                className={`mt-0.5 text-[14px] font-medium leading-snug ${
+                  item.bearish ? "text-[var(--up)]" : "text-[var(--ink)]"
+                }`}
+              >
                 {item.title}
               </div>
-              {item.summary && (
-                <p className="mt-0.5 line-clamp-1 text-xs text-[var(--ink-3)]">
-                  {item.summary}
-                </p>
-              )}
             </a>
           ))}
       </div>
+
+      <p className="text-[11px] text-[var(--ink-3)]">
+        数据来自东方财富公开接口。已去掉法律意见书/IR 流水等空壳公告，没有塞国际站软文。
+        不全、有延迟，重要事项以交易所原文为准。
+      </p>
     </section>
   );
 }

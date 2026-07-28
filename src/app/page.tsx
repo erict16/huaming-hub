@@ -14,7 +14,7 @@ export default function HomePage() {
             华明装备 002270
           </h1>
           <p className="mt-1 text-sm text-[var(--ink-3)]">
-            股价 · 过滤后的公告 · {docCount} 份技术资料
+            自己用：盘口 + 公告/媒体（利好利空都收）· {docCount} 份资料
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -63,7 +63,7 @@ export default function HomePage() {
                   rel="noreferrer"
                   className="hover:text-[var(--accent)]"
                 >
-                  全部公告（未过滤）
+                  交易所全部公告
                 </a>
               </li>
             </ul>
