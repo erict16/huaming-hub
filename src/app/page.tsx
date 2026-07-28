@@ -20,13 +20,13 @@ export default function HomePage() {
         <div className="flex flex-wrap gap-2">
           <Link
             href="/downloads"
-            className="rounded-md bg-[var(--accent)] px-3.5 py-2 text-sm font-medium text-white hover:opacity-90"
+            className="rounded-[var(--radius)] bg-[var(--accent)] px-3 py-1.5 text-sm font-medium text-white hover:bg-[var(--accent-2)]"
           >
             技术资料
           </Link>
           <Link
             href="/products"
-            className="rounded-md border border-[var(--rule-2)] bg-white px-3.5 py-2 text-sm text-[var(--ink-2)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+            className="rounded-[var(--radius)] border border-[var(--rule-2)] bg-white px-3 py-1.5 text-sm text-[var(--ink-2)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
           >
             产品系列
           </Link>

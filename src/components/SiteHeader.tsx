@@ -17,18 +17,18 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--rule)] bg-[var(--paper-2)]/95 backdrop-blur-sm">
-      <div className="hm-shell flex h-14 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5">
+    <header className="sticky top-0 z-50 border-b border-[var(--rule)] bg-[var(--paper-2)]">
+      <div className="hm-shell flex h-12 items-center justify-between gap-3">
+        <Link href="/" className="flex items-center gap-2">
           <img
             src={asset("/brand/logo/hm-logo-01.png")}
             alt=""
-            width={32}
-            height={32}
-            className="h-8 w-8 rounded-md border border-[var(--rule)] bg-white object-contain p-0.5"
+            width={28}
+            height={28}
+            className="h-7 w-7 rounded border border-[var(--rule)] bg-white object-contain p-0.5"
           />
           <div className="leading-tight">
-            <div className="font-display text-sm font-semibold tracking-tight text-[var(--ink)]">
+            <div className="font-display text-sm font-semibold tracking-tight text-[var(--accent)]">
               华明工作台
             </div>
             <div className="font-mono text-[10px] text-[var(--ink-3)]">
@@ -47,7 +47,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-1.5 text-sm transition ${
+                className={`rounded-[var(--radius)] px-2.5 py-1 text-sm transition ${
                   active
                     ? "bg-[var(--accent-soft)] font-medium text-[var(--accent)]"
                     : "text-[var(--ink-2)] hover:bg-[var(--paper)] hover:text-[var(--ink)]"
@@ -70,7 +70,7 @@ export function SiteHeader() {
           </a>
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--rule)] text-[var(--ink)] sm:hidden"
+            className="inline-flex h-8 w-8 items-center justify-center rounded border border-[var(--rule)] text-[var(--ink)] sm:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="菜单"
           >
@@ -86,7 +86,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block rounded-md px-3 py-2 text-sm text-[var(--ink-2)]"
+              className="block rounded px-3 py-2 text-sm text-[var(--ink-2)]"
             >
               {item.label}
             </Link>

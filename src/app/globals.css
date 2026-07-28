@@ -1,21 +1,27 @@
 @import "tailwindcss";
 
-/* Hallmark · macrostructure: Workbench · tone: utilitarian · theme: cobalt-industrial */
+/* Hallmark · workbench · 浅色工业蓝 */
 
 :root {
-  --paper: #f6f7f9;
+  /* cool industrial paper */
+  --paper: #f3f5f8;
   --paper-2: #ffffff;
-  --ink: #1a2332;
-  --ink-2: #3d4a5c;
-  --ink-3: #6b7789;
-  --rule: #e2e6ec;
-  --rule-2: #cfd6e0;
-  --accent: #1d4ed8;
-  --accent-soft: #e8eefc;
+  --paper-3: #e9eef4;
+  /* ink */
+  --ink: #0f2438;
+  --ink-2: #3a4f63;
+  --ink-3: #6a7d90;
+  /* structure */
+  --rule: #d8e0e9;
+  --rule-2: #c2cedb;
+  /* 工业蓝 — primary signal */
+  --accent: #0b3d6e;
+  --accent-2: #125a9c;
+  --accent-soft: #e6eef6;
+  /* A-share */
   --up: #c41e3a;
   --down: #0d7a4f;
-  --warn: #9a6700;
-  --radius: 8px;
+  --radius: 6px;
   --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-jb), ui-monospace, monospace;
@@ -40,8 +46,8 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -51,7 +57,7 @@ a {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--accent) 22%, white);
+  background: color-mix(in srgb, var(--accent) 18%, white);
 }
 
 .font-display {
@@ -63,9 +69,9 @@ a {
 }
 
 .hm-shell {
-  max-width: 1120px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 1rem;
 }
 
 .hm-card {
@@ -74,20 +80,53 @@ a {
   border-radius: var(--radius);
 }
 
-.hm-hair {
-  border-color: var(--rule);
+/* denser data table */
+.hm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
 }
 
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.hm-table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--ink-3);
+  background: var(--paper-3);
+  border-bottom: 1px solid var(--rule);
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+
+.hm-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+
+.hm-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.hm-table tbody tr:hover td {
+  background: var(--accent-soft);
+}
+
+.hm-table a.row {
+  display: contents;
+  color: inherit;
 }
 
 .line-clamp-1 {
   display: -webkit-box;
   -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 
 export default function DownloadsPage() {
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
       <div>
-        <h1 className="font-display text-2xl font-semibold text-[var(--ink)]">
+        <h1 className="font-display text-xl font-semibold tracking-tight text-[var(--ink)] sm:text-2xl">
           技术资料
         </h1>
         <p className="mt-1 text-sm text-[var(--ink-3)]">
-          {allDocuments.length} 份公开 PDF，按型号搜。点行直达国际站。
+          {allDocuments.length} 份 · 按型号筛选 · 紧凑列表
         </p>
       </div>
       <DownloadExplorer
