@@ -5,10 +5,19 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { asset } from "@/lib/asset";
 
-const nav = [
+const nav: {
+  href: string;
+  label: string;
+  external?: boolean;
+}[] = [
   { href: "/", label: "行情" },
   { href: "/downloads", label: "资料" },
   { href: "/products", label: "产品" },
+  {
+    href: "https://erict16.github.io/oltc-selector/",
+    label: "选型",
+    external: true,
+  },
   { href: "/about", label: "关于" },
 ];
 
@@ -40,19 +49,30 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-0.5 sm:flex">
           {nav.map((item) => {
             const active =
-              item.href === "/"
+              !item.external &&
+              (item.href === "/"
                 ? pathname === "/" || pathname === ""
-                : pathname.startsWith(item.href);
+                : pathname.startsWith(item.href));
+            const className = `rounded-[var(--radius)] px-2.5 py-1 text-sm transition ${
+              active
+                ? "bg-[var(--accent-soft)] font-medium text-[var(--accent)]"
+                : "text-[var(--ink-2)] hover:bg-[var(--paper)] hover:text-[var(--ink)]"
+            }`;
+            if (item.external) {
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={className}
+                >
+                  {item.label}
+                </a>
+              );
+            }
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`rounded-[var(--radius)] px-2.5 py-1 text-sm transition ${
-                  active
-                    ? "bg-[var(--accent-soft)] font-medium text-[var(--accent)]"
-                    : "text-[var(--ink-2)] hover:bg-[var(--paper)] hover:text-[var(--ink)]"
-                }`}
-              >
+              <Link key={item.href} href={item.href} className={className}>
                 {item.label}
               </Link>
             );
@@ -81,16 +101,29 @@ export function SiteHeader() {
 
       {open && (
         <div className="border-t border-[var(--rule)] bg-[var(--paper-2)] px-4 py-2 sm:hidden">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="block rounded px-3 py-2 text-sm text-[var(--ink-2)]"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {nav.map((item) =>
+            item.external ? (
+              <a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+                className="block rounded px-3 py-2 text-sm text-[var(--ink-2)]"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="block rounded px-3 py-2 text-sm text-[var(--ink-2)]"
+              >
+                {item.label}
+              </Link>
+            ),
+          )}
         </div>
       )}
     </header>
