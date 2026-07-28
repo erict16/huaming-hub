@@ -1,0 +1,416 @@
+[
+  {
+    "id": "cm-cm-leaflet-pdf",
+    "model": "CM",
+    "name": "CM Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CM/CM%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cm-cm-operating-instruction-2021-09-01-pdf",
+    "model": "CM",
+    "name": "CM Operating Instruction_2021.09.01.pdf",
+    "kind": "Operating Instruction",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CM/CM%20Operating%20Instruction_2021.09.01.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cm-cm-oltc-technical-data-hm0-154-301-pdf",
+    "model": "CM",
+    "name": "CM OLTC Technical Data -HM0 154 301.pdf",
+    "kind": "Technical Data",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CM/CM%20OLTC%20Technical%20Data%20-HM0%20154%20301.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cmd-cmd-oltc-operation-instructions-hm0-460-1901-pdf",
+    "model": "CMD",
+    "name": "CMD OLTC Operation instructions-HM0.460.1901.pdf",
+    "kind": "Operating Instruction",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CMD/CMD%20OLTC%20Operation%20instructions-HM0.460.1901.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cmd-cmd-oltc-technical-data-hm0-154-1901-pdf",
+    "model": "CMD",
+    "name": "CMD OLTC Technical Data-HM0 154 1901.pdf",
+    "kind": "Technical Data",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CMD/CMD%20OLTC%20Technical%20Data-HM0%20154%201901.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cv-cv-leaflet-pdf",
+    "model": "CV",
+    "name": "CV Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CV/CV%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cv-cvsv-operating-instruction-2023-08-pdf",
+    "model": "CV",
+    "name": "CVSV Operating Instruction_2023.08.pdf",
+    "kind": "Operating Instruction",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CV/CVSV%20Operating%20Instruction_2023.08.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cv-cv-sv-oltc-technical-data-hm0-154-001-pdf",
+    "model": "CV",
+    "name": "CV  SV OLTC Technical Data-HM0.154.001.pdf",
+    "kind": "Technical Data",
+    "category": "Conventional OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Conventional%20Type/CV/CV%20%20SV%20OLTC%20Technical%20Data-HM0.154.001.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cm2-cm2-operating-instruction-2021-10-13-pdf",
+    "model": "CM2",
+    "name": "CM2 Operating Instruction_2021.10.13.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CM2/CM2%20Operating%20Instruction_2021.10.13.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cm2-cm2-vacuum-oltc-technical-data-hm0-154-5701-pdf",
+    "model": "CM2",
+    "name": "CM2 Vacuum OLTC Technical Data-HM0 154 5701.pdf",
+    "kind": "Technical Data",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CM2/CM2%20Vacuum%20OLTC%20Technical%20Data-HM0%20154%205701.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cv2-cv2-leaflet-2024-pdf",
+    "model": "CV2",
+    "name": "CV2 Leaflet-2024.pdf",
+    "kind": "Leaflet",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CV2/CV2%20Leaflet-2024.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cv2-oltc-cv2-oi-hm0-460-5601-2026-pdf",
+    "model": "CV2",
+    "name": "OLTC-CV2-OI-HM0.460.5601-2026.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CV2/OLTC-CV2-OI-HM0.460.5601-2026.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cvt-cv2600-oi-2023-pdf",
+    "model": "CVT",
+    "name": "CV2600-OI-2023.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CV2/CV2600-OI-2023.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cvt-cv2-vacuum-oltc-technical-data-hm0-154-4101-pdf",
+    "model": "CVT",
+    "name": "CV2 Vacuum OLTC Technical Data-HM0.154.4101.pdf",
+    "kind": "Technical Data",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CV2/CV2%20Vacuum%20OLTC%20Technical%20Data-HM0.154.4101.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hmdk-hmdk-oi-eng-pdf",
+    "model": "HMDK",
+    "name": "HMDK-OI-ENG.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/HMDK-OI-ENG.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hwdk-hwdk-leaflet-pdf",
+    "model": "HWDK",
+    "name": "HWDK Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/HWDK/HWDK%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hwdk-oltc-hwdk-oi-hm-0-460-5801-en-2025-pdf",
+    "model": "HWDK",
+    "name": "OLTC-HWDK-OI-HM 0.460.5801-EN.2025.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/HWDK/OLTC-HWDK-OI-HM%200.460.5801-EN.2025.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hwv-hwv-leaflet-pdf",
+    "model": "HWV",
+    "name": "HWV Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/HWV/HWV%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hwv-hwv-oi-eng-pdf",
+    "model": "HWV",
+    "name": "HWV OI-ENG.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/HWV/HWV%20OI-ENG.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hwv-hwv-technical-data-eng-pdf",
+    "model": "HWV",
+    "name": "HWV Technical Data-ENG.pdf",
+    "kind": "Technical Data",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/HWV/HWV%20Technical%20Data-ENG.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "shgv-shgv-operation-installation-instruction-v0-9-pdf",
+    "model": "SHGV",
+    "name": "SHGV Operation  Installation Instruction V0.9.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/SHGV/SHGV%20Operation%20%20Installation%20Instruction%20V0.9.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "shzv-shzv-leaflet",
+    "model": "SHZV",
+    "name": "SHZV Leaflet",
+    "kind": "Leaflet",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/SHZV/SHZV%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "shzv-oltc-shzv-oi-hmo-460-3901-en-pdf",
+    "model": "SHZV",
+    "name": "OLTC-SHZV-OI-HMO.460.3901-EN.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/SHZV/OLTC-SHZV-OI-HMO.460.3901-EN.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "shzvg-shzvg-leaflet-20241-pdf",
+    "model": "SHZVG",
+    "name": "SHZVG-leaflet-20241.pdf",
+    "kind": "Leaflet",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/SHZVG/SHZVG-leaflet-20241.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "shzvg-oltc-shzvg-oi-hmo-460-7202-en-2024-pdf",
+    "model": "SHZVG",
+    "name": "OLTC-SHZVG-OI-HMO.460.7202-EN-2024.pdf",
+    "kind": "Operating Instruction",
+    "category": "Vacuum OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/SHZVG/OLTC-SHZVG-OI-HMO.460.7202-EN-2024.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cvt-cvt-leaflet-pdf",
+    "model": "CVT",
+    "name": "CVT Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "Dry-type OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Dry%20Type/CVT/CVT%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cvt-cvt-vacuum-oltc-operating-instructions-hm0-460-3301-en-pdf",
+    "model": "CVT",
+    "name": "CVT Vacuum OLTC operating instructions-HM0.460.3301-EN.pdf",
+    "kind": "Operating Instruction",
+    "category": "Dry-type OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Dry%20Type/CVT/CVT%20Vacuum%20OLTC%20operating%20instructions-HM0.460.3301-EN.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cvt-cvt-vacuum-oltc-technical-data-hm0-154-3301-pdf",
+    "model": "CVT",
+    "name": "CVT Vacuum OLTC Technical Data-HM0.154.3301.pdf",
+    "kind": "Technical Data",
+    "category": "Dry-type OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Dry%20Type/CVT/CVT%20Vacuum%20OLTC%20Technical%20Data-HM0.154.3301.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cz-cz-leaflet-pdf",
+    "model": "CZ",
+    "name": "CZ Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "Dry-type OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Dry%20Type/CZ/CZ%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cz-oltc-cz-oi-hm0-460-1101-en-pdf",
+    "model": "CZ",
+    "name": "OLTC-CZ-OI-HM0.460.1101-EN.pdf",
+    "kind": "Operating Instruction",
+    "category": "Dry-type OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Dry%20Type/CZ/OLTC-CZ-OI-HM0.460.1101-EN.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cz-cz-vacuum-oltc-technical-data-hm0-154-1102-pdf",
+    "model": "CZ",
+    "name": "CZ vacuum OLTC technical data-HM0 154 1102.pdf",
+    "kind": "Technical Data",
+    "category": "Dry-type OLTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Dry%20Type/CZ/CZ%20vacuum%20OLTC%20technical%20data-HM0%20154%201102.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "w-g-wg-leaflet-pdf",
+    "model": "W/G",
+    "name": "WG Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/WG/WG%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "w-g-wgoff-circuittapchangeroperatinginstrutions-hm0-460-6001-pdf",
+    "model": "W/G",
+    "name": "WGOff-CircuitTapChangerOperatingInstrutions-HM0.460.6001.pdf",
+    "kind": "Operating Instruction",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/WG/WGOff-CircuitTapChangerOperatingInstrutions-HM0.460.6001.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "w-g-wg-drum-type-octc-technical-data-eng-pdf",
+    "model": "W/G",
+    "name": "WG Drum Type OCTC Technical Data-ENG.pdf",
+    "kind": "Technical Data",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/WG/WG%20Drum%20Type%20OCTC%20Technical%20Data-ENG.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "w-l-wsl-leaflet-pdf",
+    "model": "W/L",
+    "name": "WSL Leaflet.pdf",
+    "kind": "Leaflet",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/WL/WSL%20Leaflet.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "w-l-w-ldetcoperationinstruction1-compressed-pdf",
+    "model": "W/L",
+    "name": "W-LDETCOperationinstruction1-compressed.pdf",
+    "kind": "Operating Instruction",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/WL/W-LDETCOperationinstruction1-compressed.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "w-l-w-ldetctechnicalinstruction-2021-07-pdf",
+    "model": "W/L",
+    "name": "W-LDETCTechnicalInstruction_2021.07.pdf",
+    "kind": "Technical Data",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/WL/W-LDETCTechnicalInstruction_2021.07.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "zwc-zwc-leaflet-2020-02-03-pdf",
+    "model": "ZWC",
+    "name": "ZWC Leaflet 2020.02.03.pdf",
+    "kind": "Leaflet",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/ZWC/ZWC%20Leaflet%202020.02.03.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "zwc-zwc-operation-instruction-2020-02-03-pdf",
+    "model": "ZWC",
+    "name": "ZWC operation instruction 2020.02.03.pdf",
+    "kind": "Operating Instruction",
+    "category": "DETC / OCTC",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/De-Energized%20Tap%20Changers/ZWC/ZWC%20operation%20instruction%202020.02.03.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "cma7-cma7mduoperatinginstruction-hm0-460-302-en-pdf",
+    "model": "CMA7",
+    "name": "CMA7MDUOperatingInstruction-HM0.460.302-EN.pdf",
+    "kind": "Operating Instruction",
+    "category": "Accessories",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Accessories/CMA7/CMA7MDUOperatingInstruction-HM0.460.302-EN.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "et-sz6-controller-et-sz6-hm0-460-555-eng-2024-pdf",
+    "model": "ET-SZ6",
+    "name": "Controller -ET-SZ6-HM0.460.555-ENG 2024.pdf",
+    "kind": "Controller Manual",
+    "category": "Accessories",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Accessories/CONTROLLER/ET-SZ6/Controller%20-ET-SZ6-HM0.460.555-ENG%202024.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hmc-3c-controller-hmc-3-hm-460-305-en2024-pdf",
+    "model": "HMC-3C",
+    "name": "Controller -HMC-3- HM.460.305-EN2024.pdf",
+    "kind": "Controller Manual",
+    "category": "Accessories",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Accessories/CONTROLLER/HMC-3C/Controller%20-HMC-3-%20HM.460.305-EN2024.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "hmiet-hmiet-i-avr-pdf",
+    "model": "HMIET",
+    "name": "HMIET-I AVR .pdf",
+    "kind": "Controller Manual",
+    "category": "Accessories",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Accessories/CONTROLLER/HMIET/HMIET-I%20AVR%20.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "shm-d-shm-d-mdu-operation-instruction-hm0-460-1381-0908-pdf",
+    "model": "SHM-D",
+    "name": "SHM-D MDU Operation instruction-HM0 460 1381-0908.pdf",
+    "kind": "Operating Instruction",
+    "category": "Accessories",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Accessories/SHM-D/SHM-D%20MDU%20Operation%20instruction-HM0%20460%201381-0908.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "shm-x-shm-x-operating-instruction-pdf",
+    "model": "SHM-X",
+    "name": "SHM-X operating instruction.pdf",
+    "kind": "Operating Instruction",
+    "category": "Accessories",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Accessories/SHM-X/SHM-X%20operating%20instruction.pdf",
+    "source": "intl-huaming.com"
+  },
+  {
+    "id": "retrofit-retrofit-leaflet",
+    "model": "Retrofit",
+    "name": "Retrofit Leaflet",
+    "kind": "Leaflet",
+    "category": "Service & Retrofit",
+    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/Retrofit%20Leaflet%20En.pdf",
+    "source": "intl-huaming.com"
+  }
+]

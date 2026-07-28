@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
+    "dev": "next dev -H 127.0.0.1 -p 3000",
+    "build": "next build",
+    "build:gh": "GH_PAGES=true next build",
+    "start": "npx --yes serve out -l 3000",
     "lint": "eslint"
   },
   "dependencies": {
