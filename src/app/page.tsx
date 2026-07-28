@@ -16,7 +16,11 @@ export default function HomePage() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link href="/downloads" className="hm-btn hm-btn-primary">
+          <Link
+            href="/downloads"
+            className="hm-btn hm-btn-primary"
+            style={{ color: "#ffffff" }}
+          >
             技术资料
           </Link>
           <Link href="/products" className="hm-btn hm-btn-secondary">

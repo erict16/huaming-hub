@@ -69,6 +69,25 @@ a {
   text-decoration: none;
 }
 
+/* 链接默认 inherit，实心按钮必须单独锁死字色（否则深蓝底 + 深色字） */
+a.hm-btn-primary,
+button.hm-btn-primary {
+  color: #ffffff !important;
+}
+
+a.hm-btn-secondary,
+button.hm-btn-secondary {
+  color: var(--ink);
+}
+
+a.hm-btn-table {
+  color: var(--btn-bg);
+}
+
+a.hm-btn-table:hover {
+  color: #ffffff !important;
+}
+
 ::selection {
   background: color-mix(in srgb, var(--accent) 18%, white);
 }
@@ -181,15 +200,15 @@ a {
 }
 
 .hm-btn-primary {
-  background: var(--btn-bg);
-  color: var(--btn-fg);
-  border-color: var(--btn-bg);
+  background: #0a4a82;
+  color: #ffffff !important;
+  border-color: #0a4a82;
 }
 
 .hm-btn-primary:hover {
-  background: var(--btn-bg-hover);
-  border-color: var(--btn-bg-hover);
-  color: var(--btn-fg);
+  background: #083a68;
+  border-color: #083a68;
+  color: #ffffff !important;
 }
 
 .hm-btn-secondary {
