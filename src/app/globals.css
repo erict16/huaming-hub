@@ -51,17 +51,41 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
   margin: 0;
-  min-height: 100vh;
+  min-height: 100%;
+  min-height: 100dvh;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Sticky footer: short pages pin footer to bottom; long pages flow naturally */
+.hm-root {
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hm-main {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.hm-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-2);
+  width: 100%;
 }
 
 a {
@@ -107,6 +131,9 @@ a.hm-btn-table:hover {
 }
 
 .hm-main {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
   padding-top: var(--s5);
   padding-bottom: var(--s6);
 }
@@ -272,7 +299,7 @@ a.hm-btn-table:hover {
 
 @media (min-width: 960px) {
   .hm-entry-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { ProductsPage } from "@/components/ProductsPage";
 
 export const metadata: Metadata = {
-  title: "Products",
-  description: "Huaming OLTC and DETC product series overview.",
+  title: "产品系列",
+  description: "华明分接开关系列一览。",
 };
 
 export default function Page() {
-  return <ProductsPage locale="en" />;
+  return <ProductsPage locale="zh" />;
 }

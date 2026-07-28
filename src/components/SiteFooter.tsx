@@ -1,42 +1,58 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  OFFICIAL_URL,
+  SELECTOR_URL,
+  getDict,
+  localeFromPath,
+  localePath,
+  type Locale,
+} from "@/lib/i18n";
 
 export function SiteFooter() {
+  const pathname = usePathname() || "/";
+  const locale: Locale = localeFromPath(pathname);
+  const t = getDict(locale);
+
   return (
-    <footer className="mt-auto border-t border-[var(--rule)] bg-[var(--paper-2)]">
+    <footer className="hm-footer">
       <div className="hm-shell flex flex-col gap-3 py-5 text-xs leading-relaxed text-[var(--ink-3)] sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-        <div className="max-w-md">
-          <p className="m-0 font-medium text-[var(--ink-2)]">华明 Hub</p>
-          <p className="mt-1 mb-0">
-            非官方参考站。产品与 PDF 链至华明国际站；行情与公告来自公开数据源，仅供查阅，不构成投资建议。
-          </p>
+        <div className="max-w-md min-w-0">
+          <p className="m-0 font-medium text-[var(--ink-2)]">{t.brand}</p>
+          <p className="mt-1 mb-0 break-words">{t.footer.blurb}</p>
         </div>
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-[var(--ink-2)]">
-          <Link href="/products" className="hover:text-[var(--accent)]">
-            产品
+        <nav className="flex flex-wrap gap-x-4 gap-y-1 text-[var(--ink-2)] shrink-0">
+          <Link
+            href={localePath(locale, "/products")}
+            className="hover:text-[var(--accent)]"
+          >
+            {t.footer.products}
           </Link>
-          <Link href="/downloads" className="hover:text-[var(--accent)]">
-            资料
+          <Link
+            href={localePath(locale, "/downloads")}
+            className="hover:text-[var(--accent)]"
+          >
+            {t.footer.downloads}
           </Link>
           <a
-            href="https://erict16.github.io/oltc-selector/"
+            href={SELECTOR_URL}
             target="_blank"
             rel="noreferrer"
             className="hover:text-[var(--accent)]"
           >
-            选型器
+            {t.footer.selector}
           </a>
           <a
-            href="https://www.intl-huaming.com/"
+            href={OFFICIAL_URL}
             target="_blank"
             rel="noreferrer"
             className="hover:text-[var(--accent)]"
           >
-            官网
+            {t.footer.official}
           </a>
-          <Link href="/about" className="hover:text-[var(--accent)]">
-            关于
-          </Link>
-        </div>
+        </nav>
       </div>
     </footer>
   );

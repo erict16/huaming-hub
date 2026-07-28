@@ -2,23 +2,19 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { DocumentItem } from "@/lib/documents";
-
-const kindShort: Record<string, string> = {
-  Leaflet: "简介",
-  "Technical Data": "参数",
-  "Operating Instruction": "操作",
-  "Controller Manual": "控制器",
-  Document: "文档",
-};
+import { getDict, type Locale } from "@/lib/i18n";
 
 export function DownloadExplorer({
   documents,
   categories,
+  locale,
 }: {
   documents: DocumentItem[];
   categories: string[];
   kinds?: string[];
+  locale: Locale;
 }) {
+  const t = getDict(locale);
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("all");
 
@@ -47,16 +43,13 @@ export function DownloadExplorer({
   }, [documents, q, category]);
 
   const chipLabel = (c: string) =>
-    c === "all"
-      ? "全部"
-      : c
-          .replace(" OLTC", "")
-          .replace("DETC / OCTC", "无励磁")
-          .replace("Service & Retrofit", "改造")
-          .replace("Accessories", "附件")
-          .replace("Conventional", "常规")
-          .replace("Vacuum", "真空")
-          .replace("Dry-type", "干式");
+    t.downloads.category[c] ||
+    c
+      .replace(" OLTC", "")
+      .replace("DETC / OCTC", locale === "zh" ? "无励磁" : "DETC")
+      .replace("Service & Retrofit", locale === "zh" ? "改造" : "Service");
+
+  const kindLabel = (k: string) => t.downloads.kind[k] || k;
 
   return (
     <div className="hm-stack">
@@ -64,7 +57,7 @@ export function DownloadExplorer({
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="型号 / 文件名，如 CV2、SHZV…"
+          placeholder={t.downloads.searchPlaceholder}
           className="min-w-0 flex-1 rounded-[var(--radius)] border border-[var(--rule)] bg-white px-2.5 py-1.5 text-sm outline-none focus:border-[var(--accent)]"
         />
         <span className="shrink-0 px-1 font-mono text-xs text-[var(--ink-3)]">
@@ -92,10 +85,10 @@ export function DownloadExplorer({
         <table className="hm-table min-w-[560px]">
           <thead>
             <tr>
-              <th className="w-[72px]">型号</th>
-              <th>文件</th>
-              <th className="w-[64px]">类型</th>
-              <th className="w-[88px]">系列</th>
+              <th className="w-[72px]">{t.downloads.colModel}</th>
+              <th>{t.downloads.colFile}</th>
+              <th className="w-[72px]">{t.downloads.colKind}</th>
+              <th className="w-[96px]">{t.downloads.colSeries}</th>
               <th className="w-[48px]" />
             </tr>
           </thead>
@@ -106,7 +99,7 @@ export function DownloadExplorer({
                   colSpan={5}
                   className="!py-8 text-center text-[var(--ink-3)]"
                 >
-                  没有匹配，换个关键字。
+                  {t.downloads.empty}
                 </td>
               </tr>
             ) : (
@@ -134,7 +127,7 @@ export function DownloadExplorer({
                     </a>
                   </td>
                   <td className="whitespace-nowrap text-[var(--ink-3)]">
-                    {kindShort[d.kind] || d.kind}
+                    {kindLabel(d.kind)}
                   </td>
                   <td className="whitespace-nowrap text-[11px] text-[var(--ink-3)]">
                     {chipLabel(d.category)}
@@ -157,7 +150,7 @@ export function DownloadExplorer({
       </div>
 
       <p className="m-0 text-[11px] leading-snug text-[var(--ink-3)]">
-        链接到国际站公开 PDF，本站不托管。
+        {t.downloads.note}
       </p>
     </div>
   );

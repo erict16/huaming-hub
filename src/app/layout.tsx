@@ -25,11 +25,11 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "华明 Hub · 分接开关资料与产品参考",
-    template: "%s · 华明 Hub",
+    default: "Huaming Hub · OLTC documents for buyers",
+    template: "%s · Huaming Hub",
   },
   description:
-    "华明装备（002270）有载分接开关产品系列、技术资料下载、选型工具，以及公开行情与公司动态。非官方参考站。",
+    "Huaming on-load tap changer product series, technical PDF downloads and OLTC selector. Unofficial reference site for procurement and engineering.",
   icons: {
     icon: asset("/brand/logo/hm-logo-01.png"),
   },
@@ -41,13 +41,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
+    <html lang="en">
       <body
         className={`${space.variable} ${inter.variable} ${mono.variable} antialiased`}
       >
-        <SiteHeader />
-        <main className="hm-shell hm-main">{children}</main>
-        <SiteFooter />
+        <div className="hm-root">
+          <SiteHeader />
+          <main className="hm-shell hm-main">{children}</main>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );

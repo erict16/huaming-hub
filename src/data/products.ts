@@ -2,7 +2,7 @@ export type ProductSeries = {
   code: string;
   name: string;
   category: string;
-  blurb: string;
+  blurb: { en: string; zh: string };
   highlights: string[];
   href: string;
 };
@@ -12,7 +12,10 @@ export const productSeries: ProductSeries[] = [
     code: "CV / SV",
     name: "Conventional selector switch",
     category: "Conventional OLTC",
-    blurb: "油浸选择开关式，配电/电力变常用。",
+    blurb: {
+      en: "Oil-immersed selector-switch type. Common on distribution and power transformers.",
+      zh: "油浸选择开关式，配电/电力变常用。",
+    },
     highlights: ["Oil-immersed", "Wide current range", "Field proven"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/15-cv",
   },
@@ -20,7 +23,10 @@ export const productSeries: ProductSeries[] = [
     code: "CM / CMD",
     name: "Conventional diverter switch",
     category: "Conventional OLTC",
-    blurb: "切换开关式，电流更大一档，现场维护资料齐。",
+    blurb: {
+      en: "Diverter-switch design for higher current, with solid field service documentation.",
+      zh: "切换开关式，电流更大一档，现场维护资料齐。",
+    },
     highlights: ["High reliability", "Service-friendly", "Modular"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/1-cm",
   },
@@ -28,7 +34,10 @@ export const productSeries: ProductSeries[] = [
     code: "CV2",
     name: "Vacuum selector switch",
     category: "Vacuum OLTC",
-    blurb: "真空灭弧，维护周期长，油室更干净。",
+    blurb: {
+      en: "Vacuum interrupter technology — longer service intervals and cleaner oil compartments.",
+      zh: "真空灭弧，维护周期长，油室更干净。",
+    },
     highlights: ["Vacuum interrupter", "Low maintenance", "Long life"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/4-cv2",
   },
@@ -36,7 +45,10 @@ export const productSeries: ProductSeries[] = [
     code: "CM2 / SHZV",
     name: "Vacuum diverter & high-end",
     category: "Vacuum OLTC",
-    blurb: "真空切换平台，电网和工业重载场合。",
+    blurb: {
+      en: "Vacuum diverter platform for grid and heavy industrial duty.",
+      zh: "真空切换平台，电网和工业重载场合。",
+    },
     highlights: ["Vacuum diverter", "Grid-grade", "Global installs"],
     href: "https://www.intl-huaming.com/products-page/product/17-shzv",
   },
@@ -44,7 +56,10 @@ export const productSeries: ProductSeries[] = [
     code: "HWV / HWDK",
     name: "Vacuum high-performance",
     category: "Vacuum OLTC",
-    blurb: "紧凑真空，新设计或改造都好塞。",
+    blurb: {
+      en: "Compact vacuum units suited to new builds and retrofit slots.",
+      zh: "紧凑真空，新设计或改造都好塞。",
+    },
     highlights: ["Compact", "Retrofit ready", "Fast delivery"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/19-hwv",
   },
@@ -52,7 +67,10 @@ export const productSeries: ProductSeries[] = [
     code: "CHVT / SHGV",
     name: "Converter & special duty",
     category: "Vacuum OLTC",
-    blurb: "换流变、特高压等特种工况。",
+    blurb: {
+      en: "For converter transformers, HVDC and other special duties.",
+      zh: "换流变、特高压等特种工况。",
+    },
     highlights: ["HVDC / converter", "Special duty", "Engineering support"],
     href: "https://www.intl-huaming.com/products-page/product/18-chvt",
   },
@@ -60,7 +78,10 @@ export const productSeries: ProductSeries[] = [
     code: "CZ / CVT",
     name: "Dry-type vacuum OLTC",
     category: "Dry-type OLTC",
-    blurb: "干变用，室内站和新能源侧。",
+    blurb: {
+      en: "For dry-type transformers — indoor substations and renewables.",
+      zh: "干变用，室内站和新能源侧。",
+    },
     highlights: ["Dry-type", "Indoor friendly", "Renewables"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/21-cz",
   },
@@ -68,7 +89,10 @@ export const productSeries: ProductSeries[] = [
     code: "W/G · W/L · ZWC",
     name: "Off-circuit tap changers",
     category: "DETC / OCTC",
-    blurb: "无励磁，笼式/鼓式都有。",
+    blurb: {
+      en: "Off-circuit (DETC) range — cage and drum designs.",
+      zh: "无励磁，笼式/鼓式都有。",
+    },
     highlights: ["Cage & drum", "Cost effective", "Wide Um range"],
     href: "https://www.intl-huaming.com/products-page/product/6-w_g",
   },
@@ -76,17 +100,11 @@ export const productSeries: ProductSeries[] = [
     code: "SHM / CMA7 / HMC",
     name: "Motor drives & controllers",
     category: "Accessories",
-    blurb: "电动机构、调压控制器、在线监测。",
+    blurb: {
+      en: "Motor-drive units, voltage regulators and monitoring options.",
+      zh: "电动机构、调压控制器、在线监测。",
+    },
     highlights: ["MDU", "AVR", "Monitoring"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/11-shm-d",
   },
-];
-
-export const companyFacts = [
-  { label: "创立", value: "1989 / 1995*" },
-  { label: "证券代码", value: "002270.SZ" },
-  { label: "总部", value: "中国上海" },
-  { label: "国际业务", value: "新加坡" },
-  { label: "主业", value: "有载 / 无励磁分接开关" },
-  { label: "市场", value: "100+ 国家和地区" },
 ];
