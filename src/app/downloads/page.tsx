@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 
 export default function DownloadsPage() {
   return (
-    <div className="space-y-4">
-      <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight text-[var(--ink)] sm:text-2xl">
-          技术资料
-        </h1>
-        <p className="mt-1 text-sm text-[var(--ink-3)]">
-          {allDocuments.length} 份 · 按型号筛选 · 紧凑列表
-        </p>
-      </div>
+    <div className="hm-page">
+      <header className="hm-page-head">
+        <div>
+          <h1>技术资料</h1>
+          <p className="sub">
+            {allDocuments.length} 份 · 按型号筛 · 表格
+          </p>
+        </div>
+      </header>
       <DownloadExplorer
         documents={allDocuments}
         categories={categories}

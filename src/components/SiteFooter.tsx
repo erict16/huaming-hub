@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-12 border-t border-[var(--rule)] bg-[var(--paper-2)]">
-      <div className="hm-shell flex flex-col gap-3 py-6 text-sm text-[var(--ink-3)] sm:flex-row sm:items-center sm:justify-between">
-        <p>
-          个人站点，非华明官方。行情与公告来自公开源；PDF 链到国际站公开资料。
+    <footer className="mt-auto border-t border-[var(--rule)] bg-[var(--paper-2)]">
+      <div className="hm-shell flex flex-col gap-2 py-4 text-xs leading-relaxed text-[var(--ink-3)] sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <p className="m-0">
+          个人站，非官方。行情/公告公开源；PDF 链国际站。
         </p>
-        <div className="flex flex-wrap gap-4 text-[var(--ink-2)]">
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-[var(--ink-2)]">
           <Link href="/downloads" className="hover:text-[var(--accent)]">
             资料
           </Link>

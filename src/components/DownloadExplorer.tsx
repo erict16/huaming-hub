@@ -59,9 +59,8 @@ export function DownloadExplorer({
           .replace("Dry-type", "干式");
 
   return (
-    <div className="space-y-3">
-      {/* toolbar */}
-      <div className="hm-card flex flex-col gap-2 p-2.5 sm:flex-row sm:items-center">
+    <div className="hm-stack">
+      <div className="hm-card flex flex-col gap-2 p-2 sm:flex-row sm:items-center sm:gap-2 sm:px-2.5 sm:py-2">
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -73,8 +72,7 @@ export function DownloadExplorer({
         </span>
       </div>
 
-      {/* series chips only — no duplicate select */}
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-1.5">
         {["all", ...categories].map((c) => {
           const active = category === c;
           return (
@@ -90,22 +88,24 @@ export function DownloadExplorer({
         })}
       </div>
 
-      {/* compact table */}
       <div className="hm-card overflow-x-auto">
         <table className="hm-table min-w-[560px]">
           <thead>
             <tr>
               <th className="w-[72px]">型号</th>
               <th>文件</th>
-              <th className="w-[72px]">类型</th>
-              <th className="w-[100px]">系列</th>
-              <th className="w-[52px]" />
+              <th className="w-[64px]">类型</th>
+              <th className="w-[88px]">系列</th>
+              <th className="w-[48px]" />
             </tr>
           </thead>
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={5} className="py-10 text-center text-[var(--ink-3)]">
+                <td
+                  colSpan={5}
+                  className="!py-8 text-center text-[var(--ink-3)]"
+                >
                   没有匹配，换个关键字。
                 </td>
               </tr>
@@ -156,8 +156,8 @@ export function DownloadExplorer({
         </table>
       </div>
 
-      <p className="text-[11px] text-[var(--ink-3)]">
-        点行内链接打开华明国际站公开 PDF，本站不托管文件。
+      <p className="m-0 text-[11px] leading-snug text-[var(--ink-3)]">
+        链接到国际站公开 PDF，本站不托管。
       </p>
     </div>
   );

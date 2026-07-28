@@ -46,7 +46,7 @@ export default function RootLayout({
         className={`${space.variable} ${inter.variable} ${mono.variable} antialiased`}
       >
         <SiteHeader />
-        <main className="hm-shell py-6 sm:py-8">{children}</main>
+        <main className="hm-shell hm-main">{children}</main>
         <SiteFooter />
       </body>
     </html>

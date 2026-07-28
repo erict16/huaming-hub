@@ -11,7 +11,7 @@ import {
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-baseline justify-between gap-3 border-b border-[var(--rule)] py-1.5 text-sm last:border-0">
+    <div className="flex items-baseline justify-between gap-2 border-b border-[var(--rule)] py-1 text-sm last:border-0">
       <span className="text-[var(--ink-3)]">{label}</span>
       <span className="font-mono tabular-nums text-[var(--ink)]">{value}</span>
     </div>
@@ -70,13 +70,13 @@ export function StockPanel() {
       : "text-[var(--down)]";
 
   return (
-    <aside className="hm-card p-4">
+    <aside className="hm-card hm-card-pad">
       <div className="flex items-start justify-between gap-2">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-wider text-[var(--ink-3)]">
             SZSE · {q.code}
           </div>
-          <h2 className="font-display mt-0.5 text-lg font-semibold text-[var(--ink)]">
+          <h2 className="font-display mt-1 text-base font-semibold leading-tight text-[var(--ink)]">
             {q.name}
           </h2>
         </div>
@@ -85,17 +85,17 @@ export function StockPanel() {
         </span>
       </div>
 
-      <div className={`mt-4 font-display text-3xl font-semibold tabular-nums ${tone}`}>
+      <div className={`mt-3 font-display text-[1.75rem] font-semibold leading-none tabular-nums ${tone}`}>
         {q.ok ? formatCNY(q.price) : loading ? "…" : "—"}
         <span className="ml-1 text-sm font-normal text-[var(--ink-3)]">元</span>
       </div>
-      <div className={`mt-1 font-mono text-sm tabular-nums ${tone}`}>
+      <div className={`mt-1.5 font-mono text-sm tabular-nums ${tone}`}>
         {q.ok
           ? `${up ? "+" : ""}${formatCNY(q.change)}  ${up ? "+" : ""}${formatCNY(q.changePercent)}%`
           : "—"}
       </div>
 
-      <div className="mt-4">
+      <div className="mt-3">
         <Row label="今开" value={formatCNY(q.open)} />
         <Row label="昨收" value={formatCNY(q.prevClose)} />
         <Row label="最高" value={formatCNY(q.high)} />
@@ -118,7 +118,7 @@ export function StockPanel() {
         <Row label="总市值" value={formatYi(q.marketCap)} />
       </div>
 
-      <p className="mt-3 text-[11px] leading-relaxed text-[var(--ink-3)]">
+      <p className="mt-2.5 mb-0 text-[11px] leading-snug text-[var(--ink-3)]">
         {q.source}
         {q.ok
           ? ` · ${new Date(q.updatedAt).toLocaleTimeString("zh-CN", { hour12: false })}`

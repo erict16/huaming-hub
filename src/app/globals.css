@@ -26,6 +26,15 @@
   --up: #c41e3a;
   --down: #0d7a4f;
   --radius: 6px;
+  /* 4pt spacing scale */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 20px;
+  --s6: 24px;
+  --s8: 32px;
+  --header-h: 48px;
   --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-jb), ui-monospace, monospace;
@@ -75,7 +84,72 @@ a {
 .hm-shell {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--s4);
+}
+
+.hm-main {
+  padding-top: var(--s5);
+  padding-bottom: var(--s6);
+}
+
+@media (min-width: 640px) {
+  .hm-shell {
+    padding: 0 var(--s5);
+  }
+  .hm-main {
+    padding-top: var(--s6);
+    padding-bottom: var(--s8);
+  }
+}
+
+/* 页内统一节奏：标题区 → 内容 */
+.hm-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.hm-page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+.hm-page-head h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+@media (min-width: 640px) {
+  .hm-page-head h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.hm-page-head .sub {
+  margin: var(--s1) 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+
+.hm-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+
+.hm-stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
 }
 
 .hm-card {
@@ -84,17 +158,21 @@ a {
   border-radius: var(--radius);
 }
 
+.hm-card-pad {
+  padding: var(--s3) var(--s4);
+}
+
 /* —— 按钮：高对比，中文可读 —— */
 .hm-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: var(--s1);
   border-radius: var(--radius);
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.25;
-  padding: 0.5rem 0.9rem;
+  padding: 0.45rem 0.85rem;
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
@@ -180,12 +258,12 @@ a {
   color: var(--ink-3);
   background: var(--paper-3);
   border-bottom: 1px solid var(--rule);
-  padding: 8px 10px;
+  padding: var(--s2) var(--s3);
   white-space: nowrap;
 }
 
 .hm-table td {
-  padding: 7px 10px;
+  padding: var(--s2) var(--s3);
   border-bottom: 1px solid var(--rule);
   vertical-align: middle;
 }

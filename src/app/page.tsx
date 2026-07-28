@@ -7,14 +7,12 @@ export default function HomePage() {
   const docCount = allDocuments.length;
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
+    <div className="hm-page">
+      <header className="hm-page-head">
         <div>
-          <h1 className="font-display text-2xl font-semibold tracking-tight text-[var(--ink)]">
-            华明装备 002270
-          </h1>
-          <p className="mt-1 text-sm text-[var(--ink-3)]">
-            自己用：盘口 + 公告/媒体（利好利空都收）· {docCount} 份资料
+          <h1>华明装备 002270</h1>
+          <p className="sub">
+            盘口 + 公告/媒体（利好利空）· {docCount} 份资料
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -25,19 +23,19 @@ export default function HomePage() {
             产品系列
           </Link>
         </div>
-      </div>
+      </header>
 
-      <div className="grid gap-5 lg:grid-cols-[300px_1fr]">
-        <div className="space-y-3 lg:sticky lg:top-20 lg:self-start">
+      <div className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <aside className="hm-stack lg:sticky lg:top-[calc(var(--header-h)+var(--s3))] lg:self-start">
           <StockPanel />
-          <div className="hm-card p-3 text-sm">
+          <div className="hm-card hm-card-pad text-sm">
             <div className="font-mono text-[10px] uppercase tracking-wider text-[var(--ink-3)]">
               快捷
             </div>
-            <ul className="mt-2 space-y-1.5 text-[var(--ink-2)]">
+            <ul className="mt-2 space-y-1.5 leading-snug text-[var(--ink-2)]">
               <li>
                 <Link href="/downloads" className="hover:text-[var(--accent)]">
-                  下规范书 / Leaflet
+                  规范书 / Leaflet
                 </Link>
               </li>
               <li>
@@ -62,7 +60,7 @@ export default function HomePage() {
               </li>
             </ul>
           </div>
-        </div>
+        </aside>
         <NewsFeed />
       </div>
     </div>

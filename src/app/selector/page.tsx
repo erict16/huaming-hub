@@ -8,13 +8,15 @@ export const metadata: Metadata = {
 
 export default function SelectorPage() {
   return (
-    <div className="mx-auto max-w-lg space-y-4 py-8 text-center">
-      <h1 className="font-display text-2xl font-semibold text-[var(--ink)]">
-        OLTC 选型
-      </h1>
-      <p className="text-sm text-[var(--ink-3)]">
-        填电流、电压、调压方式等，给出目录里最低适配型号建议。仅供参考，商务以确认函为准。
-      </p>
+    <div className="hm-page mx-auto max-w-md py-4 text-center">
+      <header className="hm-page-head justify-center">
+        <div>
+          <h1>OLTC 选型</h1>
+          <p className="sub">
+            电流、电压、调压方式 → 目录最低适配型号。仅供参考。
+          </p>
+        </div>
+      </header>
       <div className="flex flex-wrap justify-center gap-2">
         <a
           href="https://erict16.github.io/oltc-selector/"
