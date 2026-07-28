@@ -36,6 +36,12 @@ export function HomePage({ locale }: { locale: Locale }) {
     },
   ];
 
+  const steps = [
+    { n: "01", title: t.home.how1Title, body: t.home.how1Body },
+    { n: "02", title: t.home.how2Title, body: t.home.how2Body },
+    { n: "03", title: t.home.how3Title, body: t.home.how3Body },
+  ];
+
   return (
     <div className="hm-page">
       <section className="hm-hero">
@@ -43,7 +49,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <p className="hm-hero-kicker">{t.home.kicker}</p>
           <h1>{t.home.title}</h1>
           <p className="hm-hero-lead">{t.home.lead}</p>
-          <div className="flex flex-wrap gap-2">
+          <div className="hm-hero-actions">
             <Link
               href={localePath(locale, "/products")}
               className="hm-btn hm-btn-primary"
@@ -101,26 +107,19 @@ export function HomePage({ locale }: { locale: Locale }) {
         )}
       </section>
 
-      <section className="hm-stack">
-        <div className="hm-section-label">
-          <h2>{t.home.howTitle}</h2>
+      <section className="hm-steps" aria-labelledby="how-title">
+        <div className="hm-steps-head">
+          <h2 id="how-title">{t.home.howTitle}</h2>
         </div>
-        <div className="grid gap-3 sm:grid-cols-3">
-          {[
-            [t.home.how1Title, t.home.how1Body],
-            [t.home.how2Title, t.home.how2Body],
-            [t.home.how3Title, t.home.how3Body],
-          ].map(([title, body]) => (
-            <div key={title} className="hm-card hm-card-pad">
-              <div className="font-display text-sm font-semibold text-[var(--ink)]">
-                {title}
-              </div>
-              <p className="mt-1.5 mb-0 text-sm leading-snug text-[var(--ink-2)]">
-                {body}
-              </p>
-            </div>
+        <ol>
+          {steps.map((s) => (
+            <li key={s.n}>
+              <div className="num">{s.n}</div>
+              <p className="title">{s.title.replace(/^\d+\.\s*/, "")}</p>
+              <p className="body">{s.body}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
     </div>
   );

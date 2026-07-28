@@ -18,38 +18,22 @@ export function SiteFooter() {
 
   return (
     <footer className="hm-footer">
-      <div className="hm-shell flex flex-col gap-3 py-5 text-xs leading-relaxed text-[var(--ink-3)] sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-        <div className="max-w-md min-w-0">
-          <p className="m-0 font-medium text-[var(--ink-2)]">{t.brand}</p>
-          <p className="mt-1 mb-0 break-words">{t.footer.blurb}</p>
+      <div className="hm-shell hm-footer-inner">
+        <div className="min-w-0">
+          <p className="hm-footer-brand">{t.brand}</p>
+          <p className="hm-footer-blurb">{t.footer.blurb}</p>
         </div>
-        <nav className="flex flex-wrap gap-x-4 gap-y-1 text-[var(--ink-2)] shrink-0">
-          <Link
-            href={localePath(locale, "/products")}
-            className="hover:text-[var(--accent)]"
-          >
+        <nav className="hm-footer-nav" aria-label="Footer">
+          <Link href={localePath(locale, "/products")}>
             {t.footer.products}
           </Link>
-          <Link
-            href={localePath(locale, "/downloads")}
-            className="hover:text-[var(--accent)]"
-          >
+          <Link href={localePath(locale, "/downloads")}>
             {t.footer.downloads}
           </Link>
-          <a
-            href={SELECTOR_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-[var(--accent)]"
-          >
+          <a href={SELECTOR_URL} target="_blank" rel="noreferrer">
             {t.footer.selector}
           </a>
-          <a
-            href={OFFICIAL_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-[var(--accent)]"
-          >
+          <a href={OFFICIAL_URL} target="_blank" rel="noreferrer">
             {t.footer.official}
           </a>
         </nav>

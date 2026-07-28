@@ -8,13 +8,14 @@ Public-facing **non-official reference hub** for engineers, buyers, and curious 
 
 ## Genre
 
-modern-minimal · industrial public hub
+modern-minimal · industrial docs hub (procurement)
 
 ## Macrostructure family
 
-- **Home:** Welcome hero (who / what / CTAs) → entry cards → Stat-Led quote strip → Index-First company news.
-- **Content pages** (downloads / products / about): same shell, denser tables/lists; no hero enrichment.
-- **Previous fingerprints:** Workbench · pure Stat-Led desk
+- **Home:** Welcome hero → linked entry strip (3 joined cells, not free-floating SaaS cards) → numbered how-to strip.
+- **Content pages** (downloads / products): page-head + dense list/table; no hero enrichment.
+- **Removed:** stock quote, news feed, about page.
+- **Previous fingerprints:** Workbench · Stat-Led desk · public hub with market sections
 
 ## Theme · cobalt-industrial (light)
 
@@ -38,14 +39,15 @@ Accent ≤ ~5% of viewport. No gradient hero, no fake chrome.
 
 ## Typography
 
-- Display: Space Grotesk, weight 600, roman only (no italic headers)
+- Display: Space Grotesk 600, roman only
 - Body: Inter 400/500/600
-- Mono: JetBrains Mono — prices, codes, dates
-- Body size ~14px; page H1 ~1.35–1.5rem; stat price ~2.25–2.75rem tabular-nums
+- Mono: JetBrains Mono — model codes, counts, kickers
+- Scale: `--text-2xs` 11 → `--text-2xl` 24 (see `globals.css`)
+- Body = `--text-base` (14px); page H1 = xl/2xl; hero H1 = clamp ~1.35–1.75rem
 
 ## Spacing
 
-4pt scale: `--s1` 4 … `--s8` 32. Prefer named tokens; avoid arbitrary large empty bands.
+4pt scale: `--s1`…`--s10`. Page section gap `--s6`/`--s8`. Prefer tokens over raw Tailwind spacing on chrome.
 
 ## Motion
 

@@ -19,6 +19,12 @@
     "theme": "cobalt-industrial",
     "enrichment": "brand-photo-only",
     "brief": "Pivot copy+IA to public-facing reference hub"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "docs-hub",
+    "theme": "cobalt-industrial",
+    "enrichment": "none",
+    "brief": "Hallmark audit fix: type scale, spacing tokens, header mark, dead CSS purge, steps strip"
   }
 ]
-

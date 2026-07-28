@@ -30,44 +30,44 @@ export function SiteHeader() {
   const enHref = switchLocale(pathname, "en");
   const zhHref = switchLocale(pathname, "zh");
 
+  const isActive = (href: string, external?: boolean) => {
+    if (external) return false;
+    if (href === localePath(locale, "/")) {
+      return (
+        pathname === "/" ||
+        pathname === "" ||
+        pathname === "/zh" ||
+        pathname === "/zh/"
+      );
+    }
+    return (
+      pathname === href ||
+      pathname === href.replace(/\/$/, "") ||
+      pathname.startsWith(href)
+    );
+  };
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--rule)] bg-[var(--paper-2)]/95 backdrop-blur-sm">
-      <div className="hm-shell flex h-12 items-center justify-between gap-3">
-        <Link href={localePath(locale, "/")} className="flex items-center gap-2.5">
+    <header className="hm-header">
+      <div className="hm-shell hm-header-inner">
+        <Link href={localePath(locale, "/")} className="hm-brand">
           <img
-            src={asset("/brand/logo/hm-logo-01.png")}
+            src={asset("/brand/logo/favicon-32.png")}
             alt=""
             width={28}
             height={28}
-            className="h-7 w-7 rounded border border-[var(--rule)] bg-white object-contain p-0.5"
+            className="hm-brand-mark"
           />
-          <div className="leading-tight">
-            <div className="font-display text-sm font-semibold tracking-tight text-[var(--ink)]">
-              {t.brand}
-            </div>
-            <div className="font-mono text-[10px] text-[var(--ink-3)]">
-              {t.brandSub}
-            </div>
+          <div className="hm-brand-text">
+            <div className="hm-brand-name">{t.brand}</div>
+            <div className="hm-brand-sub">{t.brandSub}</div>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 sm:flex">
+        <nav className="hm-nav" aria-label="Primary">
           {nav.map((item) => {
-            const active =
-              !item.external &&
-              (item.href === localePath(locale, "/")
-                ? pathname === "/" ||
-                  pathname === "" ||
-                  pathname === "/zh" ||
-                  pathname === "/zh/"
-                : pathname === item.href ||
-                  pathname === item.href.replace(/\/$/, "") ||
-                  pathname.startsWith(item.href));
-            const className = `rounded-[var(--radius)] px-2.5 py-1 text-sm transition ${
-              active
-                ? "bg-[var(--accent-soft)] font-medium text-[var(--accent)]"
-                : "text-[var(--ink-2)] hover:bg-[var(--paper)] hover:text-[var(--ink)]"
-            }`;
+            const active = isActive(item.href, item.external);
+            const className = `hm-nav-link${active ? " hm-nav-link-active" : ""}`;
             if (item.external) {
               return (
                 <a
@@ -89,31 +89,19 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <div
-            className="hidden items-center gap-0.5 rounded border border-[var(--rule)] p-0.5 text-xs sm:flex"
-            role="group"
-            aria-label="Language"
-          >
+        <div className="hm-header-actions">
+          <div className="hm-lang" role="group" aria-label="Language">
             <Link
               href={enHref}
-              className={`rounded px-1.5 py-0.5 font-medium ${
-                locale === "en"
-                  ? "bg-[var(--accent-soft)] text-[var(--accent)]"
-                  : "text-[var(--ink-3)] hover:text-[var(--ink)]"
-              }`}
               hrefLang="en"
+              aria-current={locale === "en" ? "true" : undefined}
             >
               {t.langEn}
             </Link>
             <Link
               href={zhHref}
-              className={`rounded px-1.5 py-0.5 font-medium ${
-                locale === "zh"
-                  ? "bg-[var(--accent-soft)] text-[var(--accent)]"
-                  : "text-[var(--ink-3)] hover:text-[var(--ink)]"
-              }`}
               hrefLang="zh-CN"
+              aria-current={locale === "zh" ? "true" : undefined}
             >
               {t.langZh}
             </Link>
@@ -122,15 +110,16 @@ export function SiteHeader() {
             href={OFFICIAL_URL}
             target="_blank"
             rel="noreferrer"
-            className="hidden text-xs text-[var(--ink-3)] underline-offset-2 hover:text-[var(--accent)] hover:underline sm:inline"
+            className="hm-header-official"
           >
             {t.official}
           </a>
           <button
             type="button"
-            className="inline-flex h-8 w-8 items-center justify-center rounded border border-[var(--rule)] text-[var(--ink)] sm:hidden"
+            className="hm-menu-btn"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
+            aria-expanded={open}
           >
             {open ? "×" : "☰"}
           </button>
@@ -138,7 +127,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="border-t border-[var(--rule)] bg-[var(--paper-2)] px-4 py-2 sm:hidden">
+        <div className="hm-mobile-nav sm:hidden">
           {nav.map((item) =>
             item.external ? (
               <a
@@ -147,7 +136,6 @@ export function SiteHeader() {
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setOpen(false)}
-                className="block rounded px-3 py-2 text-sm text-[var(--ink-2)]"
               >
                 {item.label}
               </a>
@@ -156,24 +144,31 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="block rounded px-3 py-2 text-sm text-[var(--ink-2)]"
               >
                 {item.label}
               </Link>
             ),
           )}
-          <div className="mt-1 flex gap-2 border-t border-[var(--rule)] px-3 py-2">
+          <div className="flex gap-4 border-t border-[var(--rule)] px-3 py-2 mt-1">
             <Link
               href={enHref}
               onClick={() => setOpen(false)}
-              className={`text-sm ${locale === "en" ? "font-semibold text-[var(--accent)]" : "text-[var(--ink-2)]"}`}
+              className={
+                locale === "en"
+                  ? "font-semibold text-[var(--accent)]"
+                  : "text-[var(--ink-2)]"
+              }
             >
               EN
             </Link>
             <Link
               href={zhHref}
               onClick={() => setOpen(false)}
-              className={`text-sm ${locale === "zh" ? "font-semibold text-[var(--accent)]" : "text-[var(--ink-2)]"}`}
+              className={
+                locale === "zh"
+                  ? "font-semibold text-[var(--accent)]"
+                  : "text-[var(--ink-2)]"
+              }
             >
               中文
             </Link>

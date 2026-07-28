@@ -53,19 +53,19 @@ export function DownloadExplorer({
 
   return (
     <div className="hm-stack">
-      <div className="hm-card flex flex-col gap-2 p-2 sm:flex-row sm:items-center sm:gap-2 sm:px-2.5 sm:py-2">
+      <div className="hm-search-bar">
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder={t.downloads.searchPlaceholder}
-          className="min-w-0 flex-1 rounded-[var(--radius)] border border-[var(--rule)] bg-white px-2.5 py-1.5 text-sm outline-none focus:border-[var(--accent)]"
+          aria-label={t.downloads.searchPlaceholder}
         />
-        <span className="shrink-0 px-1 font-mono text-xs text-[var(--ink-3)]">
+        <span className="hm-search-count">
           {filtered.length}/{documents.length}
         </span>
       </div>
 
-      <div className="flex flex-wrap gap-1.5">
+      <div className="hm-chip-row">
         {["all", ...categories].map((c) => {
           const active = category === c;
           return (
@@ -73,7 +73,7 @@ export function DownloadExplorer({
               key={c}
               type="button"
               onClick={() => setCategory(c)}
-              className={`hm-chip ${active ? "hm-chip-on" : "hover:border-[var(--accent)]"}`}
+              className={`hm-chip${active ? " hm-chip-on" : ""}`}
             >
               {chipLabel(c)}
             </button>
@@ -87,9 +87,9 @@ export function DownloadExplorer({
             <tr>
               <th className="w-[72px]">{t.downloads.colModel}</th>
               <th>{t.downloads.colFile}</th>
-              <th className="w-[72px]">{t.downloads.colKind}</th>
-              <th className="w-[96px]">{t.downloads.colSeries}</th>
-              <th className="w-[48px]" />
+              <th className="w-[80px]">{t.downloads.colKind}</th>
+              <th className="w-[100px]">{t.downloads.colSeries}</th>
+              <th className="w-[56px]" />
             </tr>
           </thead>
           <tbody>
@@ -97,7 +97,7 @@ export function DownloadExplorer({
               <tr>
                 <td
                   colSpan={5}
-                  className="!py-8 text-center text-[var(--ink-3)]"
+                  className="!py-10 text-center text-[var(--ink-3)]"
                 >
                   {t.downloads.empty}
                 </td>
@@ -110,7 +110,7 @@ export function DownloadExplorer({
                       href={d.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="font-mono text-xs font-semibold text-[var(--accent)] hover:underline"
+                      className="font-mono text-[var(--text-2xs)] font-semibold text-[var(--accent)] hover:underline"
                     >
                       {d.model}
                     </a>
@@ -129,7 +129,7 @@ export function DownloadExplorer({
                   <td className="whitespace-nowrap text-[var(--ink-3)]">
                     {kindLabel(d.kind)}
                   </td>
-                  <td className="whitespace-nowrap text-[11px] text-[var(--ink-3)]">
+                  <td className="whitespace-nowrap text-[var(--text-2xs)] text-[var(--ink-3)]">
                     {chipLabel(d.category)}
                   </td>
                   <td className="text-right">
@@ -149,9 +149,7 @@ export function DownloadExplorer({
         </table>
       </div>
 
-      <p className="m-0 text-[11px] leading-snug text-[var(--ink-3)]">
-        {t.downloads.note}
-      </p>
+      <p className="hm-note">{t.downloads.note}</p>
     </div>
   );
 }
