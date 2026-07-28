@@ -20,14 +20,11 @@ export default function SelectorPage() {
           href="https://erict16.github.io/oltc-selector/"
           target="_blank"
           rel="noreferrer"
-          className="rounded-md bg-[var(--accent)] px-4 py-2 text-sm font-medium text-white"
+          className="hm-btn hm-btn-primary"
         >
           打开选型器
         </a>
-        <Link
-          href="/downloads"
-          className="rounded-md border border-[var(--rule)] px-4 py-2 text-sm text-[var(--ink-2)]"
-        >
+        <Link href="/downloads" className="hm-btn hm-btn-secondary">
           技术资料
         </Link>
       </div>

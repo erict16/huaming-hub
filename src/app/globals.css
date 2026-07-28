@@ -16,8 +16,12 @@
   --rule-2: #c2cedb;
   /* 工业蓝 — primary signal */
   --accent: #0b3d6e;
-  --accent-2: #125a9c;
+  --accent-2: #0a4f8a;
   --accent-soft: #e6eef6;
+  /* 实心按钮专用：字必须够亮 */
+  --btn-fg: #ffffff;
+  --btn-bg: #0a4a82;
+  --btn-bg-hover: #083a68;
   /* A-share */
   --up: #c41e3a;
   --down: #0d7a4f;
@@ -78,6 +82,88 @@ a {
   background: var(--paper-2);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
+}
+
+/* —— 按钮：高对比，中文可读 —— */
+.hm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.hm-btn-primary {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border-color: var(--btn-bg);
+}
+
+.hm-btn-primary:hover {
+  background: var(--btn-bg-hover);
+  border-color: var(--btn-bg-hover);
+  color: var(--btn-fg);
+}
+
+.hm-btn-secondary {
+  background: var(--paper-2);
+  color: var(--ink);
+  border-color: var(--rule-2);
+}
+
+.hm-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* 表格里小按钮：浅底深字，比「细框蓝字」好读 */
+.hm-btn-table {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  background: var(--accent-soft);
+  color: var(--btn-bg);
+  border: 1px solid color-mix(in srgb, var(--btn-bg) 28%, var(--rule));
+}
+
+.hm-btn-table:hover {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border-color: var(--btn-bg);
+}
+
+/* 系列 chip */
+.hm-chip {
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  color: var(--ink-2);
+  padding: 0.3rem 0.55rem;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.hm-chip-on {
+  background: var(--btn-bg);
+  border-color: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 600;
 }
 
 /* denser data table */

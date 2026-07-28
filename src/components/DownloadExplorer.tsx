@@ -82,11 +82,7 @@ export function DownloadExplorer({
               key={c}
               type="button"
               onClick={() => setCategory(c)}
-              className={`rounded-[var(--radius)] border px-2 py-1 text-xs transition ${
-                active
-                  ? "border-[var(--accent)] bg-[var(--accent)] text-white"
-                  : "border-[var(--rule)] bg-white text-[var(--ink-2)] hover:border-[var(--accent-2)]"
-              }`}
+              className={`hm-chip ${active ? "hm-chip-on" : "hover:border-[var(--accent)]"}`}
             >
               {chipLabel(c)}
             </button>
@@ -148,7 +144,7 @@ export function DownloadExplorer({
                       href={d.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-block rounded border border-[var(--accent)] px-2 py-0.5 text-xs font-medium text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white"
+                      className="hm-btn-table"
                     >
                       PDF
                     </a>

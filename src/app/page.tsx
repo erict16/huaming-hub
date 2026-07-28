@@ -18,16 +18,10 @@ export default function HomePage() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link
-            href="/downloads"
-            className="rounded-[var(--radius)] bg-[var(--accent)] px-3 py-1.5 text-sm font-medium text-white hover:bg-[var(--accent-2)]"
-          >
+          <Link href="/downloads" className="hm-btn hm-btn-primary">
             技术资料
           </Link>
-          <Link
-            href="/products"
-            className="rounded-[var(--radius)] border border-[var(--rule-2)] bg-white px-3 py-1.5 text-sm text-[var(--ink-2)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
-          >
+          <Link href="/products" className="hm-btn hm-btn-secondary">
             产品系列
           </Link>
         </div>
