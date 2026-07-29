@@ -41,7 +41,7 @@ export function switchLocale(pathname: string, target: Locale): string {
 
 const en = {
   brand: "Huaming Hub",
-  brandSub: "OLTC docs · buyers",
+  brandSub: "OLTC docs for buyers",
   nav: {
     home: "Home",
     products: "Products",
@@ -57,7 +57,7 @@ const en = {
   langZh: "中文",
   footer: {
     blurb:
-      "Unofficial reference site for Huaming on-load tap changer literature. Product pages and PDFs link to Huaming’s international site. For procurement and engineering reference only.",
+      "Unofficial reference site. Product pages and PDFs open on Huaming's international site. For procurement and engineering use only.",
     products: "Products",
     downloads: "Documents",
     selector: "Selector",
@@ -65,47 +65,46 @@ const en = {
   },
   home: {
     kicker: "Huaming Power Equipment · OLTC",
-    title: "Product literature for tap-changer buyers",
+    title: "Tap-changer docs and product PDFs",
     lead:
-      "Browse Huaming on-load and off-circuit tap-changer series, download technical PDFs, and open the OLTC selector. Built for procurement and engineering teams who need specs fast.",
+      "Find Huaming on-load and off-circuit tap-changer series, download leaflets and manuals, and run a first-pass type match in the OLTC selector.",
     ctaProducts: "Browse products",
     ctaDocs: "Download documents",
     ctaSelector: "Open selector",
     meta: (series: number, docs: number) =>
-      `${series} product series · ${docs} documents · PDFs on official site`,
+      `${series} series · ${docs} PDFs · files on official site`,
     entriesLabel: "Quick links",
     entryProductsTitle: "Product series",
-    entryProductsDesc: "Conventional, vacuum, dry-type OLTC and drives",
+    entryProductsDesc: "Oil, vacuum, dry-type OLTC, and motor drives",
     entryProductsCta: "View series",
     entryDocsTitle: "Technical documents",
     entryDocsDesc: (n: number) =>
-      `${n} leaflets, data sheets and operating instructions`,
+      `${n} leaflets, data sheets, and operating manuals`,
     entryDocsCta: "Browse PDFs",
     entrySelectorTitle: "OLTC selector",
-    entrySelectorDesc: "Match voltage and current to catalogue types",
+    entrySelectorDesc: "Map voltage and current to a catalogue type",
     entrySelectorCta: "Open tool",
     howTitle: "How to use this site",
-    how1Title: "1. Pick a series",
-    how1Body: "Start from Products if you know the duty (oil, vacuum, dry-type).",
-    how2Title: "2. Download PDFs",
-    how2Body:
-      "Filter by model on Documents — leaflets, technical data and manuals.",
-    how3Title: "3. Cross-check with selector",
+    how1Title: "1. Open Documents",
+    how1Body: "Search or filter by model for leaflets, data sheets, and manuals.",
+    how2Title: "2. Check the series list",
+    how2Body: "Use Products when you need family context (oil, vacuum, dry-type).",
+    how3Title: "3. Run a first-pass type",
     how3Body:
-      "Use the selector for a first-pass type; confirm with official datasheets.",
+      "The selector is a starting point only. Confirm on the official datasheet before you order.",
     opensExternal: "opens in a new tab",
   },
   products: {
     title: "Product series",
-    sub: "Huaming on-load and off-circuit tap changers and drive units. Specs and PDFs are under Documents.",
+    sub: "On-load and off-circuit tap changers plus drives. Full specs and PDFs are under Documents.",
     official: "Official",
     docs: "Documents",
   },
   downloads: {
     title: "Technical documents",
     sub: (n: number) =>
-      `${n} leaflets, technical data sheets and operating instructions · filter by model · files hosted on the international site`,
-    searchPlaceholder: "Model / file name, e.g. CV2, SHZV…",
+      `${n} PDFs · filter by model · files hosted on the international site`,
+    searchPlaceholder: "Model or file name, e.g. CV2, SHZV…",
     all: "All",
     colModel: "Model",
     colFile: "File",
@@ -115,7 +114,7 @@ const en = {
     filterLabel: "Filter by series",
     tableCaption: "Technical PDF documents",
     empty: "No matches. Try another keyword.",
-    note: "Links open public PDFs on intl-huaming.com. This site does not host files.",
+    note: "PDFs open on intl-huaming.com. This site does not host the files.",
     kind: {
       Leaflet: "Leaflet",
       "Technical Data": "Data",
@@ -137,7 +136,7 @@ const en = {
 
 const zh = {
   brand: "华明 Hub",
-  brandSub: "分接开关资料 · 采购",
+  brandSub: "分接开关资料 · 采购用",
   nav: {
     home: "首页",
     products: "产品",
@@ -153,7 +152,7 @@ const zh = {
   langZh: "中文",
   footer: {
     blurb:
-      "非官方参考站，面向采购与工程查阅华明有载分接开关产品与技术资料。产品页与 PDF 链至华明国际站。",
+      "非官方参考站。产品页与 PDF 打开华明国际站。仅供采购与工程查阅。",
     products: "产品",
     downloads: "资料",
     selector: "选型器",
@@ -161,44 +160,44 @@ const zh = {
   },
   home: {
     kicker: "华明装备 · 有载分接开关",
-    title: "面向采购的分接开关资料站",
+    title: "分接开关资料与产品 PDF",
     lead:
-      "浏览华明有载 / 无励磁分接开关系列，下载规范书与 Leaflet，并用选型器做初筛。为采购与工程团队快速取用技术资料而整理。",
+      "查华明有载 / 无励磁分接开关系列，下载 Leaflet 与操作说明，也可用选型器做初筛。",
     ctaProducts: "浏览产品",
     ctaDocs: "下载资料",
     ctaSelector: "打开选型器",
     meta: (series: number, docs: number) =>
-      `${series} 个产品系列 · ${docs} 份资料 · PDF 在官网`,
+      `${series} 个系列 · ${docs} 份 PDF · 文件在官网`,
     entriesLabel: "快捷入口",
     entryProductsTitle: "产品系列",
-    entryProductsDesc: "常规、真空、干式 OLTC 与电动机构",
+    entryProductsDesc: "油浸、真空、干式 OLTC 与电动机构",
     entryProductsCta: "查看系列",
     entryDocsTitle: "技术资料",
     entryDocsDesc: (n: number) => `${n} 份简介、参数表与操作说明`,
     entryDocsCta: "浏览 PDF",
     entrySelectorTitle: "OLTC 选型",
-    entrySelectorDesc: "按电压、电流等条件对照型号",
+    entrySelectorDesc: "按电压、电流对照型号",
     entrySelectorCta: "打开工具",
-    howTitle: "使用方式",
-    how1Title: "1. 选系列",
-    how1Body: "已知工况（油浸 / 真空 / 干式）可从产品页入手。",
-    how2Title: "2. 下资料",
-    how2Body: "在资料页按型号筛选 Leaflet、技术数据与操作说明。",
-    how3Title: "3. 选型核对",
-    how3Body: "选型器仅供初筛，最终以官网与正式规范书为准。",
+    howTitle: "怎么用",
+    how1Title: "1. 先下资料",
+    how1Body: "在资料页按型号搜 Leaflet、参数表和操作说明。",
+    how2Title: "2. 再看系列",
+    how2Body: "需要油浸 / 真空 / 干式对照时打开产品页。",
+    how3Title: "3. 选型只做初筛",
+    how3Body: "选型器结果仅供参考，下单前以官网与正式规范书为准。",
     opensExternal: "在新标签打开",
   },
   products: {
     title: "产品系列",
-    sub: "华明有载 / 无励磁分接开关与机构一览。详细参数与 PDF 见技术资料。",
+    sub: "有载 / 无励磁分接开关与机构。参数与 PDF 在「资料」。",
     official: "官网",
     docs: "资料",
   },
   downloads: {
     title: "技术资料",
     sub: (n: number) =>
-      `${n} 份规范书、Leaflet 与操作说明 · 可按型号筛选 · 文件链至国际站`,
-    searchPlaceholder: "型号 / 文件名，如 CV2、SHZV…",
+      `${n} 份 PDF · 可按型号筛 · 文件在国际站`,
+    searchPlaceholder: "型号或文件名，如 CV2、SHZV…",
     all: "全部",
     colModel: "型号",
     colFile: "文件",
@@ -208,7 +207,7 @@ const zh = {
     filterLabel: "按系列筛选",
     tableCaption: "技术 PDF 列表",
     empty: "没有匹配，换个关键字。",
-    note: "链接到国际站公开 PDF，本站不托管。",
+    note: "PDF 打开 intl-huaming.com，本站不托管文件。",
     kind: {
       Leaflet: "简介",
       "Technical Data": "参数",

@@ -159,7 +159,7 @@ export function DownloadExplorer({
                       PDF
                       <span className="sr-only">
                         {" "}
-                        — {d.model} {d.name}
+                        ({d.model} {d.name})
                       </span>
                     </a>
                   </td>

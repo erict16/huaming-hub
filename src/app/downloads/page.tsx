@@ -4,7 +4,7 @@ import { DownloadsPage } from "@/components/DownloadsPage";
 export const metadata: Metadata = {
   title: "Documents",
   description:
-    "Download Huaming OLTC leaflets, technical data and operating instructions.",
+    "Huaming OLTC leaflets, technical data sheets, and operating manuals (official PDF links).",
 };
 
 export default function Page() {

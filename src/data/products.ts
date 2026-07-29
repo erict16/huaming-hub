@@ -16,7 +16,7 @@ export const productSeries: ProductSeries[] = [
       en: "Oil-immersed selector-switch type. Common on distribution and power transformers.",
       zh: "油浸选择开关式，配电/电力变常用。",
     },
-    highlights: ["Oil-immersed", "Wide current range", "Field proven"],
+    highlights: ["Oil-immersed", "Wide current range", "Distribution & power"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/15-cv",
   },
   {
@@ -24,10 +24,10 @@ export const productSeries: ProductSeries[] = [
     name: "Conventional diverter switch",
     category: "Conventional OLTC",
     blurb: {
-      en: "Diverter-switch design for higher current, with solid field service documentation.",
+      en: "Diverter-switch type for higher current. Service manuals cover field work.",
       zh: "切换开关式，电流更大一档，现场维护资料齐。",
     },
-    highlights: ["High reliability", "Service-friendly", "Modular"],
+    highlights: ["Higher current", "Service manuals", "Modular"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/1-cm",
   },
   {
@@ -35,7 +35,7 @@ export const productSeries: ProductSeries[] = [
     name: "Vacuum selector switch",
     category: "Vacuum OLTC",
     blurb: {
-      en: "Vacuum interrupter technology — longer service intervals and cleaner oil compartments.",
+      en: "Vacuum interrupter type. Longer service intervals; oil compartment stays cleaner.",
       zh: "真空灭弧，维护周期长，油室更干净。",
     },
     highlights: ["Vacuum interrupter", "Low maintenance", "Long life"],
@@ -43,32 +43,32 @@ export const productSeries: ProductSeries[] = [
   },
   {
     code: "CM2 / SHZV",
-    name: "Vacuum diverter & high-end",
+    name: "Vacuum diverter",
     category: "Vacuum OLTC",
     blurb: {
-      en: "Vacuum diverter platform for grid and heavy industrial duty.",
-      zh: "真空切换平台，电网和工业重载场合。",
+      en: "Vacuum diverter for grid and heavy industrial duty.",
+      zh: "真空切换，电网和工业重载场合。",
     },
     highlights: ["Vacuum diverter", "Grid-grade", "Global installs"],
     href: "https://www.intl-huaming.com/products-page/product/17-shzv",
   },
   {
     code: "HWV / HWDK",
-    name: "Vacuum high-performance",
+    name: "Compact vacuum OLTC",
     category: "Vacuum OLTC",
     blurb: {
-      en: "Compact vacuum units suited to new builds and retrofit slots.",
-      zh: "紧凑真空，新设计或改造都好塞。",
+      en: "Compact vacuum units for new builds and retrofit slots.",
+      zh: "紧凑真空，新装或改造空间紧时好放。",
     },
     highlights: ["Compact", "Retrofit ready", "Fast delivery"],
     href: "https://www.intl-huaming.com/products-page-for-categories-listing/product/19-hwv",
   },
   {
     code: "CHVT / SHGV",
-    name: "Converter & special duty",
+    name: "Converter and special duty",
     category: "Vacuum OLTC",
     blurb: {
-      en: "For converter transformers, HVDC and other special duties.",
+      en: "For converter transformers, HVDC, and other special duty.",
       zh: "换流变、特高压等特种工况。",
     },
     highlights: ["HVDC / converter", "Special duty", "Engineering support"],
@@ -79,7 +79,7 @@ export const productSeries: ProductSeries[] = [
     name: "Dry-type vacuum OLTC",
     category: "Dry-type OLTC",
     blurb: {
-      en: "For dry-type transformers — indoor substations and renewables.",
+      en: "For dry-type transformers: indoor substations and renewables.",
       zh: "干变用，室内站和新能源侧。",
     },
     highlights: ["Dry-type", "Indoor friendly", "Renewables"],
@@ -90,7 +90,7 @@ export const productSeries: ProductSeries[] = [
     name: "Off-circuit tap changers",
     category: "DETC / OCTC",
     blurb: {
-      en: "Off-circuit (DETC) range — cage and drum designs.",
+      en: "Off-circuit (DETC) range: cage and drum designs.",
       zh: "无励磁，笼式/鼓式都有。",
     },
     highlights: ["Cage & drum", "Cost effective", "Wide Um range"],
@@ -98,10 +98,10 @@ export const productSeries: ProductSeries[] = [
   },
   {
     code: "SHM / CMA7 / HMC",
-    name: "Motor drives & controllers",
+    name: "Motor drives and controllers",
     category: "Accessories",
     blurb: {
-      en: "Motor-drive units, voltage regulators and monitoring options.",
+      en: "Motor-drive units, voltage regulators, and monitoring options.",
       zh: "电动机构、调压控制器、在线监测。",
     },
     highlights: ["MDU", "AVR", "Monitoring"],

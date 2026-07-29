@@ -3,7 +3,7 @@ import { ProductsPage } from "@/components/ProductsPage";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: "Huaming OLTC and DETC product series overview.",
+  description: "Huaming on-load and off-circuit tap-changer series by family.",
 };
 
 export default function Page() {
