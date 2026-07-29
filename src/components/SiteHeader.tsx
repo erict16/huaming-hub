@@ -20,6 +20,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   const nav: { href: string; label: string; external?: boolean }[] = [
+    { href: localePath(locale, "/"), label: t.nav.home },
     { href: localePath(locale, "/products"), label: t.nav.products },
     { href: localePath(locale, "/downloads"), label: t.nav.downloads },
     { href: SELECTOR_URL, label: t.nav.selector, external: true },
@@ -27,7 +28,6 @@ export function SiteHeader() {
 
   const enHref = switchLocale(pathname, "en");
   const zhHref = switchLocale(pathname, "zh");
-  const docsHref = localePath(locale, "/downloads");
 
   useEffect(() => {
     setOpen(false);
@@ -44,18 +44,20 @@ export function SiteHeader() {
 
   const isActive = (href: string, external?: boolean) => {
     if (external) return false;
+    if (href === localePath(locale, "/")) {
+      return (
+        pathname === "/" ||
+        pathname === "" ||
+        pathname === "/zh" ||
+        pathname === "/zh/"
+      );
+    }
     return (
       pathname === href ||
       pathname === href.replace(/\/$/, "") ||
       pathname.startsWith(href)
     );
   };
-
-  const isHome =
-    pathname === "/" ||
-    pathname === "" ||
-    pathname === "/zh" ||
-    pathname === "/zh/";
 
   return (
     <header className="hm-header">
@@ -64,8 +66,8 @@ export function SiteHeader() {
           <img
             src={asset("/brand/logo/favicon-32.png")}
             alt=""
-            width={30}
-            height={30}
+            width={28}
+            height={28}
             className="hm-brand-mark"
           />
           <div className="hm-brand-text">
@@ -75,13 +77,6 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hm-nav" aria-label={t.nav.primary}>
-          <Link
-            href={localePath(locale, "/")}
-            className={`hm-nav-link${isHome ? " hm-nav-link-active" : ""}`}
-            aria-current={isHome ? "page" : undefined}
-          >
-            {t.nav.home}
-          </Link>
           {nav.map((item) => {
             const active = isActive(item.href, item.external);
             const className = `hm-nav-link${active ? " hm-nav-link-active" : ""}`;
@@ -129,12 +124,6 @@ export function SiteHeader() {
               {t.langZh}
             </Link>
           </div>
-          <Link
-            href={docsHref}
-            className="hm-btn hm-btn-primary hm-btn-sm hm-header-cta"
-          >
-            {t.nav.downloads}
-          </Link>
           <button
             type="button"
             className="hm-menu-btn"
@@ -150,9 +139,6 @@ export function SiteHeader() {
 
       {open && (
         <div id="mobile-nav" className="hm-mobile-nav">
-          <Link href={localePath(locale, "/")} onClick={() => setOpen(false)}>
-            {t.nav.home}
-          </Link>
           {nav.map((item) =>
             item.external ? (
               <a
@@ -175,9 +161,6 @@ export function SiteHeader() {
               </Link>
             ),
           )}
-          <Link href={docsHref} onClick={() => setOpen(false)}>
-            {t.home.ctaDocs}
-          </Link>
           <div className="hm-mobile-lang">
             <Link
               href={enHref}
