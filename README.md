@@ -8,11 +8,13 @@ Not an official Huaming website. PDFs and product pages open on [intl-huaming.co
 
 ## What it is
 
+Docs-first reference hub (no marketing howto on home).
+
 | Route | Content |
 |-------|---------|
-| `/` (EN default) | Home: docs entry, product series, selector link |
-| `/products/` | Series list by family |
-| `/downloads/` | Searchable PDF table (official links) |
+| `/` (EN default) | Home: short identity + CTAs → docs band → series preview → selector strip |
+| `/downloads/` | Document library — searchable PDF table (official links) |
+| `/products/` | Series catalogue by family |
 | `/zh/…` | Chinese UI |
 
 Selector (separate app): https://erict16.github.io/oltc-selector/
