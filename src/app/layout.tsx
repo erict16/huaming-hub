@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { HtmlLang } from "@/components/HtmlLang";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { asset } from "@/lib/asset";
@@ -31,7 +32,6 @@ export const metadata: Metadata = {
   description:
     "Huaming on-load tap changer product series, technical PDF downloads and OLTC selector. Unofficial reference site for procurement and engineering.",
   icons: {
-    // Square HM monogram — not the wide wordmark (illegible in tabs)
     icon: [
       {
         url: asset("/brand/logo/favicon-32.png"),
@@ -69,9 +69,15 @@ export default function RootLayout({
       <body
         className={`${space.variable} ${inter.variable} ${mono.variable} antialiased`}
       >
+        <HtmlLang />
+        <a className="hm-skip" href="#main">
+          Skip to content
+        </a>
         <div className="hm-root">
           <SiteHeader />
-          <main className="hm-shell hm-main">{children}</main>
+          <main id="main" className="hm-shell hm-main" tabIndex={-1}>
+            {children}
+          </main>
           <SiteFooter />
         </div>
       </body>

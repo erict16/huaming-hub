@@ -30,11 +30,13 @@ export function SiteFooter() {
           <Link href={localePath(locale, "/downloads")}>
             {t.footer.downloads}
           </Link>
-          <a href={SELECTOR_URL} target="_blank" rel="noreferrer">
+          <a href={SELECTOR_URL} target="_blank" rel="noopener noreferrer">
             {t.footer.selector}
+            <span aria-hidden="true"> ↗</span>
           </a>
-          <a href={OFFICIAL_URL} target="_blank" rel="noreferrer">
+          <a href={OFFICIAL_URL} target="_blank" rel="noopener noreferrer">
             {t.footer.official}
+            <span aria-hidden="true"> ↗</span>
           </a>
         </nav>
       </div>

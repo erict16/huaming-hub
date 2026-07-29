@@ -47,6 +47,10 @@ const en = {
     products: "Products",
     downloads: "Documents",
     selector: "Selector",
+    primary: "Primary",
+    language: "Language",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
   },
   official: "Official site",
   langEn: "EN",
@@ -89,6 +93,7 @@ const en = {
     how3Title: "3. Cross-check with selector",
     how3Body:
       "Use the selector for a first-pass type; confirm with official datasheets.",
+    opensExternal: "opens in a new tab",
   },
   products: {
     title: "Product series",
@@ -106,6 +111,9 @@ const en = {
     colFile: "File",
     colKind: "Type",
     colSeries: "Series",
+    colAction: "Download",
+    filterLabel: "Filter by series",
+    tableCaption: "Technical PDF documents",
     empty: "No matches. Try another keyword.",
     note: "Links open public PDFs on intl-huaming.com. This site does not host files.",
     kind: {
@@ -135,6 +143,10 @@ const zh = {
     products: "产品",
     downloads: "资料",
     selector: "选型",
+    primary: "主导航",
+    language: "语言",
+    openMenu: "打开菜单",
+    closeMenu: "关闭菜单",
   },
   official: "官网",
   langEn: "EN",
@@ -174,6 +186,7 @@ const zh = {
     how2Body: "在资料页按型号筛选 Leaflet、技术数据与操作说明。",
     how3Title: "3. 选型核对",
     how3Body: "选型器仅供初筛，最终以官网与正式规范书为准。",
+    opensExternal: "在新标签打开",
   },
   products: {
     title: "产品系列",
@@ -191,6 +204,9 @@ const zh = {
     colFile: "文件",
     colKind: "类型",
     colSeries: "系列",
+    colAction: "下载",
+    filterLabel: "按系列筛选",
+    tableCaption: "技术 PDF 列表",
     empty: "没有匹配，换个关键字。",
     note: "链接到国际站公开 PDF，本站不托管。",
     kind: {

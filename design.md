@@ -4,7 +4,7 @@ Locked design system. Every page redesign reads this file before emitting code.
 
 ## Audience
 
-Public-facing **non-official reference hub** for engineers, buyers, and curious visitors — products, tech PDFs, OLTC selector, plus public quote & company news. Not a personal trading desk; not official PR.
+Public-facing **non-official reference hub** for procurement and engineering — product series, tech PDFs, OLTC selector. Not a trading desk; not official PR.
 
 ## Genre
 
@@ -61,20 +61,23 @@ Accent ≤ ~5% of viewport. No gradient hero, no fake chrome.
 - Secondary: white fill, `--rule-2` border, ink text; hover accent soft
 - Table action: soft accent chip → solid on hover
 
-## News product rules (content, not chrome)
+## A11y floor
 
-- Hard relevance: 华明 / 002270 only (announcements from stock API auto-pass)
-- No industry bulk (电力设备/特高压 without Huaming)
-- Risk/bearish cap ≈ 1/3 of list; date-first sort
-- UI: default title ink; only hard `risk` tag gets restrained emphasis — no red title walls
+- Visible `:focus-visible` rings on controls
+- Skip link to `#main`
+- Filter chips: `aria-pressed`
+- Tables: caption + `scope="col"`; sticky header in scroll region
+- External links: `rel="noopener noreferrer"`
+- Touch targets ≥ ~40px on primary actions / chips / mobile nav
 
 ## What pages MUST share
 
-- Wordmark + 「华明工作台」
-- Accent + CTA voice
+- Brand mark + Huaming Hub wordmark
+- Accent + CTA voice (Documents is the primary buyer action)
 - Display / body / mono fonts
 - `hm-shell` / `hm-page` rhythm
 - Sticky header + compact footer
+- EN default routes; `/zh/*` Chinese
 
 ## What pages MAY differ
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { asset } from "@/lib/asset";
 import {
   SELECTOR_URL,
@@ -29,6 +29,19 @@ export function SiteHeader() {
 
   const enHref = switchLocale(pathname, "en");
   const zhHref = switchLocale(pathname, "zh");
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const isActive = (href: string, external?: boolean) => {
     if (external) return false;
@@ -64,7 +77,7 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hm-nav" aria-label="Primary">
+        <nav className="hm-nav" aria-label={t.nav.primary}>
           {nav.map((item) => {
             const active = isActive(item.href, item.external);
             const className = `hm-nav-link${active ? " hm-nav-link-active" : ""}`;
@@ -74,15 +87,21 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className={className}
                 >
                   {item.label}
+                  <span aria-hidden="true"> ↗</span>
                 </a>
               );
             }
             return (
-              <Link key={item.href} href={item.href} className={className}>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={className}
+                aria-current={active ? "page" : undefined}
+              >
                 {item.label}
               </Link>
             );
@@ -90,7 +109,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hm-header-actions">
-          <div className="hm-lang" role="group" aria-label="Language">
+          <div className="hm-lang" role="group" aria-label={t.nav.language}>
             <Link
               href={enHref}
               hrefLang="en"
@@ -109,17 +128,19 @@ export function SiteHeader() {
           <a
             href={OFFICIAL_URL}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="hm-header-official"
           >
             {t.official}
+            <span aria-hidden="true"> ↗</span>
           </a>
           <button
             type="button"
             className="hm-menu-btn"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={open}
+            aria-controls="mobile-nav"
           >
             {open ? "×" : "☰"}
           </button>
@@ -127,17 +148,18 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="hm-mobile-nav sm:hidden">
+        <div id="mobile-nav" className="hm-mobile-nav">
           {nav.map((item) =>
             item.external ? (
               <a
                 key={item.href}
                 href={item.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
+                <span aria-hidden="true"> ↗</span>
               </a>
             ) : (
               <Link
@@ -149,7 +171,7 @@ export function SiteHeader() {
               </Link>
             ),
           )}
-          <div className="flex gap-4 border-t border-[var(--rule)] px-3 py-2 mt-1">
+          <div className="hm-mobile-lang">
             <Link
               href={enHref}
               onClick={() => setOpen(false)}

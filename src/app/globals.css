@@ -2,7 +2,7 @@
 
 /*
   Hallmark · docs-hub · cobalt-industrial · design.md
-  P4 H4 E4 S4 R4 V3
+  P4 H4 E4 S4 R4 V3 · 2026-07-29 polish (focus/a11y/catalogue groups)
   Type + spacing locked to tokens; no mid-file hex improvisation for chrome.
 */
 
@@ -103,6 +103,63 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* —— a11y: focus + reduced motion —— */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.hm-btn:focus-visible,
+.hm-chip:focus-visible,
+.hm-nav-link:focus-visible,
+.hm-menu-btn:focus-visible,
+.hm-btn-table:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.hm-search-bar input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.hm-skip {
+  position: absolute;
+  left: var(--s4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--s2) var(--s3);
+  background: var(--btn-bg);
+  color: #fff !important;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.hm-skip:focus {
+  top: var(--s3);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 a.hm-btn-primary,
@@ -398,17 +455,39 @@ a.hm-btn-table:hover {
 }
 
 .hm-mobile-nav {
+  display: block;
   border-top: 1px solid var(--rule);
   background: var(--paper-2);
   padding: var(--s2) var(--s4) var(--s3);
 }
 
+@media (min-width: 640px) {
+  .hm-mobile-nav {
+    display: none;
+  }
+}
+
 .hm-mobile-nav a {
   display: block;
   border-radius: var(--radius-sm);
-  padding: var(--s2) var(--s3);
+  padding: var(--s3) var(--s3);
+  min-height: 44px;
   font-size: var(--text-base);
   color: var(--ink-2);
+  line-height: 1.3;
+}
+
+.hm-mobile-nav a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.hm-mobile-lang {
+  display: flex;
+  gap: var(--s4);
+  border-top: 1px solid var(--rule);
+  margin-top: var(--s1);
+  padding: var(--s3);
 }
 
 /* —— hero —— */
@@ -643,12 +722,30 @@ a.hm-btn-table:hover {
   color: var(--ink-2);
 }
 
-/* —— products list —— */
+/* —— products list (catalogue by family) —— */
 .hm-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.hm-product-group {
   background: var(--paper-2);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   overflow: hidden;
+}
+
+.hm-product-group-head {
+  margin: 0;
+  padding: var(--s3) var(--s5);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  background: var(--paper-3);
+  border-bottom: 1px solid var(--rule);
 }
 
 .hm-product-row {
@@ -659,7 +756,7 @@ a.hm-btn-table:hover {
   align-items: start;
 }
 
-.hm-product-row:last-child {
+.hm-product-group .hm-product-row:last-child {
   border-bottom: none;
 }
 
@@ -804,7 +901,8 @@ a.hm-btn-table:hover {
   font-size: var(--text-base);
   font-weight: 600;
   line-height: 1.2;
-  padding: 9px 14px;
+  padding: 10px 14px;
+  min-height: 40px;
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
@@ -865,7 +963,8 @@ a.hm-btn-table:hover {
   border: 1px solid var(--rule);
   background: var(--paper-2);
   color: var(--ink-2);
-  padding: 5px 10px;
+  padding: 8px 12px;
+  min-height: 36px;
   font-size: var(--text-2xs);
   font-weight: 500;
   line-height: 1.3;
@@ -913,6 +1012,26 @@ a.hm-btn-table:hover {
   border-bottom: 1px solid var(--rule);
   padding: var(--s3) var(--s4);
   white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.hm-table-wrap {
+  max-height: min(70vh, 720px);
+  overflow: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+}
+
+.hm-table-wrap .hm-table {
+  /* border lives on wrap */
+}
+
+.hm-table-wrap .hm-table th:first-child,
+.hm-table-wrap .hm-table td:first-child {
+  padding-left: var(--s4);
 }
 
 .hm-table td {
@@ -991,4 +1110,17 @@ a.hm-btn-table:hover {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

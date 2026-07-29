@@ -55,17 +55,24 @@ export function DownloadExplorer({
     <div className="hm-stack">
       <div className="hm-search-bar">
         <input
+          type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder={t.downloads.searchPlaceholder}
           aria-label={t.downloads.searchPlaceholder}
+          autoComplete="off"
+          spellCheck={false}
         />
-        <span className="hm-search-count">
+        <span className="hm-search-count" aria-live="polite">
           {filtered.length}/{documents.length}
         </span>
       </div>
 
-      <div className="hm-chip-row">
+      <div
+        className="hm-chip-row"
+        role="group"
+        aria-label={t.downloads.filterLabel}
+      >
         {["all", ...categories].map((c) => {
           const active = category === c;
           return (
@@ -74,6 +81,7 @@ export function DownloadExplorer({
               type="button"
               onClick={() => setCategory(c)}
               className={`hm-chip${active ? " hm-chip-on" : ""}`}
+              aria-pressed={active}
             >
               {chipLabel(c)}
             </button>
@@ -81,15 +89,24 @@ export function DownloadExplorer({
         })}
       </div>
 
-      <div className="hm-card overflow-x-auto">
+      <div className="hm-table-wrap">
         <table className="hm-table min-w-[560px]">
+          <caption className="sr-only">{t.downloads.tableCaption}</caption>
           <thead>
             <tr>
-              <th className="w-[72px]">{t.downloads.colModel}</th>
-              <th>{t.downloads.colFile}</th>
-              <th className="w-[80px]">{t.downloads.colKind}</th>
-              <th className="w-[100px]">{t.downloads.colSeries}</th>
-              <th className="w-[56px]" />
+              <th scope="col" className="w-[72px]">
+                {t.downloads.colModel}
+              </th>
+              <th scope="col">{t.downloads.colFile}</th>
+              <th scope="col" className="w-[80px]">
+                {t.downloads.colKind}
+              </th>
+              <th scope="col" className="w-[100px]">
+                {t.downloads.colSeries}
+              </th>
+              <th scope="col" className="w-[64px]">
+                <span className="sr-only">{t.downloads.colAction}</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -109,7 +126,7 @@ export function DownloadExplorer({
                     <a
                       href={d.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="font-mono text-[var(--text-2xs)] font-semibold text-[var(--accent)] hover:underline"
                     >
                       {d.model}
@@ -119,7 +136,7 @@ export function DownloadExplorer({
                     <a
                       href={d.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="line-clamp-1 text-[var(--ink)] hover:text-[var(--accent)]"
                       title={d.name}
                     >
@@ -136,10 +153,14 @@ export function DownloadExplorer({
                     <a
                       href={d.url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="hm-btn-table"
                     >
                       PDF
+                      <span className="sr-only">
+                        {" "}
+                        — {d.model} {d.name}
+                      </span>
                     </a>
                   </td>
                 </tr>

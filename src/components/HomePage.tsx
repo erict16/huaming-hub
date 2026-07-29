@@ -16,16 +16,17 @@ export function HomePage({ locale }: { locale: Locale }) {
 
   const entries = [
     {
-      href: localePath(locale, "/products"),
-      title: t.home.entryProductsTitle,
-      desc: t.home.entryProductsDesc,
-      cta: t.home.entryProductsCta,
-    },
-    {
       href: localePath(locale, "/downloads"),
       title: t.home.entryDocsTitle,
       desc: t.home.entryDocsDesc(docCount),
       cta: t.home.entryDocsCta,
+      primary: true,
+    },
+    {
+      href: localePath(locale, "/products"),
+      title: t.home.entryProductsTitle,
+      desc: t.home.entryProductsDesc,
+      cta: t.home.entryProductsCta,
     },
     {
       href: SELECTOR_URL,
@@ -51,24 +52,26 @@ export function HomePage({ locale }: { locale: Locale }) {
           <p className="hm-hero-lead">{t.home.lead}</p>
           <div className="hm-hero-actions">
             <Link
-              href={localePath(locale, "/products")}
+              href={localePath(locale, "/downloads")}
               className="hm-btn hm-btn-primary"
             >
-              {t.home.ctaProducts}
+              {t.home.ctaDocs}
             </Link>
             <Link
-              href={localePath(locale, "/downloads")}
+              href={localePath(locale, "/products")}
               className="hm-btn hm-btn-secondary"
             >
-              {t.home.ctaDocs}
+              {t.home.ctaProducts}
             </Link>
             <a
               href={SELECTOR_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hm-btn hm-btn-secondary"
             >
-              {t.home.ctaSelector} ↗
+              {t.home.ctaSelector}
+              <span aria-hidden="true"> ↗</span>
+              <span className="sr-only"> ({t.home.opensExternal})</span>
             </a>
           </div>
           <p className="hm-hero-meta">{t.home.meta(seriesCount, docCount)}</p>
@@ -90,12 +93,15 @@ export function HomePage({ locale }: { locale: Locale }) {
               key={e.href}
               href={e.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hm-entry"
             >
               <div className="hm-entry-title">{e.title}</div>
               <p className="hm-entry-desc">{e.desc}</p>
-              <span className="hm-entry-cta">{e.cta} ↗</span>
+              <span className="hm-entry-cta">
+                {e.cta}
+                <span aria-hidden="true"> ↗</span>
+              </span>
             </a>
           ) : (
             <Link key={e.href} href={e.href} className="hm-entry">
@@ -114,7 +120,9 @@ export function HomePage({ locale }: { locale: Locale }) {
         <ol>
           {steps.map((s) => (
             <li key={s.n}>
-              <div className="num">{s.n}</div>
+              <div className="num" aria-hidden="true">
+                {s.n}
+              </div>
               <p className="title">{s.title.replace(/^\d+\.\s*/, "")}</p>
               <p className="body">{s.body}</p>
             </li>
