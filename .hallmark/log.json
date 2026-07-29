@@ -1,24 +1,17 @@
 [
   {
     "date": "2026-07-29",
-    "macrostructure": "Workbench",
-    "theme": "cobalt-industrial",
+    "macrostructure": "Split Studio",
+    "theme": "Cobalt",
     "enrichment": "none",
-    "brief": "Huaming hub light redesign + news filter"
+    "brief": "Full B2B business-site redesign: split hero, dark dest band, series preview, N1b nav, Ft2 footer"
   },
   {
     "date": "2026-07-29",
-    "macrostructure": "Stat-Led",
+    "macrostructure": "docs-hub-catalogue",
     "theme": "cobalt-industrial",
     "enrichment": "none",
-    "brief": "News balance Huaming-only + Stat-Led home polish"
-  },
-  {
-    "date": "2026-07-29",
-    "macrostructure": "Stat-Led-public-hub",
-    "theme": "cobalt-industrial",
-    "enrichment": "brand-photo-only",
-    "brief": "Pivot copy+IA to public-facing reference hub"
+    "brief": "A11y focus/skip/lang; products grouped; docs primary CTA; table sticky scroll"
   },
   {
     "date": "2026-07-29",
@@ -29,9 +22,16 @@
   },
   {
     "date": "2026-07-29",
-    "macrostructure": "docs-hub-catalogue",
+    "macrostructure": "Stat-Led-public-hub",
+    "theme": "cobalt-industrial",
+    "enrichment": "brand-photo-only",
+    "brief": "Pivot copy+IA to public-facing reference hub"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "Stat-Led",
     "theme": "cobalt-industrial",
     "enrichment": "none",
-    "brief": "A11y focus/skip/lang; products grouped; docs primary CTA; table sticky scroll"
+    "brief": "News balance Huaming-only + Stat-Led home polish"
   }
 ]

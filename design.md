@@ -1,98 +1,94 @@
 # Design — 华明 Hub (huaming-hub)
 
-Locked design system. Every page redesign reads this file before emitting code.
+Locked design system. Read before any page work.
 
 ## Audience
 
-Public-facing **non-official reference hub** for procurement and engineering — product series, tech PDFs, OLTC selector. Not a trading desk; not official PR.
+Procurement and engineering buyers looking up Huaming OLTC / DETC series, technical PDFs, and a first-pass type selector. Unofficial reference — not corporate PR, not a trading desk.
 
-## Genre
+## Genre · tone
 
-modern-minimal · industrial docs hub (procurement)
+modern-minimal · utilitarian B2B / industrial docs
 
-## Macrostructure family
+## Macrostructure
 
-- **Home:** Open hero (copy + photo/type plate) → linked entry strip (3 joined cells) → quiet numbered how-to.
-- **Content pages** (downloads / products): page-head + dense list/table; no hero enrichment.
-- **Removed:** stock quote, news feed, about page.
-- **Previous fingerprints:** Workbench · Stat-Led desk · public hub with market sections
+**Split Studio** (home): left copy + actions · right catalogue plate.  
+Content pages: hanging page-head + dense list/table.
 
-## Theme · cobalt-industrial (light)
+**Nav:** N1b (wordmark · links · Documents CTA · lang).  
+**Footer:** Ft2 single inline line.
+
+## Theme · Cobalt industrial
 
 | Token | Value | Role |
 |-------|-------|------|
-| `--paper` | `#f3f5f8` | page ground |
-| `--paper-2` | `#ffffff` | cards |
-| `--paper-3` | `#e9eef4` | table head / subtle fill |
-| `--ink` | `#0f2438` | primary text |
-| `--ink-2` | `#3a4f63` | secondary |
-| `--ink-3` | `#6a7d90` | meta / captions |
-| `--rule` | `#d8e0e9` | hairlines |
-| `--rule-2` | `#c2cedb` | stronger border |
-| `--accent` | `#0b3d6e` | brand signal |
-| `--btn-bg` | `#0a4a82` | primary CTA fill |
+| `--paper` | `#f4f6f9` | page ground (cool, not pure white) |
+| `--paper-2` | `#ffffff` | raised surfaces |
+| `--paper-3` | `#e8edf3` | table head / subtle fill |
+| `--ink` | `#0c1f33` | primary text |
+| `--ink-2` | `#3d5166` | secondary body |
+| `--ink-3` | `#6b7f94` | meta / captions |
+| `--rule` | `#d5dde7` | hairlines |
+| `--rule-2` | `#b8c5d4` | stronger border |
+| `--accent` | `#0b4f9c` | cobalt signal (≤5% viewport) |
+| `--accent-soft` | `#e5eef8` | soft fill |
+| `--btn-bg` | `#0b4f9c` | primary CTA |
 | `--btn-fg` | `#ffffff` | primary CTA text (forced) |
-| `--up` | `#c41e3a` | A-share up |
-| `--down` | `#0d7a4f` | A-share down |
+| `--graphite` | `#121f2e` | dark band / plate |
 
-Accent ≤ ~5% of viewport. No gradient hero, no fake chrome.
+Accent is signal only. No gradient hero, no glass, no stock photo collage.
 
 ## Typography
 
-- Display: Space Grotesk 600, roman only
+- Display: Space Grotesk 500/600, roman only
 - Body: Inter 400/500/600
-- Mono: JetBrains Mono — model codes, counts, kickers
-- Scale: `--text-2xs` 11 → `--text-2xl` 24 (see `globals.css`)
-- Body = `--text-base` (14px); page H1 = xl/2xl; hero H1 = clamp ~1.35–1.75rem
+- Mono: JetBrains Mono — codes, kickers, counts
+- Body 15px; hero H1 clamp ~1.75–2.35rem; page H1 1.5rem
+- Measure: lead ≤ 36rem
 
 ## Spacing
 
-4pt scale: `--s1`…`--s10`. Page section gap `--s6`/`--s8`. Prefer tokens over raw Tailwind spacing on chrome.
+4pt scale `--s1`…`--s12`. Section gaps large on home (`--s10` / `--s12`). Content pages tighter.
 
 ## Motion
 
-- Short hover/bg transitions ≤ 150ms
+- Hover/bg ≤ 150ms; ease `cubic-bezier(0.16, 1, 0.3, 1)`
 - Reduced-motion: opacity only
-- No celebratory toasts
+- No autoplay, no bounce
 
 ## CTA voice
 
-- Primary: solid `--btn-bg`, **white text forced** (`#fff !important` on `a.hm-btn-primary` — global `a { color: inherit }` otherwise kills contrast)
-- Secondary: white fill, `--rule-2` border, ink text; hover accent soft
-- Table action: soft accent chip → solid on hover
+- Primary: solid `--btn-bg`, white text forced (`#fff !important` on `a.hm-btn-primary`)
+- Secondary: white + `--rule-2` border
+- One primary action per view (Documents on home)
 
 ## A11y floor
 
-- Visible `:focus-visible` rings on controls
-- Skip link to `#main`
-- Filter chips: `aria-pressed`
-- Tables: caption + `scope="col"`; sticky header in scroll region
-- External links: `rel="noopener noreferrer"`
-- Touch targets ≥ ~40px on primary actions / chips / mobile nav
+- `:focus-visible` rings
+- Skip link `#main`
+- External: `rel="noopener noreferrer"`
+- Touch targets ≥ 40px on primary controls
 
-## What pages MUST share
+## Shared chrome
 
-- Brand mark + Huaming Hub wordmark
-- Accent + CTA voice (Documents is the primary buyer action)
-- Display / body / mono fonts
-- `hm-shell` / `hm-page` rhythm
-- Sticky header + single-line compact footer
-- EN default routes; `/zh/*` Chinese
+- Brand mark + Huaming Hub
+- Sticky header + compact footer
+- EN default; `/zh/*` Chinese
+- Hairline structure, not card stacks
 
-## What pages MAY differ
+## Home sections (DOM order)
 
-- Home: Stat-Led hero strip
-- Downloads: compact table + chips
-- Products: catalogue cards
-- No per-page theme swaps
+1. Split hero (copy · catalogue plate)  
+2. Destination band (Documents · Products · Selector)  
+3. Series preview (catalogue strip)  
+4. Quiet how-to row  
 
 ## Enrichment
 
-- Home hero only: product photo (cropped past hex mask) + mono type plate.
-- Other app pages: none.
+Typography + mono plate only. No product photo on home (source assets are hex-masked).
 
-## Hallmark stamp (CSS)
+## Hallmark stamp
 
 ```
-/* Hallmark · docs-hub · cobalt-industrial · P4 H4 E4 S4 R4 V4 */
+/* Hallmark · Split Studio · Cobalt · modern-minimal · P4 H4 E4 S4 R4 V4 */
 ```
