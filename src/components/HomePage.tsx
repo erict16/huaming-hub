@@ -10,36 +10,7 @@ import {
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = getDict(locale);
-  const seriesCount = productSeries.length;
   const docCount = allDocuments.length;
-
-  const entries = [
-    {
-      href: localePath(locale, "/downloads"),
-      title: t.home.entryDocsTitle,
-      desc: t.home.entryDocsDesc(docCount),
-      cta: t.home.entryDocsCta,
-    },
-    {
-      href: localePath(locale, "/products"),
-      title: t.home.entryProductsTitle,
-      desc: t.home.entryProductsDesc,
-      cta: t.home.entryProductsCta,
-    },
-    {
-      href: SELECTOR_URL,
-      title: t.home.entrySelectorTitle,
-      desc: t.home.entrySelectorDesc,
-      cta: t.home.entrySelectorCta,
-      external: true as const,
-    },
-  ];
-
-  const steps = [
-    { n: "01", title: t.home.how1Title, body: t.home.how1Body },
-    { n: "02", title: t.home.how2Title, body: t.home.how2Body },
-    { n: "03", title: t.home.how3Title, body: t.home.how3Body },
-  ];
 
   return (
     <div className="hm-page">
@@ -71,51 +42,59 @@ export function HomePage({ locale }: { locale: Locale }) {
             <span className="sr-only"> ({t.home.opensExternal})</span>
           </a>
         </div>
-        <p className="hm-hero-meta">
-          {t.home.meta(seriesCount, docCount)}
-        </p>
       </section>
 
-      <section className="hm-entry-grid" aria-label={t.home.entriesLabel}>
-        {entries.map((e) =>
-          e.external ? (
-            <a
-              key={e.href}
-              href={e.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hm-entry"
-            >
-              <div className="hm-entry-title">{e.title}</div>
-              <p className="hm-entry-desc">{e.desc}</p>
-              <span className="hm-entry-cta">
-                {e.cta}
-                <span aria-hidden="true"> ↗</span>
-              </span>
-            </a>
-          ) : (
-            <Link key={e.href} href={e.href} className="hm-entry">
-              <div className="hm-entry-title">{e.title}</div>
-              <p className="hm-entry-desc">{e.desc}</p>
-              <span className="hm-entry-cta">{e.cta} →</span>
-            </Link>
-          ),
-        )}
+      <section className="hm-home-band" aria-labelledby="docs-band-title">
+        <div className="hm-home-band-head">
+          <h2 id="docs-band-title">{t.home.docsBandTitle}</h2>
+          <Link
+            href={localePath(locale, "/downloads")}
+            className="hm-home-band-link"
+          >
+            {t.home.docsBandCta} →
+          </Link>
+        </div>
+        <p className="hm-home-band-desc">{t.home.docsBandDesc(docCount)}</p>
       </section>
 
-      <section className="hm-howto" aria-labelledby="how-title">
-        <h2 id="how-title">{t.home.howTitle}</h2>
-        <ol>
-          {steps.map((s) => (
-            <li key={s.n}>
-              <div className="num" aria-hidden="true">
-                {s.n}
-              </div>
-              <p className="title">{s.title.replace(/^\d+\.\s*/, "")}</p>
-              <p className="body">{s.body}</p>
+      <section className="hm-home-band" aria-labelledby="series-preview-title">
+        <div className="hm-home-band-head">
+          <h2 id="series-preview-title">{t.home.seriesTitle}</h2>
+          <Link
+            href={localePath(locale, "/products")}
+            className="hm-home-band-link"
+          >
+            {t.home.seriesCta} →
+          </Link>
+        </div>
+        <ul className="hm-series-preview">
+          {productSeries.map((p) => (
+            <li key={p.code} className="hm-series-preview-row">
+              <span className="hm-series-preview-code">{p.code}</span>
+              <span className="hm-series-preview-name">{p.name}</span>
+              <span className="hm-series-preview-blurb">{p.blurb[locale]}</span>
             </li>
           ))}
-        </ol>
+        </ul>
+      </section>
+
+      <section className="hm-tool-strip" aria-labelledby="selector-strip-title">
+        <div className="hm-tool-strip-text">
+          <span id="selector-strip-title" className="hm-tool-strip-title">
+            {t.home.selectorStripTitle}
+          </span>
+          <span className="hm-tool-strip-desc">{t.home.selectorStripDesc}</span>
+        </div>
+        <a
+          href={SELECTOR_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hm-tool-strip-cta"
+        >
+          {t.home.selectorStripCta}
+          <span aria-hidden="true"> ↗</span>
+          <span className="sr-only"> ({t.home.opensExternal})</span>
+        </a>
       </section>
     </div>
   );

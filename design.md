@@ -35,7 +35,7 @@ Procurement / engineering · unofficial OLTC docs hub
 
 - Shell max 1000px
 - Header sticky · Footer single line
-- Home: hero text → 3 equal entries → short how-to
+- Home: hero + CTAs → docs band → series preview → selector strip
 - Content: page head → list/table
 
 ## CTA

@@ -21,10 +21,10 @@ export function SiteHeader() {
   /** Preserve ?q= when switching EN/ZH (usePathname drops search). */
   const [search, setSearch] = useState("");
 
+  /** Docs · Products · Selector (logo is home) */
   const nav: { href: string; label: string; external?: boolean }[] = [
-    { href: localePath(locale, "/"), label: t.nav.home },
-    { href: localePath(locale, "/products"), label: t.nav.products },
     { href: localePath(locale, "/downloads"), label: t.nav.downloads },
+    { href: localePath(locale, "/products"), label: t.nav.products },
     { href: SELECTOR_URL, label: t.nav.selector, external: true },
   ];
 
