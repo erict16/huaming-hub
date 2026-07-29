@@ -27,7 +27,9 @@ export function SiteFooter() {
           <span>{t.footer.blurb}</span>
         </p>
         <nav className="hm-footer-nav" aria-label="Footer">
-          <Link href={localePath(locale, "/")}>{t.footer.home}</Link>
+          <Link href={localePath(locale, "/products")}>
+            {t.footer.products}
+          </Link>
           <Link href={localePath(locale, "/downloads")}>
             {t.footer.downloads}
           </Link>

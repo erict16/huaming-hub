@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { productSeries } from "@/data/products";
-import { allDocuments, productDocsQuery } from "@/lib/documents";
+import { allDocuments } from "@/lib/documents";
 import {
   SELECTOR_URL,
   getDict,
@@ -8,26 +8,57 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
-/** Portal home — site identity, not the PDF table. */
 export function HomePage({ locale }: { locale: Locale }) {
   const t = getDict(locale);
   const seriesCount = productSeries.length;
   const docCount = allDocuments.length;
-  const plate = productSeries.slice(0, 8);
+
+  const entries = [
+    {
+      href: localePath(locale, "/downloads"),
+      title: t.home.entryDocsTitle,
+      desc: t.home.entryDocsDesc(docCount),
+      cta: t.home.entryDocsCta,
+    },
+    {
+      href: localePath(locale, "/products"),
+      title: t.home.entryProductsTitle,
+      desc: t.home.entryProductsDesc,
+      cta: t.home.entryProductsCta,
+    },
+    {
+      href: SELECTOR_URL,
+      title: t.home.entrySelectorTitle,
+      desc: t.home.entrySelectorDesc,
+      cta: t.home.entrySelectorCta,
+      external: true as const,
+    },
+  ];
+
+  const steps = [
+    { n: "01", title: t.home.how1Title, body: t.home.how1Body },
+    { n: "02", title: t.home.how2Title, body: t.home.how2Body },
+    { n: "03", title: t.home.how3Title, body: t.home.how3Body },
+  ];
 
   return (
-    <div className="hm-page hm-page-portal">
-      <section className="hm-portal-hero">
-        <p className="hm-portal-kicker">{t.home.kicker}</p>
+    <div className="hm-page">
+      <section className="hm-hero">
+        <p className="hm-hero-kicker">{t.home.kicker}</p>
         <h1>{t.home.title}</h1>
-        <p className="hm-portal-lead">{t.home.lead(docCount)}</p>
-
-        <div className="hm-portal-actions">
+        <p className="hm-hero-lead">{t.home.lead}</p>
+        <div className="hm-hero-actions">
           <Link
             href={localePath(locale, "/downloads")}
             className="hm-btn hm-btn-primary"
           >
             {t.home.ctaDocs}
+          </Link>
+          <Link
+            href={localePath(locale, "/products")}
+            className="hm-btn hm-btn-secondary"
+          >
+            {t.home.ctaProducts}
           </Link>
           <a
             href={SELECTOR_URL}
@@ -40,50 +71,51 @@ export function HomePage({ locale }: { locale: Locale }) {
             <span className="sr-only"> ({t.home.opensExternal})</span>
           </a>
         </div>
-
-        <ul className="hm-portal-meta">
-          <li>
-            <span className="n">{seriesCount}</span>
-            <span className="l">{t.home.metaSeries}</span>
-          </li>
-          <li>
-            <span className="n">{docCount}</span>
-            <span className="l">{t.home.metaDocs}</span>
-          </li>
-          <li>
-            <span className="n">EN / 中</span>
-            <span className="l">{t.home.metaLang}</span>
-          </li>
-        </ul>
+        <p className="hm-hero-meta">
+          {t.home.meta(seriesCount, docCount)}
+        </p>
       </section>
 
-      <section
-        className="hm-portal-plate"
-        aria-labelledby="portal-series-title"
-      >
-        <div className="hm-portal-plate-head">
-          <h2 id="portal-series-title">{t.home.seriesTitle}</h2>
-          <Link
-            href={localePath(locale, "/downloads")}
-            className="hm-portal-plate-link"
-          >
-            {t.home.seriesCta} →
-          </Link>
-        </div>
-        <ul className="hm-portal-plate-list">
-          {plate.map((p) => (
-            <li key={p.code}>
-              <Link
-                href={`${localePath(locale, "/downloads")}?q=${encodeURIComponent(productDocsQuery(p.code))}`}
-                className="hm-portal-plate-row"
-              >
-                <span className="code">{p.code}</span>
-                <span className="name">{p.name}</span>
-              </Link>
+      <section className="hm-entry-grid" aria-label={t.home.entriesLabel}>
+        {entries.map((e) =>
+          e.external ? (
+            <a
+              key={e.href}
+              href={e.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hm-entry"
+            >
+              <div className="hm-entry-title">{e.title}</div>
+              <p className="hm-entry-desc">{e.desc}</p>
+              <span className="hm-entry-cta">
+                {e.cta}
+                <span aria-hidden="true"> ↗</span>
+              </span>
+            </a>
+          ) : (
+            <Link key={e.href} href={e.href} className="hm-entry">
+              <div className="hm-entry-title">{e.title}</div>
+              <p className="hm-entry-desc">{e.desc}</p>
+              <span className="hm-entry-cta">{e.cta} →</span>
+            </Link>
+          ),
+        )}
+      </section>
+
+      <section className="hm-howto" aria-labelledby="how-title">
+        <h2 id="how-title">{t.home.howTitle}</h2>
+        <ol>
+          {steps.map((s) => (
+            <li key={s.n}>
+              <div className="num" aria-hidden="true">
+                {s.n}
+              </div>
+              <p className="title">{s.title.replace(/^\d+\.\s*/, "")}</p>
+              <p className="body">{s.body}</p>
             </li>
           ))}
-        </ul>
-        <p className="hm-portal-plate-foot">{t.home.seriesFoot}</p>
+        </ol>
       </section>
     </div>
   );

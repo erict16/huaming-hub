@@ -21,15 +21,10 @@ export function SiteHeader() {
   /** Preserve ?q= when switching EN/ZH (usePathname drops search). */
   const [search, setSearch] = useState("");
 
-  /** Docs workbench · Selector (home is logo only) */
-  const docsHref = localePath(locale, "/downloads");
-  const nav: {
-    href: string;
-    label: string;
-    external?: boolean;
-    docsNav?: boolean;
-  }[] = [
-    { href: docsHref, label: t.nav.downloads, docsNav: true },
+  const nav: { href: string; label: string; external?: boolean }[] = [
+    { href: localePath(locale, "/"), label: t.nav.home },
+    { href: localePath(locale, "/products"), label: t.nav.products },
+    { href: localePath(locale, "/downloads"), label: t.nav.downloads },
     { href: SELECTOR_URL, label: t.nav.selector, external: true },
   ];
 
@@ -50,24 +45,19 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const bare = pathname.replace(/\/$/, "") || "/";
-  const onDocsSurface =
-    bare === "/downloads" ||
-    bare === "/zh/downloads" ||
-    bare === "/products" ||
-    bare === "/zh/products";
-
-  const isActive = (
-    href: string,
-    external?: boolean,
-    docsNav?: boolean,
-  ) => {
+  const isActive = (href: string, external?: boolean) => {
     if (external) return false;
-    if (docsNav) return onDocsSurface;
+    if (href === localePath(locale, "/")) {
+      return (
+        pathname === "/" ||
+        pathname === "" ||
+        pathname === "/zh" ||
+        pathname === "/zh/"
+      );
+    }
     return (
       pathname === href ||
       pathname === href.replace(/\/$/, "") ||
-      bare === href.replace(/\/$/, "") ||
       pathname.startsWith(href)
     );
   };
@@ -91,7 +81,7 @@ export function SiteHeader() {
 
         <nav className="hm-nav" aria-label={t.nav.primary}>
           {nav.map((item) => {
-            const active = isActive(item.href, item.external, item.docsNav);
+            const active = isActive(item.href, item.external);
             const className = `hm-nav-link${active ? " hm-nav-link-active" : ""}`;
             if (item.external) {
               return (
@@ -109,7 +99,7 @@ export function SiteHeader() {
             }
             return (
               <Link
-                key={item.label}
+                key={item.href}
                 href={item.href}
                 className={className}
                 aria-current={active ? "page" : undefined}

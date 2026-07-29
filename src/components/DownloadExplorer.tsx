@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { filterDocuments, type DocumentItem } from "@/lib/documents";
 import { getDict, type Locale } from "@/lib/i18n";
 
@@ -16,19 +16,15 @@ export function DownloadExplorer({
   documents,
   categories,
   locale,
-  autofocus = false,
 }: {
   documents: DocumentItem[];
   categories: string[];
   kinds?: string[];
   locale: Locale;
-  /** Desktop-only autofocus (Spec Desk home) */
-  autofocus?: boolean;
 }) {
   const t = getDict(locale);
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("all");
-  const inputRef = useRef<HTMLInputElement>(null);
 
   // Hydrate from ?q= and keep in sync on back/forward + same-route doc links
   useEffect(() => {
@@ -46,6 +42,7 @@ export function DownloadExplorer({
         const there = url.pathname.replace(/\/$/, "");
         if (there !== here) return;
         const next = (url.searchParams.get("q") || "").trim();
+        // After Next client nav, location.search updates; microtask is enough
         queueMicrotask(() => setQ(next));
       } catch {
         /* ignore */
@@ -58,18 +55,6 @@ export function DownloadExplorer({
       document.removeEventListener("click", onClick);
     };
   }, []);
-
-  // Desktop autofocus only — skip small screens and reduced-motion preference is ok
-  useEffect(() => {
-    if (!autofocus) return;
-    const mq = window.matchMedia("(min-width: 640px)");
-    if (!mq.matches) return;
-    // Defer past sticky header paint
-    const id = window.requestAnimationFrame(() => {
-      inputRef.current?.focus({ preventScroll: true });
-    });
-    return () => window.cancelAnimationFrame(id);
-  }, [autofocus]);
 
   const rows = useMemo(
     () => filterDocuments({ q, category }),
@@ -87,43 +72,40 @@ export function DownloadExplorer({
 
   return (
     <div className="hm-stack">
-      <div className="hm-downloads-controls">
-        <div className="hm-search-bar">
-          <input
-            ref={inputRef}
-            type="search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder={t.downloads.searchPlaceholder}
-            aria-label={t.downloads.searchPlaceholder}
-            autoComplete="off"
-            spellCheck={false}
-          />
-          <span className="hm-search-count" aria-live="polite">
-            {rows.length}/{documents.length}
-          </span>
-        </div>
+      <div className="hm-search-bar">
+        <input
+          type="search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder={t.downloads.searchPlaceholder}
+          aria-label={t.downloads.searchPlaceholder}
+          autoComplete="off"
+          spellCheck={false}
+        />
+        <span className="hm-search-count" aria-live="polite">
+          {rows.length}/{documents.length}
+        </span>
+      </div>
 
-        <div
-          className="hm-chip-row"
-          role="group"
-          aria-label={t.downloads.filterLabel}
-        >
-          {["all", ...categories].map((c) => {
-            const active = category === c;
-            return (
-              <button
-                key={c}
-                type="button"
-                onClick={() => setCategory(c)}
-                className={`hm-chip${active ? " hm-chip-on" : ""}`}
-                aria-pressed={active}
-              >
-                {chipLabel(c)}
-              </button>
-            );
-          })}
-        </div>
+      <div
+        className="hm-chip-row"
+        role="group"
+        aria-label={t.downloads.filterLabel}
+      >
+        {["all", ...categories].map((c) => {
+          const active = category === c;
+          return (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setCategory(c)}
+              className={`hm-chip${active ? " hm-chip-on" : ""}`}
+              aria-pressed={active}
+            >
+              {chipLabel(c)}
+            </button>
+          );
+        })}
       </div>
 
       <div className="hm-table-wrap">
@@ -131,17 +113,17 @@ export function DownloadExplorer({
           <caption className="sr-only">{t.downloads.tableCaption}</caption>
           <thead>
             <tr>
-              <th scope="col" className="hm-table-col-model">
+              <th scope="col" className="w-[72px]">
                 {t.downloads.colModel}
               </th>
               <th scope="col">{t.downloads.colFile}</th>
-              <th scope="col" className="hm-table-col-kind">
+              <th scope="col" className="w-[80px]">
                 {t.downloads.colKind}
               </th>
-              <th scope="col" className="hm-table-col-series">
+              <th scope="col" className="w-[100px]">
                 {t.downloads.colSeries}
               </th>
-              <th scope="col" className="hm-table-col-action">
+              <th scope="col" className="w-[64px]">
                 <span className="sr-only">{t.downloads.colAction}</span>
               </th>
             </tr>
@@ -159,11 +141,12 @@ export function DownloadExplorer({
             ) : (
               rows.map((d) => (
                 <tr key={d.id + d.url}>
-                  <td className="hm-table-model">
+                  <td>
                     <a
                       href={d.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="font-mono text-[var(--text-2xs)] font-semibold text-[var(--accent)] hover:underline"
                     >
                       {d.model}
                     </a>
@@ -173,17 +156,19 @@ export function DownloadExplorer({
                       href={d.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hm-table-file"
+                      className="line-clamp-1 text-[var(--ink)] hover:text-[var(--accent)]"
                       title={d.name}
                     >
                       {d.name}
                     </a>
                   </td>
-                  <td className="hm-table-meta">{kindLabel(d.kind)}</td>
-                  <td className="hm-table-meta hm-table-meta-sm">
+                  <td className="whitespace-nowrap text-[var(--ink-3)]">
+                    {kindLabel(d.kind)}
+                  </td>
+                  <td className="whitespace-nowrap text-[var(--text-2xs)] text-[var(--ink-3)]">
                     {chipLabel(d.category)}
                   </td>
-                  <td className="hm-table-action">
+                  <td className="text-right">
                     <a
                       href={d.url}
                       target="_blank"

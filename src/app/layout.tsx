@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { HtmlLang } from "@/components/HtmlLang";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { asset } from "@/lib/asset";
 import "./globals.css";
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const space = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
+const mono = JetBrains_Mono({
+  variable: "--font-mono-jb",
   subsets: ["latin"],
   weight: ["400", "500"],
 });
@@ -61,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${plexSans.variable} ${plexMono.variable} antialiased`}
+        className={`${space.variable} ${inter.variable} ${mono.variable} antialiased`}
       >
         <HtmlLang />
         <a className="hm-skip" href="#main">
