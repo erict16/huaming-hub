@@ -21,17 +21,15 @@ export function SiteHeader() {
   /** Preserve ?q= when switching EN/ZH (usePathname drops search). */
   const [search, setSearch] = useState("");
 
-  /** Docs (home workbench) · Series · Selector */
-  const docsHref = localePath(locale, "/");
+  /** Docs workbench · Selector (home is logo only) */
+  const docsHref = localePath(locale, "/downloads");
   const nav: {
     href: string;
     label: string;
     external?: boolean;
-    /** Treat home + /downloads as one "Docs" active state */
     docsNav?: boolean;
   }[] = [
     { href: docsHref, label: t.nav.downloads, docsNav: true },
-    { href: localePath(locale, "/products"), label: t.nav.products },
     { href: SELECTOR_URL, label: t.nav.selector, external: true },
   ];
 
@@ -54,10 +52,10 @@ export function SiteHeader() {
 
   const bare = pathname.replace(/\/$/, "") || "/";
   const onDocsSurface =
-    bare === "/" ||
-    bare === "/zh" ||
     bare === "/downloads" ||
-    bare === "/zh/downloads";
+    bare === "/zh/downloads" ||
+    bare === "/products" ||
+    bare === "/zh/products";
 
   const isActive = (
     href: string,

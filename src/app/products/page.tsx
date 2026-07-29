@@ -1,11 +1,5 @@
-import type { Metadata } from "next";
-import { ProductsPage } from "@/components/ProductsPage";
-
-export const metadata: Metadata = {
-  title: "Products",
-  description: "Huaming OLTC / DETC series by family.",
-};
+import { ProductsRedirect } from "@/components/ProductsRedirect";
 
 export default function Page() {
-  return <ProductsPage locale="en" />;
+  return <ProductsRedirect locale="en" />;
 }

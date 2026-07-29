@@ -1,6 +1,6 @@
-# Design — 华明 Hub (Spec Desk)
+# Design — 华明 Hub（门户 + 文档）
 
-Document workbench. Home **is** the PDF table. One cold surface language. No marketing bands.
+先门户，再进文档。冷纸一语。不营销。
 
 ## Audience
 
@@ -8,10 +8,10 @@ Procurement / engineering · unofficial OLTC docs hub
 
 ## Jobs (priority)
 
-1. Find official PDF by model / series / keyword  
-2. Recognise product series, then deep-link into docs  
-3. Open type selector (external)  
-4. Switch EN ↔ 中文  
+1. 打开站，知道这是华明资料站  
+2. 进文档页，按型号 / 系列找到官方 PDF  
+3. 打开选型工具（外链）  
+4. 切换 EN ↔ 中文  
 
 ## System (locked)
 
@@ -28,30 +28,29 @@ Procurement / engineering · unofficial OLTC docs hub
 | Accent soft | `--accent-soft` | `#e4eef7` |
 | CTA | `--btn-bg` | `#0a4a82` |
 
-- **Surfaces:** white + 1px `--rule` + radius **3–4px**. Header, chips, table wrap share this language.
-- **Type:** IBM Plex Sans (UI) · IBM Plex Mono (model codes, kickers, meta counts, chip codes)
-- **Accent ≤ 5%** — primary button, links, active nav, top rule. Never fill whole sections.
-- **No** graphite/dark sections, gradient heroes, photo plates, shadows beyond hairline.
+- **Surfaces:** white + 1px `--rule` + radius **3–4px**
+- **Type:** IBM Plex Sans (UI) · IBM Plex Mono (model codes, kickers)
+- **Accent ≤ 5%**
+- **No** graphite/dark sections, gradient heroes, photo plates
 
 ## Signature
 
-1. **Mono model codes** — scannable IDs in IBM Plex Mono (parts list, not brochure).
-2. **Cobalt top rule** — 2px solid `--accent` on the root (spec-paper top line).
+1. **Mono model codes** — scannable IDs  
+2. **Cobalt top rule** — 2px solid `--accent` on root  
 
 ## Layout / IA
 
-- Shell max ~1040px
-- Header sticky · Footer single line (unofficial + official site; no Email Desk)
-- **Nav:** Docs → `/` (also active on `/downloads`) · Series → `/products` · Selector ↗
-- **Home `/`:** short identity + search + series chips + PDF table (Spec Desk)
-- **`/downloads`:** same explorer component as home
-- **`/products`:** family-grouped series index → Docs deep-link `/?q=…`
-- Content density: workbench, not empty marketing bands
+- Shell max ~1040px  
+- Nav: **Docs** → `/downloads` · **Selector** ↗ · EN/中（无 Series）  
+- **Home `/`:** 门户 — kicker · H1 · lead · CTAs · 数字 · 系列速览板  
+- **`/downloads`:** 系列索引（原 Products）+ 搜索/chips + PDF 表  
+- **`/products`:** 重定向到 `/downloads`  
+- **滚动:** 整页一条；表格禁止 `max-height` 内滚  
 
 ## CTA
 
-Primary: solid cobalt (`--btn-bg`), **white text forced**. Secondary: white + border.
+Primary: solid cobalt, white text. Secondary: white + border.
 
 ## Spec
 
-Full design: `docs/superpowers/specs/2026-07-29-spec-desk-design.md`
+`docs/superpowers/specs/2026-07-29-portal-docs-design.md`

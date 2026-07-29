@@ -1,6 +1,6 @@
 # Huaming Hub
 
-Unofficial **Spec Desk** for Huaming OLTC / DETC PDFs, product series, and a first-pass type selector.
+Unofficial portal for Huaming OLTC / DETC PDFs, series notes, and a first-pass type selector.
 
 **Live:** https://erict16.github.io/huaming-hub/
 
@@ -8,18 +8,18 @@ Not an official Huaming website. PDFs open on [intl-huaming.com](https://www.int
 
 ## What it is
 
-Home **is** the document workbench: search a model code, filter by series, open the official PDF.
+Home is a short portal. Docs is the workbench (series + PDF table). No separate Products page.
 
 | Route | Content |
 |-------|---------|
-| `/` (EN default) | Spec Desk — identity + search + chips + PDF table |
-| `/downloads/` | Same explorer (bookmark-safe) |
-| `/products/` | Series index → deep-link into Docs with `?q=` |
+| `/` (EN default) | Portal — identity, CTAs, series preview |
+| `/downloads/` | Docs workbench — series index + search + PDF table |
+| `/products/` | Redirects to `/downloads/` |
 | `/zh/…` | Chinese UI |
 
 Selector (separate app): https://erict16.github.io/oltc-selector/
 
-Design: `design.md` · Spec: `docs/superpowers/specs/2026-07-29-spec-desk-design.md`
+Design: `design.md` · Spec: `docs/superpowers/specs/2026-07-29-portal-docs-design.md`
 
 ## Stack
 
