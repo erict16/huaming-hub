@@ -1,7 +1,7 @@
 # Design: Huaming Hub on Fumadocs
 
 **Date:** 2026-07-29  
-**Status:** approved · implementing on branch `redo/fumadocs`  
+**Status:** pending Eric approval  
 **Stack:** Fumadocs + Next.js · content from existing hub data  
 **Live target:** Vercel (primary); keep GitHub repo `erict16/huaming-hub`
 

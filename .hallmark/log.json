@@ -1,0 +1,37 @@
+[
+  {
+    "date": "2026-07-29",
+    "macrostructure": "Split Studio",
+    "theme": "Cobalt",
+    "enrichment": "none",
+    "brief": "Full B2B business-site redesign: split hero, dark dest band, series preview, N1b nav, Ft2 footer"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "docs-hub-catalogue",
+    "theme": "cobalt-industrial",
+    "enrichment": "none",
+    "brief": "A11y focus/skip/lang; products grouped; docs primary CTA; table sticky scroll"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "docs-hub",
+    "theme": "cobalt-industrial",
+    "enrichment": "none",
+    "brief": "Hallmark audit fix: type scale, spacing tokens, header mark, dead CSS purge, steps strip"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "Stat-Led-public-hub",
+    "theme": "cobalt-industrial",
+    "enrichment": "brand-photo-only",
+    "brief": "Pivot copy+IA to public-facing reference hub"
+  },
+  {
+    "date": "2026-07-29",
+    "macrostructure": "Stat-Led",
+    "theme": "cobalt-industrial",
+    "enrichment": "none",
+    "brief": "News balance Huaming-only + Stat-Led home polish"
+  }
+]

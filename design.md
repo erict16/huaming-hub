@@ -1,32 +1,38 @@
-# Design — 华明 Hub (Fumadocs)
+# Design — 华明 Hub
 
-Fumadocs 文档壳 + 华明 PDF / 系列内容。
+One calm surface language for every page. No dark bands, no competing card systems.
 
 ## Audience
 
 Procurement / engineering · unofficial OLTC docs hub
 
-## Jobs
+## System (locked)
 
-1. Find official PDF by model / series  
-2. Recognise product series  
-3. Open type selector (external)  
+| Role | Token | Value |
+|------|-------|-------|
+| Page | `--paper` | `#f5f7fa` |
+| Surface | `--paper-2` | `#ffffff` |
+| Soft fill | `--paper-3` | `#eef2f6` |
+| Text | `--ink` | `#0f2438` |
+| Secondary | `--ink-2` | `#4a5d70` |
+| Meta | `--ink-3` | `#738496` |
+| Line | `--rule` | `#dce3eb` |
+| Accent | `--accent` | `#0a4a82` |
+| Accent soft | `--accent-soft` | `#e8f0f7` |
+| CTA | `--btn-bg` | `#0a4a82` |
 
-## Stack
-
-- Fumadocs UI + MDX  
-- Next.js App Router  
-- Data: `lib/data/documents.json`, `lib/data/products.ts`  
-- Deploy: Vercel  
+- **Surfaces:** white + 1px `--rule` + radius 6px only. Same for header strip, entries, product groups, table wrap.
+- **Type:** Space Grotesk (display) · Inter (body) · JetBrains Mono (codes/kickers)
+- **Accent ≤ 5%** — primary button, links, active nav. Never fill whole sections.
+- **No** graphite/dark sections, gradient heroes, photo plates, shadows > hairline feel.
 
 ## Layout
 
-- Home: short identity + CTAs  
-- Docs sidebar: Overview · Files · Series  
-- Nav: Docs · Files · Series · Selector ↗  
-- PDF table: one page scroll (no nested max-height)  
-- PDFs stay on intl-huaming.com  
+- Shell max 1000px
+- Header sticky · Footer single line
+- Home: hero text → 3 equal entries → short how-to
+- Content: page head → list/table
 
-## Spec
+## CTA
 
-`docs/superpowers/specs/2026-07-29-fumadocs-hub-design.md`
+Primary: solid blue, **white text forced**. Secondary: white + border.
