@@ -72,40 +72,43 @@ export function DownloadExplorer({
 
   return (
     <div className="hm-stack">
-      <div className="hm-search-bar">
-        <input
-          type="search"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder={t.downloads.searchPlaceholder}
-          aria-label={t.downloads.searchPlaceholder}
-          autoComplete="off"
-          spellCheck={false}
-        />
-        <span className="hm-search-count" aria-live="polite">
-          {rows.length}/{documents.length}
-        </span>
-      </div>
+      {/* Sticky filter chrome — stays under site header while scrolling the list */}
+      <div className="hm-downloads-controls">
+        <div className="hm-search-bar">
+          <input
+            type="search"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder={t.downloads.searchPlaceholder}
+            aria-label={t.downloads.searchPlaceholder}
+            autoComplete="off"
+            spellCheck={false}
+          />
+          <span className="hm-search-count" aria-live="polite">
+            {rows.length}/{documents.length}
+          </span>
+        </div>
 
-      <div
-        className="hm-chip-row"
-        role="group"
-        aria-label={t.downloads.filterLabel}
-      >
-        {["all", ...categories].map((c) => {
-          const active = category === c;
-          return (
-            <button
-              key={c}
-              type="button"
-              onClick={() => setCategory(c)}
-              className={`hm-chip${active ? " hm-chip-on" : ""}`}
-              aria-pressed={active}
-            >
-              {chipLabel(c)}
-            </button>
-          );
-        })}
+        <div
+          className="hm-chip-row"
+          role="group"
+          aria-label={t.downloads.filterLabel}
+        >
+          {["all", ...categories].map((c) => {
+            const active = category === c;
+            return (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setCategory(c)}
+                className={`hm-chip${active ? " hm-chip-on" : ""}`}
+                aria-pressed={active}
+              >
+                {chipLabel(c)}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div className="hm-table-wrap">
@@ -113,17 +116,17 @@ export function DownloadExplorer({
           <caption className="sr-only">{t.downloads.tableCaption}</caption>
           <thead>
             <tr>
-              <th scope="col" className="w-[72px]">
+              <th scope="col" className="hm-table-col-model">
                 {t.downloads.colModel}
               </th>
               <th scope="col">{t.downloads.colFile}</th>
-              <th scope="col" className="w-[80px]">
+              <th scope="col" className="hm-table-col-kind">
                 {t.downloads.colKind}
               </th>
-              <th scope="col" className="w-[100px]">
+              <th scope="col" className="hm-table-col-series">
                 {t.downloads.colSeries}
               </th>
-              <th scope="col" className="w-[64px]">
+              <th scope="col" className="hm-table-col-action">
                 <span className="sr-only">{t.downloads.colAction}</span>
               </th>
             </tr>
@@ -141,12 +144,11 @@ export function DownloadExplorer({
             ) : (
               rows.map((d) => (
                 <tr key={d.id + d.url}>
-                  <td>
+                  <td className="hm-table-model">
                     <a
                       href={d.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-[var(--text-2xs)] font-semibold text-[var(--accent)] hover:underline"
                     >
                       {d.model}
                     </a>
@@ -156,19 +158,17 @@ export function DownloadExplorer({
                       href={d.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="line-clamp-1 text-[var(--ink)] hover:text-[var(--accent)]"
+                      className="hm-table-file"
                       title={d.name}
                     >
                       {d.name}
                     </a>
                   </td>
-                  <td className="whitespace-nowrap text-[var(--ink-3)]">
-                    {kindLabel(d.kind)}
-                  </td>
-                  <td className="whitespace-nowrap text-[var(--text-2xs)] text-[var(--ink-3)]">
+                  <td className="hm-table-meta">{kindLabel(d.kind)}</td>
+                  <td className="hm-table-meta hm-table-meta-sm">
                     {chipLabel(d.category)}
                   </td>
-                  <td className="text-right">
+                  <td className="hm-table-action">
                     <a
                       href={d.url}
                       target="_blank"

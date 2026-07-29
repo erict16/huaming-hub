@@ -6,7 +6,7 @@ export function DownloadsPage({ locale }: { locale: Locale }) {
   const t = getDict(locale);
 
   return (
-    <div className="hm-page">
+    <div className="hm-page hm-page-downloads">
       <header className="hm-page-head">
         <div>
           <h1>{t.downloads.title}</h1>

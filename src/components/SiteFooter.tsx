@@ -27,11 +27,12 @@ export function SiteFooter() {
           <span>{t.footer.blurb}</span>
         </p>
         <nav className="hm-footer-nav" aria-label="Footer">
-          <Link href={localePath(locale, "/products")}>
-            {t.footer.products}
-          </Link>
+          {/* Match header IA: Docs · Products · Selector · Official */}
           <Link href={localePath(locale, "/downloads")}>
             {t.footer.downloads}
+          </Link>
+          <Link href={localePath(locale, "/products")}>
+            {t.footer.products}
           </Link>
           <a href={SELECTOR_URL} target="_blank" rel="noopener noreferrer">
             {t.footer.selector}
