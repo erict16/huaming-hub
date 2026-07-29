@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 /*
-  Huaming Hub · unified light system
+  Huaming Hub · cold paper system
   One surface language: paper / white / hairline / cobalt accent
+  Signature: mono model codes + 2px cobalt top rule
   No dark bands · no competing card styles
 */
 
 :root {
-  --paper: #f5f7fa;
+  --paper: #f3f5f8;
   --paper-2: #ffffff;
-  --paper-3: #eef2f6;
-  --ink: #0f2438;
-  --ink-2: #4a5d70;
-  --ink-3: #738496;
-  --rule: #dce3eb;
+  --paper-3: #e8eef4;
+  --ink: #0c1f33;
+  --ink-2: #3d5166;
+  --ink-3: #6b7f92;
+  --rule: #d5dee8;
   --rule-2: #c5d0dc;
   --accent: #0a4a82;
-  --accent-soft: #e8f0f7;
+  --accent-soft: #e6f0f8;
   --btn-fg: #ffffff;
   --btn-bg: #0a4a82;
   --btn-bg-hover: #083a68;
-  --radius: 6px;
-  --radius-sm: 4px;
+  --radius: 4px;
+  --radius-sm: 2px;
   --s1: 4px;
   --s2: 8px;
   --s3: 12px;
@@ -44,9 +45,9 @@
   --leading-tight: 1.25;
   --leading-snug: 1.45;
   --leading-body: 1.55;
-  --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+  --font-display: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur: 140ms;
 }
@@ -81,6 +82,8 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  /* signature: cobalt top rule (spec paper) */
+  border-top: 2px solid var(--accent);
 }
 
 a {
@@ -656,10 +659,10 @@ a {
   }
 }
 .hm-product-code {
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-size: var(--text-md);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
   line-height: var(--leading-tight);
   color: var(--ink);
   white-space: nowrap;
