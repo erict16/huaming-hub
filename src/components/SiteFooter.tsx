@@ -19,10 +19,13 @@ export function SiteFooter() {
   return (
     <footer className="hm-footer">
       <div className="hm-shell hm-footer-inner">
-        <div className="min-w-0">
-          <p className="hm-footer-brand">{t.brand}</p>
-          <p className="hm-footer-blurb">{t.footer.blurb}</p>
-        </div>
+        <p className="hm-footer-meta">
+          <span className="hm-footer-brand">{t.brand}</span>
+          <span className="hm-footer-sep" aria-hidden="true">
+            ·
+          </span>
+          <span>{t.footer.blurb}</span>
+        </p>
         <nav className="hm-footer-nav" aria-label="Footer">
           <Link href={localePath(locale, "/products")}>
             {t.footer.products}

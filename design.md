@@ -12,7 +12,7 @@ modern-minimal · industrial docs hub (procurement)
 
 ## Macrostructure family
 
-- **Home:** Welcome hero → linked entry strip (3 joined cells, not free-floating SaaS cards) → numbered how-to strip.
+- **Home:** Open hero (copy + photo/type plate) → linked entry strip (3 joined cells) → quiet numbered how-to.
 - **Content pages** (downloads / products): page-head + dense list/table; no hero enrichment.
 - **Removed:** stock quote, news feed, about page.
 - **Previous fingerprints:** Workbench · Stat-Led desk · public hub with market sections
@@ -76,7 +76,7 @@ Accent ≤ ~5% of viewport. No gradient hero, no fake chrome.
 - Accent + CTA voice (Documents is the primary buyer action)
 - Display / body / mono fonts
 - `hm-shell` / `hm-page` rhythm
-- Sticky header + compact footer
+- Sticky header + single-line compact footer
 - EN default routes; `/zh/*` Chinese
 
 ## What pages MAY differ
@@ -88,10 +88,11 @@ Accent ≤ ~5% of viewport. No gradient hero, no fake chrome.
 
 ## Enrichment
 
-**none** on app pages.
+- Home hero only: product photo (cropped past hex mask) + mono type plate.
+- Other app pages: none.
 
 ## Hallmark stamp (CSS)
 
 ```
-/* Hallmark · Stat-Led · cobalt-industrial · P4 H4 E4 S4 R4 V3 */
+/* Hallmark · docs-hub · cobalt-industrial · P4 H4 E4 S4 R4 V4 */
 ```

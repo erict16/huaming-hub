@@ -56,12 +56,11 @@ const en = {
   langEn: "EN",
   langZh: "中文",
   footer: {
-    blurb:
-      "Unofficial reference site. Product pages and PDFs open on Huaming's international site. For procurement and engineering use only.",
+    blurb: "Unofficial reference · PDFs on Huaming international site",
     products: "Products",
     downloads: "Documents",
     selector: "Selector",
-    official: "Official site",
+    official: "Official",
   },
   home: {
     kicker: "Huaming Power Equipment · OLTC",
@@ -151,11 +150,10 @@ const zh = {
   langEn: "EN",
   langZh: "中文",
   footer: {
-    blurb:
-      "非官方参考站。产品页与 PDF 打开华明国际站。仅供采购与工程查阅。",
+    blurb: "非官方参考 · PDF 在华明国际站",
     products: "产品",
     downloads: "资料",
-    selector: "选型器",
+    selector: "选型",
     official: "官网",
   },
   home: {

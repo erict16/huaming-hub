@@ -13,6 +13,7 @@ export function HomePage({ locale }: { locale: Locale }) {
   const t = getDict(locale);
   const seriesCount = productSeries.length;
   const docCount = allDocuments.length;
+  const plateCodes = productSeries.slice(0, 6).map((p) => p.code.split(" ")[0]);
 
   const entries = [
     {
@@ -44,7 +45,7 @@ export function HomePage({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <div className="hm-page">
+    <div className="hm-page hm-page-home">
       <section className="hm-hero">
         <div className="hm-hero-copy">
           <p className="hm-hero-kicker">{t.home.kicker}</p>
@@ -74,15 +75,49 @@ export function HomePage({ locale }: { locale: Locale }) {
               <span className="sr-only"> ({t.home.opensExternal})</span>
             </a>
           </div>
-          <p className="hm-hero-meta">{t.home.meta(seriesCount, docCount)}</p>
+          <ul className="hm-hero-stats" aria-label={t.home.meta(seriesCount, docCount)}>
+            <li>
+              <span className="hm-hero-stat-n">{seriesCount}</span>
+              <span className="hm-hero-stat-l">
+                {locale === "zh" ? "系列" : "series"}
+              </span>
+            </li>
+            <li>
+              <span className="hm-hero-stat-n">{docCount}</span>
+              <span className="hm-hero-stat-l">PDFs</span>
+            </li>
+            <li>
+              <span className="hm-hero-stat-l hm-hero-stat-note">
+                {locale === "zh" ? "文件在官网" : "files on official site"}
+              </span>
+            </li>
+          </ul>
         </div>
-        <div className="hm-hero-visual">
-          <img
-            src={asset("/brand/home/home-product.png")}
-            alt={locale === "zh" ? "华明分接开关产品" : "Huaming tap changer"}
-            width={480}
-            height={360}
-          />
+
+        <div className="hm-hero-visual" aria-hidden="true">
+          <div className="hm-hero-photo">
+            <img
+              src={asset("/brand/home/home-product.png")}
+              alt=""
+              width={480}
+              height={360}
+            />
+          </div>
+          <div className="hm-hero-plate">
+            <p className="hm-hero-plate-label">
+              {locale === "zh" ? "常用型号" : "Key types"}
+            </p>
+            <ul className="hm-hero-plate-codes">
+              {plateCodes.map((code) => (
+                <li key={code}>{code}</li>
+              ))}
+            </ul>
+            <p className="hm-hero-plate-foot">
+              {locale === "zh"
+                ? `${seriesCount} 个系列 · 点「资料」下 PDF`
+                : `${seriesCount} series · PDFs under Documents`}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -104,7 +139,11 @@ export function HomePage({ locale }: { locale: Locale }) {
               </span>
             </a>
           ) : (
-            <Link key={e.href} href={e.href} className="hm-entry">
+            <Link
+              key={e.href}
+              href={e.href}
+              className={`hm-entry${e.primary ? " hm-entry-primary" : ""}`}
+            >
               <div className="hm-entry-title">{e.title}</div>
               <p className="hm-entry-desc">{e.desc}</p>
               <span className="hm-entry-cta">{e.cta} →</span>
