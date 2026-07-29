@@ -792,9 +792,9 @@ a {
   color: var(--ink-3);
 }
 
+/* One page scroll only — no nested max-height scroll (dual-scroll bug) */
 .hm-table-wrap {
-  max-height: min(70vh, 720px);
-  overflow: auto;
+  overflow-x: auto;
   border-radius: var(--radius);
   border: 1px solid var(--rule);
   background: var(--paper-2);
@@ -815,9 +815,6 @@ a {
   border-bottom: 1px solid var(--rule);
   padding: var(--s3) var(--s4);
   white-space: nowrap;
-  position: sticky;
-  top: 0;
-  z-index: 1;
 }
 .hm-table-wrap .hm-table th:first-child,
 .hm-table-wrap .hm-table td:first-child {
