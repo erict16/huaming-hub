@@ -68,7 +68,7 @@ export function ProductsPage({ locale }: { locale: Locale }) {
                       <span aria-hidden="true"> ↗</span>
                     </a>
                     <Link
-                      href={`${localePath(locale, "/downloads")}?q=${encodeURIComponent(productDocsQuery(p.code))}`}
+                      href={`${localePath(locale, "/")}?q=${encodeURIComponent(productDocsQuery(p.code))}`}
                     >
                       {t.products.docs}
                     </Link>

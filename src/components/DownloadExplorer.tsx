@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { filterDocuments, type DocumentItem } from "@/lib/documents";
 import { getDict, type Locale } from "@/lib/i18n";
 
@@ -16,15 +16,19 @@ export function DownloadExplorer({
   documents,
   categories,
   locale,
+  autofocus = false,
 }: {
   documents: DocumentItem[];
   categories: string[];
   kinds?: string[];
   locale: Locale;
+  /** Desktop-only autofocus (Spec Desk home) */
+  autofocus?: boolean;
 }) {
   const t = getDict(locale);
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("all");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Hydrate from ?q= and keep in sync on back/forward + same-route doc links
   useEffect(() => {
@@ -42,7 +46,6 @@ export function DownloadExplorer({
         const there = url.pathname.replace(/\/$/, "");
         if (there !== here) return;
         const next = (url.searchParams.get("q") || "").trim();
-        // After Next client nav, location.search updates; microtask is enough
         queueMicrotask(() => setQ(next));
       } catch {
         /* ignore */
@@ -55,6 +58,18 @@ export function DownloadExplorer({
       document.removeEventListener("click", onClick);
     };
   }, []);
+
+  // Desktop autofocus only — skip small screens and reduced-motion preference is ok
+  useEffect(() => {
+    if (!autofocus) return;
+    const mq = window.matchMedia("(min-width: 640px)");
+    if (!mq.matches) return;
+    // Defer past sticky header paint
+    const id = window.requestAnimationFrame(() => {
+      inputRef.current?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [autofocus]);
 
   const rows = useMemo(
     () => filterDocuments({ q, category }),
@@ -72,10 +87,10 @@ export function DownloadExplorer({
 
   return (
     <div className="hm-stack">
-      {/* Sticky filter chrome — stays under site header while scrolling the list */}
       <div className="hm-downloads-controls">
         <div className="hm-search-bar">
           <input
+            ref={inputRef}
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
