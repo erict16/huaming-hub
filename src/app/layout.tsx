@@ -26,11 +26,11 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Huaming Hub · OLTC technical docs",
+    default: "Huaming Hub · OLTC docs",
     template: "%s · Huaming Hub",
   },
   description:
-    "Unofficial Huaming OLTC / DETC reference: product series, technical PDFs, and type selector for procurement and engineering.",
+    "Huaming OLTC / DETC series, technical PDFs, and type selector. Unofficial reference.",
   icons: {
     icon: [
       {

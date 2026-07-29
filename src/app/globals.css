@@ -439,8 +439,8 @@ a {
 /* ===== HOME ===== */
 
 .hm-hero {
-  /* no card — open on paper */
-  max-width: 36rem;
+  /* no card — open on paper; wider so EN stays on fewer lines */
+  max-width: 40rem;
   padding-bottom: var(--s2);
 }
 .hm-hero-kicker {
@@ -455,17 +455,22 @@ a {
 .hm-hero h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.8vw, 1.75rem);
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: var(--leading-tight);
   color: var(--ink);
+  /* EN titles wrap less awkwardly than max-width: 14ch */
+  max-width: 22ch;
+  text-wrap: balance;
 }
 .hm-hero-lead {
   margin: var(--s3) 0 var(--s5);
   font-size: var(--text-md);
   line-height: var(--leading-body);
   color: var(--ink-2);
+  max-width: 38rem;
+  text-wrap: pretty;
 }
 .hm-hero-actions {
   display: flex;
@@ -528,6 +533,9 @@ a {
   letter-spacing: -0.015em;
   color: var(--ink);
   line-height: var(--leading-tight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .hm-entry-desc {
   margin: 0;
@@ -535,12 +543,19 @@ a {
   font-size: var(--text-sm);
   line-height: var(--leading-snug);
   color: var(--ink-2);
+  /* keep EN cards same height as ZH — max ~2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(var(--text-sm) * 1.45 * 2);
 }
 .hm-entry-cta {
   margin-top: var(--s1);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--accent);
+  white-space: nowrap;
 }
 
 /* how-to — quiet, same type as rest */
@@ -584,12 +599,17 @@ a {
   font-weight: 600;
   color: var(--ink);
   letter-spacing: -0.015em;
+  white-space: nowrap;
 }
 .hm-howto .body {
   margin: 0;
   font-size: var(--text-sm);
   line-height: var(--leading-snug);
   color: var(--ink-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ===== PRODUCTS (same surface) ===== */
@@ -642,18 +662,26 @@ a {
   letter-spacing: -0.02em;
   line-height: var(--leading-tight);
   color: var(--ink);
+  white-space: nowrap;
 }
 .hm-product-name {
   margin-top: 2px;
   font-size: var(--text-2xs);
   line-height: var(--leading-snug);
   color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .hm-product-blurb {
   margin: 0;
   font-size: var(--text-sm);
   line-height: var(--leading-snug);
   color: var(--ink-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .hm-product-links {
   display: flex;

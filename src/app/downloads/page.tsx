@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { DownloadsPage } from "@/components/DownloadsPage";
 
 export const metadata: Metadata = {
-  title: "Documents",
+  title: "Docs",
   description:
-    "Huaming OLTC leaflets, technical data sheets, and operating manuals (official PDF links).",
+    "Huaming OLTC leaflets, data sheets, and manuals (official PDF links).",
 };
 
 export default function Page() {
