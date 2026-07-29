@@ -1,8 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { DocumentItem } from "@/lib/documents";
+import { filterDocuments, type DocumentItem } from "@/lib/documents";
 import { getDict, type Locale } from "@/lib/i18n";
+
+function readSearchQ(): string {
+  try {
+    return (new URLSearchParams(window.location.search).get("q") || "").trim();
+  } catch {
+    return "";
+  }
+}
 
 export function DownloadExplorer({
   documents,
@@ -18,29 +26,40 @@ export function DownloadExplorer({
   const [q, setQ] = useState("");
   const [category, setCategory] = useState("all");
 
+  // Hydrate from ?q= and keep in sync on back/forward + same-route doc links
   useEffect(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const initial = (params.get("q") || "").trim();
-      if (initial) setQ(initial);
-    } catch {
-      /* ignore */
-    }
+    setQ(readSearchQ());
+
+    const onPop = () => setQ(readSearchQ());
+    window.addEventListener("popstate", onPop);
+
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest?.("a");
+      if (!a || !(a instanceof HTMLAnchorElement)) return;
+      try {
+        const url = new URL(a.href, window.location.href);
+        const here = window.location.pathname.replace(/\/$/, "");
+        const there = url.pathname.replace(/\/$/, "");
+        if (there !== here) return;
+        const next = (url.searchParams.get("q") || "").trim();
+        // After Next client nav, location.search updates; microtask is enough
+        queueMicrotask(() => setQ(next));
+      } catch {
+        /* ignore */
+      }
+    };
+    document.addEventListener("click", onClick);
+
+    return () => {
+      window.removeEventListener("popstate", onPop);
+      document.removeEventListener("click", onClick);
+    };
   }, []);
 
-  const filtered = useMemo(() => {
-    const query = q.trim().toLowerCase();
-    return documents.filter((d) => {
-      if (category !== "all" && d.category !== category) return false;
-      if (!query) return true;
-      return (
-        d.model.toLowerCase().includes(query) ||
-        d.name.toLowerCase().includes(query) ||
-        d.kind.toLowerCase().includes(query) ||
-        d.category.toLowerCase().includes(query)
-      );
-    });
-  }, [documents, q, category]);
+  const rows = useMemo(
+    () => filterDocuments({ q, category }),
+    [q, category],
+  );
 
   const chipLabel = (c: string) =>
     t.downloads.category[c] ||
@@ -64,7 +83,7 @@ export function DownloadExplorer({
           spellCheck={false}
         />
         <span className="hm-search-count" aria-live="polite">
-          {filtered.length}/{documents.length}
+          {rows.length}/{documents.length}
         </span>
       </div>
 
@@ -110,7 +129,7 @@ export function DownloadExplorer({
             </tr>
           </thead>
           <tbody>
-            {filtered.length === 0 ? (
+            {rows.length === 0 ? (
               <tr>
                 <td
                   colSpan={5}
@@ -120,7 +139,7 @@ export function DownloadExplorer({
                 </td>
               </tr>
             ) : (
-              filtered.map((d) => (
+              rows.map((d) => (
                 <tr key={d.id + d.url}>
                   <td>
                     <a

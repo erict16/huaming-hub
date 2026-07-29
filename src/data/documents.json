@@ -108,21 +108,12 @@
     "source": "intl-huaming.com"
   },
   {
-    "id": "cvt-cv2600-oi-2023-pdf",
-    "model": "CVT",
+    "id": "cv2-cv2600-oi-2023-pdf",
+    "model": "CV2",
     "name": "CV2600-OI-2023.pdf",
     "kind": "Operating Instruction",
     "category": "Vacuum OLTC",
     "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CV2/CV2600-OI-2023.pdf",
-    "source": "intl-huaming.com"
-  },
-  {
-    "id": "cvt-cv2-vacuum-oltc-technical-data-hm0-154-4101-pdf",
-    "model": "CVT",
-    "name": "CV2 Vacuum OLTC Technical Data-HM0.154.4101.pdf",
-    "kind": "Technical Data",
-    "category": "Vacuum OLTC",
-    "url": "https://www.intl-huaming.com/images/00_HuaMing/product/PDF/Vacuum%20Type/CV2/CV2%20Vacuum%20OLTC%20Technical%20Data-HM0.154.4101.pdf",
     "source": "intl-huaming.com"
   },
   {

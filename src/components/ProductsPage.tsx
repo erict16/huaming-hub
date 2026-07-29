@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { productSeries } from "@/data/products";
+import { productDocsQuery } from "@/lib/documents";
 import { getDict, localePath, type Locale } from "@/lib/i18n";
 
 const categoryOrder = [
@@ -60,7 +61,7 @@ export function ProductsPage({ locale }: { locale: Locale }) {
                     <span aria-hidden="true"> ↗</span>
                   </a>
                   <Link
-                    href={`${localePath(locale, "/downloads")}?q=${encodeURIComponent(p.code.split(/[\/·]/)[0].trim())}`}
+                    href={`${localePath(locale, "/downloads")}?q=${encodeURIComponent(productDocsQuery(p.code))}`}
                   >
                     {t.products.docs}
                   </Link>

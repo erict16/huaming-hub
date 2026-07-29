@@ -18,6 +18,8 @@ export function SiteHeader() {
   const locale: Locale = localeFromPath(pathname);
   const t = getDict(locale);
   const [open, setOpen] = useState(false);
+  /** Preserve ?q= when switching EN/ZH (usePathname drops search). */
+  const [search, setSearch] = useState("");
 
   const nav: { href: string; label: string; external?: boolean }[] = [
     { href: localePath(locale, "/"), label: t.nav.home },
@@ -26,11 +28,12 @@ export function SiteHeader() {
     { href: SELECTOR_URL, label: t.nav.selector, external: true },
   ];
 
-  const enHref = switchLocale(pathname, "en");
-  const zhHref = switchLocale(pathname, "zh");
+  const enHref = `${switchLocale(pathname, "en")}${search}`;
+  const zhHref = `${switchLocale(pathname, "zh")}${search}`;
 
   useEffect(() => {
     setOpen(false);
+    setSearch(window.location.search || "");
   }, [pathname]);
 
   useEffect(() => {
