@@ -82,14 +82,6 @@ const en = {
     entrySelectorTitle: "Selector",
     entrySelectorDesc: "Voltage & current → catalogue type",
     entrySelectorCta: "Open",
-    howTitle: "How to use",
-    how1Title: "1. Docs",
-    how1Body: "Search by model for leaflets, data sheets, manuals.",
-    how2Title: "2. Products",
-    how2Body: "Family context: oil, vacuum, dry-type.",
-    how3Title: "3. Selector",
-    how3Body:
-      "First-pass only. Confirm on the official datasheet before order.",
     opensExternal: "opens in a new tab",
   },
   products: {
@@ -175,13 +167,6 @@ const zh = {
     entrySelectorTitle: "OLTC 选型",
     entrySelectorDesc: "按电压、电流对照型号",
     entrySelectorCta: "打开工具",
-    howTitle: "怎么用",
-    how1Title: "1. 先下资料",
-    how1Body: "在资料页按型号搜 Leaflet、参数表和操作说明。",
-    how2Title: "2. 再看系列",
-    how2Body: "需要油浸 / 真空 / 干式对照时打开产品页。",
-    how3Title: "3. 选型只做初筛",
-    how3Body: "选型器结果仅供参考，下单前以官网与正式规范书为准。",
     opensExternal: "在新标签打开",
   },
   products: {

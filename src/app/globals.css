@@ -438,13 +438,22 @@ a {
 
 /* ===== HOME ===== */
 
+/* Hero + entry strip only — tighter vertical rhythm without howto block */
+.hm-page-home {
+  gap: var(--s5);
+}
+@media (min-width: 640px) {
+  .hm-page-home {
+    gap: var(--s6);
+  }
+}
+
 .hm-hero {
   /* no card — open on paper; wider so EN stays on fewer lines */
   max-width: 40rem;
-  padding-bottom: var(--s2);
 }
 .hm-hero-kicker {
-  margin: 0 0 var(--s3);
+  margin: 0 0 var(--s2);
   font-family: var(--font-mono);
   font-size: var(--text-2xs);
   font-weight: 500;
@@ -465,7 +474,7 @@ a {
   text-wrap: balance;
 }
 .hm-hero-lead {
-  margin: var(--s3) 0 var(--s5);
+  margin: var(--s3) 0 var(--s4);
   font-size: var(--text-md);
   line-height: var(--leading-body);
   color: var(--ink-2);
@@ -478,7 +487,7 @@ a {
   gap: var(--s2);
 }
 .hm-hero-meta {
-  margin: var(--s5) 0 0;
+  margin: var(--s4) 0 0;
   font-size: var(--text-2xs);
   color: var(--ink-3);
   font-variant-numeric: tabular-nums;
@@ -556,60 +565,6 @@ a {
   font-weight: 600;
   color: var(--accent);
   white-space: nowrap;
-}
-
-/* how-to — quiet, same type as rest */
-.hm-howto {
-  padding-top: var(--s2);
-  border-top: 1px solid var(--rule);
-}
-.hm-howto h2 {
-  margin: 0 0 var(--s5);
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--ink-3);
-  letter-spacing: -0.01em;
-}
-.hm-howto ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: var(--s5);
-}
-@media (min-width: 720px) {
-  .hm-howto ol {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--s6);
-  }
-}
-.hm-howto .num {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  margin-bottom: var(--s2);
-}
-.hm-howto .title {
-  margin: 0 0 var(--s1);
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -0.015em;
-  white-space: nowrap;
-}
-.hm-howto .body {
-  margin: 0;
-  font-size: var(--text-sm);
-  line-height: var(--leading-snug);
-  color: var(--ink-2);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* ===== PRODUCTS (same surface) ===== */

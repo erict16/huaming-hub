@@ -35,14 +35,8 @@ export function HomePage({ locale }: { locale: Locale }) {
     },
   ];
 
-  const steps = [
-    { n: "01", title: t.home.how1Title, body: t.home.how1Body },
-    { n: "02", title: t.home.how2Title, body: t.home.how2Body },
-    { n: "03", title: t.home.how3Title, body: t.home.how3Body },
-  ];
-
   return (
-    <div className="hm-page">
+    <div className="hm-page hm-page-home">
       <section className="hm-hero">
         <p className="hm-hero-kicker">{t.home.kicker}</p>
         <h1>{t.home.title}</h1>
@@ -101,21 +95,6 @@ export function HomePage({ locale }: { locale: Locale }) {
             </Link>
           ),
         )}
-      </section>
-
-      <section className="hm-howto" aria-labelledby="how-title">
-        <h2 id="how-title">{t.home.howTitle}</h2>
-        <ol>
-          {steps.map((s) => (
-            <li key={s.n}>
-              <div className="num" aria-hidden="true">
-                {s.n}
-              </div>
-              <p className="title">{s.title.replace(/^\d+\.\s*/, "")}</p>
-              <p className="body">{s.body}</p>
-            </li>
-          ))}
-        </ol>
       </section>
     </div>
   );
